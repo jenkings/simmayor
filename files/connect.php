@@ -1,6 +1,6 @@
 <?php
-	$c_username = "root";
-	$c_password = "unsupportedpassword";
+	$c_username = "simmayor";
+	$c_password = "";
 	$c_host = "localhost";
 	$c_database = "simmayor";
 

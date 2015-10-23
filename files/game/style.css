@@ -1,0 +1,45 @@
+canvas{
+float:left;
+width:785px;
+margin-left:5px;
+margin-top:5px;
+}
+
+#news{float:left;width:785px;height:25px;background-color:white;margin-left:5px;}
+#time{width:70px;height:20px;float:left;background-color:black;color:white;font-weight:bold;padding-top:5px;padding-left:5px;}
+#tema{height:20px;float:left;color:white;font-weight:bold;padding-top:5px;padding-left:5px;padding-right:5px;}
+#zpr{height:20px;float:left;padding-top:5px;padding-left:5px;}
+
+ul{list-style-type:none;display:inline-block;position:relative;float:right;margin-right:15px;}
+li{float:left;}
+#ctrl{width:380px;height:490px;float:right;background-image:url(./img/bg.png);}
+
+img{float:left;}
+.btn{-webkit-transform: rotate(45deg);-ms-transform: rotate(45deg);-moz-transform: rotate(45deg);width:35px;height:35px;}
+
+#populace{float:left;margin-left:70px;margin-top:6px;}
+#populace #favsmi{float:right;}
+#oblibenost{width:48px;height:23px;background-image:url(./img/buble.png);margin-top:60px;margin-left:5px;padding-top:11px;padding-left:11px;}
+
+#pozadi{background-color:#1d1d1d;width:100%;height:540px;margin-top:20px;}
+
+#money{width:200px;height:22px;background-image:url(./img/cashbox.png);padding-top:3px;padding-left:28px;float:right;margin-top:6px;margin-right:5px;}
+#people{width:200px;height:22px;background-image:url(./img/peoplebox.png);padding-top:3px;padding-left:28px;float:right;margin-top:6px;margin-right:5px;}
+#transport{width:200px;height:22px;background-image:url(./img/transportbox.png);padding-top:3px;padding-left:28px;float:right;margin-top:6px;margin-right:5px;}
+
+
+#controll{width:150px;height:150px;position:relative;top:300px;left:120px;background-color:#111111;border-radius:75px;}
+
+#controll #nahoru{position:absolute;top:10px;left:50px;}
+#controll #dolu{position:absolute;top:110px;left:50px;}
+#controll #doleva{position:absolute;top:55px;left:5px;}
+#controll #doprava{position:absolute;top:55px;left:100px;}
+
+#hlp{position:relative;top:310px;left:320px;}
+#photo{position:relative;top:310px;left:240px;}
+
+
+#tutbox{z-index:4;width:1000px;height:580px;background-color:#EEEEEE;position:absolute;right:200px;bottom:-70px;border:solid black 5px;border-radius:10px;display:none;}
+#tutbox img{margin-left:50px;margin-top:50px;}
+#tutbox #nex{margin-top:500px;margin-left:250px;}
+

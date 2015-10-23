@@ -1,6 +1,7 @@
-o<?php
+<?php
+include "../connect.php";
 		
-		if($_SERVER['HTTP_REFERER'] != "http://game.jenkings.eu/game.php")
+		if($_SERVER['HTTP_REFERER'] != WEB_ROOT . "/game.php")
 		{
 			exit;
 		}
@@ -8,7 +9,7 @@ o<?php
 		if(isset($_POST['String']) && isset($_POST['idmesta']) && isset($_POST['prachy']))
 		{
 			session_start();
-			include "../connect.php";
+			
 	
 			$x = mysql_fetch_assoc(mysql_query("SELECT penize FROM accounts WHERE id='".$_SESSION['prihlasen']."'"));
 			

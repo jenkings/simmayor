@@ -99,6 +99,8 @@ var newss = de.split("|");
             save();
             return "Hra bude před odchoem uložena";
         }
+        
+        var document_root = "<?php echo WEB_ROOT ?>"; //předání docmentrootu pro ochranu serveru
  </script>
 
 <?php

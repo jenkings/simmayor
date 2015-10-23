@@ -416,7 +416,7 @@ function save()
 
 	$.ajax ({
 	   type: "POST",
-	   url:"/game/save.php",
+	   url:document_root+"/game/save.php",
 	   data: {String:String,idmesta:idmesta,prachy:prachy},
 	   success: function() {
 		  //console.log("save");
@@ -431,7 +431,7 @@ function economics()
 		var prachy = hrac.getMoney();
 		$.ajax ({
 		type: "POST",
-		url:"/economy/islandeconomy.php",
+		url:document_root+"/economy/islandeconomy.php",
 		data: {idmesta:idmesta},
 		success: function(data) {	  
 			var n=data.split("|");

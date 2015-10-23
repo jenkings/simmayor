@@ -29,7 +29,8 @@ class Obchod{
 		$userdata = $hrac->getComodities();
 		if(isset($_POST['predmet']) && isset($_POST['pocet']) && isset($_POST['cena']))
 		{
-			if($_SERVER['HTTP_REFERER'] != "http://game.jenkings.eu/showme.php"){exit;}
+			include_once "./cfg/host.php";
+			if($_SERVER['HTTP_REFERER'] != WEB_ROOT + "/showme.php"){exit;}
 			if($_POST['pocet'] <= 0 || $_POST['cena'] <=0 || $_POST['cena'] >8000000){exit;}	
 			$x=$db->queryOne("SELECT COUNT(id) FROM prodejna WHERE idprodavajiciho = ?",array($_SESSION['prihlasen']));	
 			$pocet = $x['COUNT(id)'];
@@ -50,7 +51,7 @@ class Obchod{
 				}
 				else
 				{
-					echo "nemáš dostatek " . $_POST['predmet'];
+					echo "nemáš dostatek komodity: " . $_POST['predmet'];
 				}
 			}
 		}

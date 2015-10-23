@@ -1,4 +1,5 @@
 <?php
+	include_once "./cfg/host.php";
 	$c_username = DB_USER;
 	$c_password = DB_PASS;
 	$c_host = DB_HOST;

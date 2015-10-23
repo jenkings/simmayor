@@ -76,7 +76,8 @@ $idmesta = $x['id'];
 
 
 function __autoload($class_name) {include './classes/'.$class_name . '.class.php';}
-$db = new Database('localhost','root','unsupportedpassword','simmayor');
+include "./cfg/host.php";
+$db = new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);
 $news= new News($db);
 ?>
 <script>

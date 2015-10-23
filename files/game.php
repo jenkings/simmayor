@@ -56,8 +56,7 @@ header('Location: registrace.php');
 	<div id="content">
 		<?php 
 				require "./game/index.php";	
-				
-				
+
 				//function __autoload($class_name) {include './classes/'.$class_name . '.class.php';}
 				include_once "./cfg/host.php";
 				$db = new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);

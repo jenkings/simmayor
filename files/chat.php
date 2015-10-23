@@ -1,17 +1,17 @@
 <?php
 session_start();
 
-if($_SERVER['HTTP_REFERER'] != "http://game.jenkings.eu/game.php")
+include_once "./cfg/host.php";
+$db = new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);
+function __autoload($class_name) {include './classes/'.$class_name . '.class.php';}
+
+if($_SERVER['HTTP_REFERER'] != WEB_ROOT . "/game.php")
 {
 	exit;
 }
-
 if(isset($_SESSION['prihlasen']) || $_SESSION['prihlasen'] == "")
 {
-	function __autoload($class_name) {include './classes/'.$class_name . '.class.php';}
-
 	if(isset($_POST['message'])){
-		$db = new Database('localhost','root','unsupportedpassword','simmayor');
 		$chat = new Chat($db);	
 		$chat->sendmessage($_POST['message'],intval($_SESSION['prihlasen']));
 		$bot = new Chatbot($db);
@@ -20,7 +20,6 @@ if(isset($_SESSION['prihlasen']) || $_SESSION['prihlasen'] == "")
 	}
 	
 	if(isset($_POST['refresh'])){	
-		$db = new Database('localhost','root','unsupportedpassword','simmayor');
 		$chat= new Chat($db);	
 		echo $chat->lastmessages(8);
 	}

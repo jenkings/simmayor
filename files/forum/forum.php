@@ -28,7 +28,8 @@ if(!isset($_GET['section']))
 		<?php
 		function __autoload($class_name) {include '../classes/'.$class_name . '.class.php';}
 
-		$db = new Database('localhost','root','unsupportedpassword','simmayor');
+		include_once "../cfg/host.php";
+		$db = new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);
 		$forum= new Forum($db);
 		echo $forum->getThreads($_GET['section']);
 		echo $forum->TopicForm($_GET['section']);

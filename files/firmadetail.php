@@ -27,8 +27,8 @@
 			{
 				function __autoload($class_name) {include './classes/'.$class_name . '.class.php';}
 				
-				$db = new Database('localhost','root','unsupportedpassword','simmayor');
-				
+				include_once "./cfg/host.php";
+				$db = new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);
 				$hrac = new Player($db,array("penize,akcie",$_SESSION['prihlasen']));
 				
 				$firmy = new Firmy($db);

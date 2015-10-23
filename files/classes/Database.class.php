@@ -3,15 +3,11 @@ class Database{
   private $spojeni;
 
   function __construct($host,$user,$pass,$name){
-      $host1="localhost";
-      $user1="simmayor";
-      $pass1="";
-      $name1="simmayor";
     $options=array(
       PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
       PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
       );
-    $this->spojeni= @new PDO("mysql:host=$host1;dbname=$name1",$user1,$pass1,$options);
+    $this->spojeni= @new PDO("mysql:host=$host;dbname=$name",$user,$pass,$options);
   }
 
   function query($query,$param=Array()){

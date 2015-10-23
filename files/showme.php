@@ -37,13 +37,11 @@
 				
 				// ************* FORMULÁŘE A VÝPISY  ****************//
 				echo "<div id='usershow'>";
-				echo $player->getAvatar();	
-				echo $player->getName();	
-				echo $player->statsTable();
-				echo $player->VolbaOstrova();
-				echo $player->KoupeOstrova();
-				echo @Obchod::sellForm($player->getComodities());
-				echo $player->KongresForm();
+				echo "<table width='100%'>";
+				echo "<tr><td>".$player->getAvatar()."</td><td>".$player->getName()."</td></tr>";
+				echo "<tr><td rowspan='2'>".$player->KoupeOstrova()."<br>".@Obchod::sellForm($player->getComodities())."<br>".$player->KongresForm()."</td><td>".$player->statsTable()."</td></tr>";
+				echo "<tr><td>".$player->VolbaOstrova()."</td></tr>";
+				echo "</table>";
 				echo "</div>";
 				//*****************************//
 			}

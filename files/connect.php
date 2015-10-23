@@ -1,5 +1,9 @@
 <?php
-	include_once "./cfg/host.php";
+	if(file_exists("./cfg/host.php")){
+		include_once "./cfg/host.php";
+	}else{
+		include_once "../cfg/host.php";
+	}
 	$c_username = DB_USER;
 	$c_password = DB_PASS;
 	$c_host = DB_HOST;

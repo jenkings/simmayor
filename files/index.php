@@ -46,8 +46,9 @@
 			
 			<?php
 			function __autoload($class_name) {include './classes/'.$class_name . '.class.php';}
-	
-			$db = new Database('localhost','root','unsupportedpassword','simmayor');
+		
+			include "./cfg/host.php";
+			$db = new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);
 			$reklamy = new Reklama($db);
 			echo $reklamy->Bannery();
 

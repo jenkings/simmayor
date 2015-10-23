@@ -1,8 +1,8 @@
 <?php
-	$c_username = "root";
-	$c_password = "unsupportedpassword";
-	$c_host = "localhost";
-	$c_database = "simmayor";
+	$c_username = DB_USER;
+	$c_password = DB_PASS;
+	$c_host = DB_HOST;
+	$c_database = DB_NAME;
 
 	
 	$connection = mysql_connect($c_host, $c_username, $c_password)

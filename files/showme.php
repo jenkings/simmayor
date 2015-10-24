@@ -34,7 +34,8 @@
 				$player->setKongresman();
 				@Obchod::giveToShop($db,$player);
 				//*****************************//
-				
+
+				// 23/24.10.2015 Poslední úprava
 				// ************* FORMULÁŘE A VÝPISY  ****************//
 				echo "<div id='usershow'>";
 				echo "<table width='100%'>";

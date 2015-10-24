@@ -225,24 +225,24 @@ margin-right:5px;
 .toptable td{padding:4px;}
 .toptable caption{color:#F7901D;font-size:20px;font-weight:bold;}
 
-#usershow{color:blue;width:500px;margin-left:auto;margin-right:auto;}
-#usershow img{float:left;}
-#usershow h2{float:left;margin:0px;padding:0px;}
+#usershow{color:blue;width:540px;margin-left:auto;margin-right:auto;}
+.usershow-obrazek{display: block;margin: 0px auto 0px; }
+#usershow h2{margin:0px;padding:0px;text-align: center;}
 #usershow h3{float:left;margin:0px;padding:0px;}
 #mini{width:30px;}
-#usershow #info{float:right;background-color:#F4F495;border-top:solid #E4E40C 8px;}
+#usershow #info{display:block;margin: 0px auto 0px;background-color:#F4F495;border-top:solid #E4E40C 8px;}
 
-#usershow form{float:left;width:480px;background-color:#F3A690;border-top:solid #FF4D1A 8px;margin-top:60px;}
+#usershow form{float:left;width:270px;background-color:#F3A690;border-top:solid #FF4D1A 8px;margin-top:10px;}
 #usershow form input{display:block;}
 #usershow form select{display:block;}
-#usershow #sell td{padding-left:15px;}
+#usershow #sell td{padding-left:1px;}
 
-#volbaostrova {width:480px;float:left;background-color:#F3A690;border-top:solid #FF4D1A 8px;margin-top:20px;}
+#volbaostrova {width:270px;float:left;background-color:#F3A690;border-top:solid #FF4D1A 8px;margin-top:10px;}
 #volbaostrova td{height:30px;}
 #volbaostrova form{background-color:transparent;border:none;width:80px;height:30px;margin:0px;}
 
 
-#shop{font-size:22px;background-color:transparent;cellspacing:0px;width:550px;margin-left:auto;margin-right:auto;}
+#shop{font-size:22px;background-color:transparent;cellspacing:0px;width:227px;margin-left:auto;margin-right:auto;}
 #shop #mini{width:20px;}
 .x1{background-color:lightgrey;}
 .x2{background-color:darkgrey;}
@@ -256,7 +256,7 @@ margin-right:5px;
 #roparubin form{float:right;}
 
 
-#congr{float:left;width:480px;background-color:#F3A690;border-top:solid #FF4D1A 8px;margin-top:60px;}
+#congr{float:left;width:270px;background-color:#F3A690;border-top:solid #FF4D1A 8px;margin-top:10px;}
 
 #firmy {list-style-type:none;width:800px;margin-left:auto;margin-right:auto;margin-top:40px;display:block;}
 #firmy .nj{background-color:#F0F0EE;}

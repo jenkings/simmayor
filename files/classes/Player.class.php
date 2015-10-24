@@ -16,7 +16,7 @@ class Player{
 
 	public function getAvatar() 
 	{
-		return "<img src='./avatars/".$this->udaje['avatar'].".jpg'>";
+		return "<img src='./avatars/".$this->udaje['avatar'].".jpg'  class='usershow-obrazek'>";
 	}
 	
 	public function getVar($x)
@@ -137,9 +137,9 @@ class Player{
 		}else
 		{
 			$str = "<input type='hidden' name='newostrov' value='".$cena."'>";
-			$str .= "<input type='submit' value='Koupit další ostrov za $".number_format($cena, 0, ',', ' ')."'>";
+			$str .= "<input type='submit' value='Koupit další ostrov za $".number_format($cena, 0, ',', ' ')."'></p>";
 		}			
-		return "<form action='showme.php' method='post'><legend>Koupit nový ostrov</legend>   $str   </form>";
+		return "<form action='showme.php' method='post'><p align='center'><legend>Koupit nový ostrov</legend>   $str   </form>";
 	}
 	
 	public function KongresForm()
@@ -148,12 +148,12 @@ class Player{
 		$comparedate=date("Y-m-d H:i:s",strtotime($cas));
 		if(date("Y-m-d H:i:s") < $comparedate)
 		{
-			return "<div id='congr'><a href='../kongres/'>Přesunout se do kongresu</a></div>";
+			return "<div id='congr' align='center'><a href='../kongres/'>Přesunout se do kongresu</a></div>";
 		}else
 		{
 			$text = "<form action='showme.php' method='post'><input type='hidden' name='jitdokongresu' value=''>";
-			$text .= "<input type='submit' value='Stát se kongresmanem'>50 <img width='30px;' src='./rubin.png' alt='rubin'><br>";
-			$text .= "&nbsp &nbsp &nbsp &nbsp do" . date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s") . "+1 months")) . "</form>";
+			$text .= "<p align='center'><input type='submit' value='Stát se kongresmanem'>Cena: 50 <img width='25px;' src='./rubin.png' alt='rubin' class='obrazek'><br>";
+			$text .= "Do: " . date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s") . "+1 months")) . "</p></form>";
 			return $text;
 		}
 	}

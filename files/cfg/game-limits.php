@@ -15,4 +15,5 @@ define("COST_ISLAND_1",     "4000000");
 define("COST_ISLAND_2",     "15000000");
 define("COST_ISLAND_3",     "500000000");
 define("COST_ISLAND_MAX",   "0");
+define("SUM_ISLAND_PAYBACK","300000");
 ?>

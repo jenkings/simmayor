@@ -124,22 +124,8 @@ class Player{
 
 	public function KoupeOstrova()
 	{
-		$x=$this->db->queryOne("SELECT COUNT(*) FROM islands WHERE idmajitele=?",array($_SESSION['prihlasen']));						
-		$cena = 0;
-		switch ($x['COUNT(*)']) {
-			case ISLAND_1:
-				$cena = COST_ISLAND_1;
-				break;
-			case ISLAND_2:
-				$cena = COST_ISLAND_2;
-				break;
-			case ISLAND_3:
-				$cena = COST_ISLAND_3;
-				break;
-			case MAXIMUM_ISLANDS:
-				$cena = COST_ISLAND_MAX;
-				break;
-		}
+		$x=$this->db->queryOne("SELECT COUNT(*) FROM islands WHERE idmajitele=?",array($_SESSION['prihlasen']));
+		$cena = (($x['COUNT(*)'] * ISLAND_COEFICIENT)* ISLAND_BASE_VALUE);
 		if($x['COUNT(*)'] == MAXIMUM_ISLANDS)
 		{
 			$str = "Již vlastníte maximální počet ostrovů";
@@ -252,22 +238,8 @@ class Player{
 	{
 		if(isset($_POST['newostrov']))
 		{				
-			$y=$this->db->queryOne("SELECT COUNT(*) FROM islands WHERE idmajitele=?",array($_SESSION['prihlasen']));		
-			$cena = 0;
-			switch ($y['COUNT(*)']) {
-				case ISLAND_1:
-					$cena = COST_ISLAND_1;
-					break;
-				case ISLAND_2:
-					$cena = COST_ISLAND_2;
-					break;
-				case ISLAND_3:
-					$cena = COST_ISLAND_3;
-					break;
-				case MAXIMUM_ISLANDS:
-					$cena = COST_ISLAND_MAX;
-					break;
-			}			
+			$y=$this->db->queryOne("SELECT COUNT(*) FROM islands WHERE idmajitele=?",array($_SESSION['prihlasen']));
+			$cena = (($y['COUNT(*)'] * ISLAND_COEFICIENT)* ISLAND_BASE_VALUE);
 			if($this->udaje['penize'] < $cena)
 			{
 				return "Nemáš dostatek peněz";

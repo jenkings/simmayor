@@ -15,7 +15,8 @@ if(!isset($_SESSION['prihlasen']) || $_SESSION['prihlasen'] == "")
 	header('Location: ../index.php');
 }
 
-$db = new Database('localhost','root','unsupportedpassword','simmayor');
+include_once "../cfg/host.php";
+$db = new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);
 $player = new Player($db,array("admin,jmeno",$_SESSION['prihlasen']));
 
 if(intval($player->getVar('admin')) < 1)

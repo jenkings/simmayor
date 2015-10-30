@@ -103,7 +103,7 @@ if(isset($_POST['idostrova']))
 		
 		?>
 					
-			<?
+			<?php
 			}
 		?>
 

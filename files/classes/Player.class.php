@@ -125,7 +125,7 @@ class Player{
 	public function KoupeOstrova()
 	{
 		$x=$this->db->queryOne("SELECT COUNT(*) FROM islands WHERE idmajitele=?",array($_SESSION['prihlasen']));
-		$cena = (($x['COUNT(*)'] * ISLAND_COEFICIENT)* ISLAND_BASE_VALUE);
+		$cena = (1 + ($x['COUNT(*)'] * ISLAND_COEFICIENT))* ISLAND_BASE_VALUE;
 		if($x['COUNT(*)'] == MAXIMUM_ISLANDS)
 		{
 			$str = "Již vlastníte maximální počet ostrovů";
@@ -239,7 +239,7 @@ class Player{
 		if(isset($_POST['newostrov']))
 		{				
 			$y=$this->db->queryOne("SELECT COUNT(*) FROM islands WHERE idmajitele=?",array($_SESSION['prihlasen']));
-			$cena = (($y['COUNT(*)'] * ISLAND_COEFICIENT)* ISLAND_BASE_VALUE);
+			$cena = (1 + ($y['COUNT(*)'] * ISLAND_COEFICIENT))* ISLAND_BASE_VALUE;
 			if($this->udaje['penize'] < $cena)
 			{
 				return "Nemáš dostatek peněz";

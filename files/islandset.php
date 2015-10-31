@@ -99,12 +99,6 @@ if(isset($_POST['idostrova']))
 		
 		
 		echo "</table>";
-		
-		
-		
-		?>
-					
-			<?php
 			}
 		?>
 

@@ -78,19 +78,20 @@ if(isset($_POST['idostrova']))
 		$prijmy = explode("|", $row['prijmy']);
 		$vydaje = explode("|", $row['vydaje']);
 		
-		
-		for($f=0;$f<count($prijmy);$f++)
-		{
-			$u = explode(":", $prijmy[$f]);
-			echo"<tr><td>".$u[0]."</td><td><span class='prijem'>".$u[1]."</span></td></tr>";
+		if(count($prijmy) > 1){
+			for($f=0;$f<count($prijmy);$f++)
+			{
+				$u = explode(":", $prijmy[$f]);
+				echo"<tr><td>".$u[0]."</td><td><span class='prijem'>".$u[1]."</span></td></tr>";
+			}
+				
+			for($f=0;$f<count($vydaje);$f++)
+			{
+				$u = explode(":", $vydaje[$f]);
+				echo"<tr><td>".$u[0]."</td><td><span class='vydaj'>".$u[1]."</span></td></tr>";
+			}
 		}
-			
-		for($f=0;$f<count($vydaje);$f++)
-		{
-			$u = explode(":", $vydaje[$f]);
-			echo"<tr><td>".$u[0]."</td><td><span class='vydaj'>".$u[1]."</span></td></tr>";
-		}
-
+	
 		if($row['shrnuti'] >= 0)
 			echo"<tr id='green'><td>Zůstatek</td><td>".$row['shrnuti']."</td></tr>";
 		else

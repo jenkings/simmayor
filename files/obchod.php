@@ -88,17 +88,8 @@ function getjednotka($x)
 				
 				$stridacka = 0;
 				while($z = mysql_fetch_assoc($q))
-				{	
-					$stridacka ++;
-					
-					if($stridacka % 2 == 0)
-					{
-						echo "<tr class='x1'><td  class='first'><img id='mini' src='./".$z['predmet'].".png' alt='".$z['predmet']."'>".$z['pocet']." ".getjednotka($z['predmet']) ."</td>    <td  class='second'>$".number_format($z['cena'], 0, ',', ' ')."</td>     <td><form action='obchod.php' method='post'><input type='hidden' name='polozka' value='".$z['id']."'><input type='submit' value='koupit'></form></td>   </tr>";
-					}
-					else
-					{
-						echo "<tr class='x2'><td class='first'><img id='mini' src='./".$z['predmet'].".png' alt='".$z['predmet']."'>".$z['pocet']." ".getjednotka($z['predmet']) ."</td>    <td  class='second'>$".number_format($z['cena'], 0, ',', ' ')."</td>      <td><form action='obchod.php' method='post'><input type='hidden' name='polozka' value='".$z['id']."'><input type='submit' value='koupit'></form></td>    </tr>";
-					}
+				{
+					echo "<tr><td class='first'><img id='mini' src='./".$z['predmet'].".png' alt='".$z['predmet']."'>".$z['pocet']." ".getjednotka($z['predmet']) ."</td>    <td  class='second'>$".number_format($z['cena'], 0, ',', ' ')."</td>      <td><form action='obchod.php' method='post'><input type='hidden' name='polozka' value='".$z['id']."'><input type='submit' value='koupit'></form></td>    </tr>";
 				}
 				
 				echo"</table>";

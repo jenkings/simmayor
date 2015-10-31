@@ -242,10 +242,13 @@ margin-right:5px;
 #volbaostrova form{background-color:transparent;border:none;width:80px;height:30px;margin:0px;}
 
 
-#shop{font-size:22px;background-color:transparent;cellspacing:0px;width:227px;margin-left:auto;margin-right:auto;}
+
+
+#shop{font-size:22px;background-color:transparent;cellspacing:0px;width:550px;margin-left:auto;margin-right:auto;}
 #shop #mini{width:20px;}
-.x1{background-color:lightgrey;}
-.x2{background-color:darkgrey;}
+
+#shop tr{background-color:darkgrey;}
+#shop tr:nth-child(2n){background-color:lightgrey;}
 #shop {border-spacing:0;}
 #shop .first{width:400px;}
 #shop .second{width:150px;}

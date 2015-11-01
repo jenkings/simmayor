@@ -3,7 +3,7 @@
 <head>	
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="style.css">
-<title>Sim Mayor administrace</title>
+<title>Sim Mayor administrace  - NEW</title>
 </head>
 <body>
 	

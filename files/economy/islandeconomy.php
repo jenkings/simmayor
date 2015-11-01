@@ -8,8 +8,6 @@ include "objectdata.php";
 
 if(isset($_POST['idmesta']) && isset($_SESSION['prihlasen']))
 {
-	
-
 $y = mysql_fetch_assoc(mysql_query("SELECT lastsave FROM accounts WHERE id='".intval($_SESSION['prihlasen'])."'"));
 					
 $cas = $y['lastsave'];
@@ -20,10 +18,10 @@ if(date("Y-m-d H:i:s") < $comparedate)
 		exit;
 }
 
-if($_SERVER['HTTP_REFERER'] != WEB_ROOT . "/game.php")
-{
+/*if($_SERVER['HTTP_REFERER'] != WEB_ROOT . "/game.php"){
 	exit;
 }
+*/
 		
 $Vinfrastruktura = 0;
 $Vubytovani = 0;
@@ -70,6 +68,7 @@ $uroky = $result3['hodnota'];
 
 //-------------------------ANALÝZA MAPY-------------------------------//
 $policka = explode("|", $result['mapa']);
+$domu = 0;
 for($f=0;$f<(sizeof($policka) - 1);$f++)
 {
 		$detail = explode(",", $policka[$f]);
@@ -310,19 +309,20 @@ $vydaje .= "|Daně pro zbohatlíky: -" . $queryy['hodnota'];
 mysql_query("UPDATE sazby SET hodnota =hodnota+".intval($queryy['hodnota'])." WHERE nazev LIKE 'stavrozpoctu'");
 }
 
-
-
 mysql_query("UPDATE islands SET maxpopulace='".$maxpopulace."',soucasnapopulace='".$soucasnapopulace."',kapacita='".$ubytovacimista."',oblibenost='".$oblibenost."' WHERE id='".$_POST['idmesta']."'");
 mysql_query("UPDATE accounts SET penize='".$zustatek."',uhli='".$uhli."',ropa='".$ropa."',lastsave='".date("Y-m-d H:i:s")."' WHERE id='".$vlastnik."'");
-mysql_query("UPDATE bankvypisy SET pocatecnistav='".$pocatecnistav."',prijmy='".$prijmy."',vydaje='".$vydaje."',shrnuti='".$zustatek."' WHERE idostrova='".(int)$_POST['idmesta']."'");		
 
-
+if(mysql_query("SELECT id FROM bankvypisy WHERE idostrova='".(int)$_POST['idmesta']."'") != false){
+	mysql_query("UPDATE bankvypisy SET pocatecnistav='".$pocatecnistav."',prijmy='".$prijmy."',vydaje='".$vydaje."',shrnuti='".$zustatek."' WHERE idostrova='".(int)$_POST['idmesta']."'");		
+}else{
+	mysql_query("INSERT into bankvypisy (idostrova) VALUES ('".(int)$_POST['idmesta']."')");
+	mysql_query("UPDATE bankvypisy SET pocatecnistav='".$pocatecnistav."',prijmy='".$prijmy."',vydaje='".$vydaje."',shrnuti='".$zustatek."' WHERE idostrova='".(int)$_POST['idmesta']."'");		
+}
 //echo "Současná populace: " .$soucasnapopulace . "<br>";
 //echo "Maximální populace: " .$maxpopulace . "<br>";
 //echo "Ubytovací místa: " .$ubytovacimista . "<br>";
 //echo "Průměrný nájem: " .$prumernynajem . "<br>";
 //echo "poměr silnic/domů  " . $silnic . "/". $domu . "<br>";
-
 
 echo $zustatek . "|" . $maxpopulace . "|" . $soucasnapopulace . "|" . $ubytovacimista . "|" . $oblibenost;
 }

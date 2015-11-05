@@ -23,11 +23,13 @@ if(intval($player->getVar('admin')) < 1)
 {
 	header('Location: ../index.php');
 }
-
+?>
+<div id="page">
+	<?php
 include "menu.php";
 ?>
 
-<div id="data">
+<div id="text">
 	
 	<?php
 	$ukoly = new Ukoly($db);
@@ -35,7 +37,12 @@ include "menu.php";
 	?>
 	
 </div>
-
+	<hr class="cleaner">
+	<div id="footer">
+		Administrace hry - SimMayor.cz - 2015 / 2016
+	</div>
+</div>
+</div>
 	
 
 </body>

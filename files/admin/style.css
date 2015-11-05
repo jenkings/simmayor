@@ -1,12 +1,71 @@
-body{height:100%;}
-#menu{width:10%;height:99%;background-color:black;color:white;position:absolute;margin-top:-10px;margin-left:-10px;list-style-type:none;padding-left:10px;}
-#menu li{margin-top:10px;font-size:25px;font-weight:bold;}
-#menu a{display:block;text-decoration:none;color:white;}
+    * {margin: 0; padding: 0;}
+    html {height: 100%; font-size: 100%;}
+    body {height: 100%;}
+    #page{
+        width: 80%;
+        margin: 50px 10% 0 10%;
+        text-align: left;
+        border:solid forestgreen 3px;
+    }
 
-#data{height:99%;width:89%;background-color:white;position:absolute;margin-left:10%;margin-top:-10px;}
+    #menu{
+        width:20%;
+        height: 500px;
+        background-color:forestgreen;
+        float:left;
+        color:white;
+        list-style-type:none;
+        padding-left:3px;
+    }
 
-.miniinfo{height:100px;background-color:white;float:left;margin:7px;text-align:center;}
-.miniinfo{padding:5px;border:solid grey 3px;border-radius:5px;}
+    #menu li{
+        margin-top:5px;
+        font-size:18px;
+        font-weight:bold;
+        list-style-type: none;
+    }
+
+    #menu h2{
+        margin-top:5px;
+        font-size:30px;
+        font-weight:bold;
+        display:block;
+    }
+
+    #menu a{
+        display:block;
+        text-decoration:none;
+        color:white;
+    }
+
+    #data{
+        margin: 1% 1% 0 1%;
+        width:75%;
+        background-color:white;
+        float:left
+    }
+
+    #text{
+        width:75%;
+        background-color:white;
+        float:left
+    }
+
+    #text h2{
+        text-align: center;
+    }
+
+    .miniinfo{
+        height:50px;
+        background-color:white;
+        float:left;
+        margin:7px;
+        text-align:center;
+        padding:5px;
+        border:solid lime 3px;
+        border-radius:5px;
+    }
+
 
 #ukoly {list-style-type:none;width:60%;margin-left:auto;margin-right:auto;}
 #ukoly li{margin-top:7px;padding:5px;border-radius:5px;}
@@ -15,5 +74,18 @@ body{height:100%;}
 
 textarea{resize: none;}
 
-#adstable{margin-left:50px;margin-top:50px;border:solid grey 3px;}
+#adstable{margin-left:1%;margin-top:1%;border:solid grey 3px;}
 #adstable td{border: solid lightgrey 2px;}
+
+    .cleaner {
+        clear: both;
+        height: 1;
+        font-size: 0;
+        border-top: solid forestgreen 3px;
+    }
+
+    #footer {
+        background: greenyellow;
+        text-align: center;
+    }
+

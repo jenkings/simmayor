@@ -20,7 +20,7 @@ if(date("Y-m-d H:i:s") < $comparedate)
 		exit;
 }
 
-if($_SERVER['HTTP_REFERER'] != "http://game.jenkings.eu/game.php")
+if($_SERVER['HTTP_REFERER'] != WEB_ROOT_GAME)
 {
 	exit;
 }

@@ -245,7 +245,7 @@ margin-right:5px;
 #shop #mini{width:20px;}
 
 #shop tr{background-color:darkgrey;}
-#shop tr:nth-child(2n){background-color:lightgrey;}
+#shop tbody tr:nth-child(2n){background-color:lightgrey;}
 #shop {border-spacing:0;}
 #shop .first{width:400px;}
 #shop .second{width:150px;}

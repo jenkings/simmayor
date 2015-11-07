@@ -30,9 +30,11 @@ if(isset($_POST['nick']) && isset($_POST['password'])){
 				header('Location: ./game.php');
 				exit;
 			}else{
-				$x = mysql_result(mysql_query("SELECT COUNT(*) FROM accounts WHERE jmeno='".mysql_real_escape_string(htmlspecialchars($_POST['nick']))."'"),0);
 				
-				if($x == 0)
+				$db = new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);
+				$register = new Register($db);
+				$volnyNick = $register->isAvailableName($_POST['nick']);
+				if($volnyNick)
 				{
 					mysql_query("INSERT INTO accounts (jmeno,heslo,penize,avatar) VALUES ('".mysql_real_escape_string(htmlspecialchars($_POST['nick']))."','".md5($_POST['password1'])."','50000','".rand(1,10)."')");
 					
@@ -49,9 +51,7 @@ if(isset($_POST['nick']) && isset($_POST['password'])){
 					$_SESSION['prihlasen'] = $row['id'];
 					header('Location: ./showinfo.php');
 					exit;
-				}
-				else
-				{
+				}else{
 					echo "Tento nick už je zabraný";
 				}
 			}

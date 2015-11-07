@@ -2,15 +2,12 @@
 session_start();
 
 include_once "./cfg/host.php";
+include_once "./cfg/game-limits.php";
 
 
 require "./classes/Database.class.php";
 require "./classes/Login.class.php";
 require "./classes/Register.class.php";
-
-
-require "connect.php"; // brzy smazat
-require "newmap.php";
 
 
 if(isset($_POST['nick']) && isset($_POST['password'])){
@@ -36,20 +33,8 @@ if(isset($_POST['nick']) && isset($_POST['password'])){
 				$volnyNick = $register->isAvailableName($_POST['nick']);
 				if($volnyNick)
 				{
-					mysql_query("INSERT INTO accounts (jmeno,heslo,penize,avatar) VALUES ('".mysql_real_escape_string(htmlspecialchars($_POST['nick']))."','".md5($_POST['password1'])."','50000','".rand(1,10)."')");
-					
-					$row = mysql_fetch_assoc(mysql_query("SELECT * FROM accounts WHERE jmeno = '" . mysql_real_escape_string($_POST['nick']) . "' AND heslo = '" . md5($_POST['password1']) . "'"));			
-					
-					mysql_query("INSERT INTO islands (idmajitele,mapa) VALUES ('".$row['id']."','".newMap()."')");
-					
-					
-					$row2 = mysql_fetch_assoc(mysql_query("SELECT id FROM islands WHERE idmajitele=".intval($row['id'])));			
-					
-					
-					mysql_query("INSERT INTO bankvypisy (idostrova,pocatecnistav,prijmy,vydaje,shrnuti) VALUES ('".$row2['id']."','50000',' ',' ','50000')");
-				
-					$_SESSION['prihlasen'] = $row['id'];
-					header('Location: ./showinfo.php');
+					require "newmap.php"; //přeobjektovat
+					$register->createAccount($_POST['nick'],$_POST['password1']);
 					exit;
 				}else{
 					echo "Tento nick už je zabraný";

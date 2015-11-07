@@ -33,7 +33,7 @@ class Ukoly{
 				$txt.="<option value='".$row['id']."'>".$row['jmeno']."</option>";
 		}
 		$form = "<textarea name='sdeleni' cols='40' rows='3'></textarea>";
-		$form .= "<select name='admin'>$txt</select>";
+		$form .= "<br><select name='admin'>$txt</select>";
 		$form .= "<input type='submit' value='Přidat úkol'>";
 		return "<form>$form</formform>";
 	}

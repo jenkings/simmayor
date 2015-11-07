@@ -88,29 +88,35 @@ class Player{
 	public function VymazOstrov()
 	{
 		if(isset($_POST['delostrov']))
-		{		
-			$q=$this->db->queryOne("SELECT idmajitele FROM islands WHERE id= ?",array($_POST['delostrov']));					
-			if($q['idmajitele'] == $_SESSION['prihlasen'])
+		{
+			$x=$this->db->queryOne("SELECT COUNT(*) FROM islands WHERE idmajitele=?",array($_SESSION['prihlasen']));
+			if($x['COUNT(*)'] != MINIMUM_ISLANDS)
 			{
-				$time=$this->db->queryOne("SELECT vipdo FROM accounts WHERE id=?",array($_SESSION['prihlasen']));
-				
-				$cas = $time['vipdo'];
-				$comparedate=date("Y-m-d H:i:s",strtotime($cas));
-				if(date("Y-m-d H:i:s") < $comparedate)
+				$q=$this->db->queryOne("SELECT idmajitele FROM islands WHERE id= ?",array($_POST['delostrov']));
+				if($q['idmajitele'] == $_SESSION['prihlasen'])
 				{
-					//JE VIP
-					$this->db->query("DELETE FROM islands WHERE id=?",array($_POST['delostrov']));
-					$this->db->query("UPDATE accounts SET penize=penize+300000 WHERE id=?",array($_SESSION['prihlasen']));
-					return "<div id='succes'>Ostrov smazán, jako VIP dostáváš zpět $300 000</div>";	
-				}else
-				{
-					//NENI VIP
-					$this->db->query("DELETE FROM islands WHERE id=?",array($_POST['delostrov']));
-					return "<div id='succes'>Ostrov úspěšně vymazán</div>";	
+					$time=$this->db->queryOne("SELECT vipdo FROM accounts WHERE id=?",array($_SESSION['prihlasen']));
+
+					$cas = $time['vipdo'];
+					$comparedate=date("Y-m-d H:i:s",strtotime($cas));
+					if(date("Y-m-d H:i:s") < $comparedate)
+					{
+						//JE VIP
+						$this->db->query("DELETE FROM islands WHERE id=?",array($_POST['delostrov']));
+						$this->db->query("UPDATE accounts SET penize=penize+".SUM_ISLAND_PAYBACK." WHERE id=?",array($_SESSION['prihlasen']));
+						return "<div id='succes'>Ostrov smazán, jako VIP dostáváš zpět $ ".number_format(SUM_ISLAND_PAYBACK, 0, ',', ' ')."</div>";
+					}else
+					{
+						//NENI VIP
+						$this->db->query("DELETE FROM islands WHERE id=?",array($_POST['delostrov']));
+						return "<div id='succes'>Ostrov úspěšně vymazán</div>";
+					}
+				}else{
+					return "<div id='error'>Při mazání ostrova nastala chyba</div>";
 				}
 			}else{
-				return "<div id='error'>Při mazání ostrova nastala chyba</div>";			
-			}			
+			return "<div id='error'>Nemůžete opustit poslední ostrov, který máš</div>";
+			}
 		}
 		
 	}
@@ -118,20 +124,9 @@ class Player{
 
 	public function KoupeOstrova()
 	{
-		$x=$this->db->queryOne("SELECT COUNT(*) FROM islands WHERE idmajitele=?",array($_SESSION['prihlasen']));						
-		$cena = 0;
-		switch ($x['COUNT(*)']) {
-			case 1:
-				$cena = 4000000;
-				break;
-			case 2:
-				$cena = 15000000;
-				break;
-			case 3:
-				$cena = 50000000;
-				break;
-		}	
-		if($cena == 0)
+		$x=$this->db->queryOne("SELECT COUNT(*) FROM islands WHERE idmajitele=?",array($_SESSION['prihlasen']));
+		$cena = (1 + ($x['COUNT(*)'] * ISLAND_COEFICIENT))* ISLAND_BASE_VALUE;
+		if($x['COUNT(*)'] == MAXIMUM_ISLANDS)
 		{
 			$str = "Již vlastníte maximální počet ostrovů";
 		}else
@@ -139,7 +134,7 @@ class Player{
 			$str = "<input type='hidden' name='newostrov' value='".$cena."'>";
 			$str .= "<input type='submit' value='Koupit další ostrov za $".number_format($cena, 0, ',', ' ')."'></p>";
 		}			
-		return "<form action='showme.php' method='post'><p align='center'><legend>Koupit nový ostrov</legend>   $str   </form>";
+		return "<form action='showme.php' method='post'><p align='center'><legend>Koupit nový ostrov:</legend>   $str   </form>";
 	}
 	
 	public function KongresForm()
@@ -243,19 +238,8 @@ class Player{
 	{
 		if(isset($_POST['newostrov']))
 		{				
-			$y=$this->db->queryOne("SELECT COUNT(*) FROM islands WHERE idmajitele=?",array($_SESSION['prihlasen']));		
-			$cena = 0;
-			switch ($y['COUNT(*)']) {
-				case 1:
-					$cena = 4000000;
-					break;
-				case 2:
-					$cena = 15000000;
-					break;
-				case 3:
-					$cena = 50000000;
-					break;
-			}			
+			$y=$this->db->queryOne("SELECT COUNT(*) FROM islands WHERE idmajitele=?",array($_SESSION['prihlasen']));
+			$cena = (1 + ($y['COUNT(*)'] * ISLAND_COEFICIENT))* ISLAND_BASE_VALUE;
 			if($this->udaje['penize'] < $cena)
 			{
 				return "Nemáš dostatek peněz";

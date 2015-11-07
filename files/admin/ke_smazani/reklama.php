@@ -30,18 +30,18 @@ include "menu.php";
 ?>
 
 <div id="text">
-	
+
 	<?php
 	if(intval($player->getVar('admin')) >= 20)
 	{
-	
+
 		$reklama = new Reklama($db);
-		
+
 		echo $reklama->Pozadavky($_GET);
 		echo $reklama->Prehled();
 	}
 	?>
-	
+
 </div>
 	<hr class="cleaner">
 	<div id="footer">

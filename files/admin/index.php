@@ -17,6 +17,7 @@
         include_once "../cfg/host.php";
 
         $db = new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);
+        $cas = new Cas();
         $player = new Player($db,array("admin,jmeno",$_SESSION['prihlasen']));
 		$ukoly = new Ukoly($db);
         $reklama = new Reklama($db);

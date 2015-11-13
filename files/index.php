@@ -47,7 +47,7 @@
 			<?php
 			function __autoload($class_name) {include './classes/'.$class_name . '.class.php';}
 		
-			include "./cfg/host.php";
+			include_once "./cfg/host.php";
 			$db = new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);
 			$reklamy = new Reklama($db);
 			echo $reklamy->Bannery();

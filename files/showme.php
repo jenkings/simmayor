@@ -23,7 +23,9 @@
 			{
 				header('Location: index.php');
 			}else{
-				function __autoload($class_name) {include './classes/'.$class_name . '.class.php';}	
+				require "./classes/Database.class.php";
+				require "./classes/Player.class.php";
+				require "./classes/Obchod.class.php";
 				include_once "./cfg/host.php";
 				$db = new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);
 				$player = new Player($db,array("*",$_SESSION['prihlasen']));

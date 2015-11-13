@@ -23,13 +23,20 @@ class Obchod{
 		return $vrat;
 	}
 	
-	public function giveToShop($db,$hrac)
-	{
-		$maxprodej = $hrac->getVar("maxprodej");
+	public function giveToShop($db,$hrac){
+		include_once "./cfg/host.php";
+		include_once "./cfg/game-limits.php";
+		
+		if($hrac->isVIP())
+			$maxprodej = VIP_SHOP_ITEMS_LIMIT;
+		else
+			$maxprodej = PLAYER_SHOP_ITEMS_LIMIT;
+		
+		
 		$userdata = $hrac->getComodities();
 		if(isset($_POST['predmet']) && isset($_POST['pocet']) && isset($_POST['cena']))
 		{
-			include_once "./cfg/host.php";
+			
 			if($_SERVER['HTTP_REFERER'] != WEB_ROOT + "/showme.php"){exit;}
 			if($_POST['pocet'] <= 0 || $_POST['cena'] <=0 || $_POST['cena'] >8000000){exit;}	
 			$x=$db->queryOne("SELECT COUNT(id) FROM prodejna WHERE idprodavajiciho = ?",array($_SESSION['prihlasen']));	

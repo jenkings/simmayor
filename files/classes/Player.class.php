@@ -10,6 +10,15 @@ class Player{
 		$this->udaje=$this->db->queryPlayer("SELECT ".$sel[0]." FROM accounts WHERE id = :id",$sel);
 	}
 	
+	public function isVIP(){
+		$cas = $this->udaje['vipdo'];
+		$comparedate=date("Y-m-d H:i:s",strtotime($cas));
+		if(date("Y-m-d H:i:s") < $comparedate)
+			return true;
+		else
+			return false;
+	}
+	
 	public function refresh(){
 		$this->udaje=$this->db->queryPlayer("SELECT ".$this->tosel[0]." FROM accounts WHERE id = :id",$this->tosel);
 	}
@@ -207,12 +216,7 @@ class Player{
 		}
 		
 		$vrat = implode("|",$akcie);
-		/*
-		$vrat = "";
-		foreach ($akcie as $index => $hodnota){
-			$vrat .= $hodnota . "|";
-		}
-		*/
+
 		if($inlist == false)
 			return ($vrat . "|". $firma . ",5");
 		else

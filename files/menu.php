@@ -14,8 +14,6 @@ if (!isset($_SESSION)) session_start();
 				<li><a href="obchod.php">Obchod</a></li>
 				<li><a href="banka.php">Banka</a></li>
 				<li><a href="islandset.php">Poplatky</a></li>
-				<li><a href="firmy.php">Firmy</a></li>
-				<li><a href="lotto.php">Loterie</a></li>
 				<li><a href="showme.php">Profil</a></li>
 				<li><a href="logout.php">Odhlásit</a></li>
 				<?php

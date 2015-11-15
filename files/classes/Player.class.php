@@ -160,70 +160,7 @@ class Player{
 			$text .= "Do: " . date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s") . "+1 months")) . "</p></form>";
 			return $text;
 		}
-	}
-	
-	public function kupakcie($idfirmy,$kupprodej)
-	{
-		$fir=$this->db->queryOne("SELECT pocetakcii,hodnotaakcii FROM firmy WHERE id=?",array($idfirmy));
-		$hodnota = explode("|", $fir['hodnotaakcii']);
-		if($fir['pocetakcii'] < 5 && $kupprodej == 1){
-			return "Nejsou žádné volné akcie ke koupi";
-		}
-		else if($this->getVar('penize') < (5 * $hodnota[5]) && $kupprodej == 1){
-			return "Nemáš dostatek financí ke koupi akcií";
-		}
-		else if($this->maakcie($idfirmy) == false  && $kupprodej == 0){
-			return "Nemáš dostatek akcií k prodeji";
-		}
-		else{
-			//$kupprodej   0 prodat   1 koupit
-			if($kupprodej == 0){
-				$this->db->query("UPDATE accounts SET akcie=?,penize=penize+? WHERE id=?",array($this->playerakcie($idfirmy,-5),5*$hodnota[5],$_SESSION['prihlasen']));
-				$this->db->query("UPDATE firmy SET pocetakcii=pocetakcii+5 WHERE id=?",array($idfirmy));
-				return "Prodal jsi 5 akcií";
-			}
-			else if($kupprodej == 1){
-				$this->db->query("UPDATE accounts SET akcie=?,penize=penize-? WHERE id=?",array($this->playerakcie($idfirmy,5),5*$hodnota[5],$_SESSION['prihlasen']));
-				$this->db->query("UPDATE firmy SET pocetakcii=pocetakcii-5 WHERE id=?",array($idfirmy));
-				return "Koupil jsi 5 akcií";
-			}
-		}
-	}
-	
-	private function maakcie($firma)
-	{
-		$akcie = explode("|", $this->udaje['akcie']);
-		
-		foreach ($akcie as $index => $hodnota){
-			$udaje = explode(",", $hodnota);
-			if($udaje[0] == $firma && $udaje[1] >= 5){
-					return true;
-			}
-		}
-		return false;
-	}
-	
-	private function playerakcie($firma,$kakcie){
-		$akcie = explode("|", $this->udaje['akcie']);
-		$inlist = false;
-		
-		foreach ($akcie as $index => $hodnota){
-			$udaje = explode(",", $hodnota);
-			if($udaje[0] == $firma){
-					$inlist = true;
-					$akcie[$index] = $udaje[0] . "," . ($udaje[1] + $kakcie);
-			}
-		}
-		
-		$vrat = implode("|",$akcie);
-
-		if($inlist == false)
-			return ($vrat . "|". $firma . ",5");
-		else
-			return $vrat;
-	}
-	
-	
+	}	
 	
 	public function setKongresman()
 	{

@@ -18,6 +18,9 @@ class ShowmeController implements Controller{
 		require_once "./classes/Player.class.php";
 		require_once "./classes/Obchod.class.php";
 		require_once "./cfg/host.php";
+		require_once "./classes/LoginChecker.class.php";
+
+		LoginChecker::check($this->session);
 				
 		$tpl = new Template();
 

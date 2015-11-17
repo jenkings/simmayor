@@ -1,11 +1,9 @@
 <?php
 class Obchod{
-	private $udaje;
 	private $db;
 
-	function  __construct($spojeni,$sel=Array()){
+	function  __construct($spojeni){
 		$this->db=$spojeni;
-		$this->udaje=$this->db->queryPlayer("SELECT ".$sel[0]." FROM accounts WHERE id = :id",$sel);
 	}
 	
 	public function sellForm($userdata=Array())
@@ -32,7 +30,6 @@ class Obchod{
 		else
 			$maxprodej = PLAYER_SHOP_ITEMS_LIMIT;
 		
-		
 		$userdata = $hrac->getComodities();
 		if(isset($_POST['predmet']) && isset($_POST['pocet']) && isset($_POST['cena']))
 		{
@@ -41,8 +38,6 @@ class Obchod{
 			if($_POST['pocet'] <= 0 || $_POST['cena'] <=0 || $_POST['cena'] >8000000){exit;}	
 			$x=$db->queryOne("SELECT COUNT(id) FROM prodejna WHERE idprodavajiciho = ?",array($_SESSION['prihlasen']));	
 			$pocet = $x['COUNT(id)'];
-			
-			
 			if($pocet >= $maxprodej){echo "Nemůžeš umístit na trh více než ".$maxprodej." položek zároveň";}
 			
 			else
@@ -63,4 +58,7 @@ class Obchod{
 			}
 		}
 	}
+	
+	
+	
 }

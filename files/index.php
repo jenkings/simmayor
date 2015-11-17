@@ -1,4 +1,14 @@
 <?php
+	require_once "./classes/Router.class.php";
+
+	if(!isset($_GET['pid']));
+		$_GET['pid'] = "title";
+		
+	$router = new Router($_GET['pid'],$_GET,$_POST);
+	echo $router;
+
+	/*
+
 	include_once "./cfg/host.php";
 	include_once "./classes/Database.class.php";
 	include_once "./classes/Reklama.class.php";
@@ -19,6 +29,6 @@
 	$tpl->setContent("content",$obsah);
 	
 	echo $tpl;
-		
+	*/
 ?>
 

@@ -1,7 +1,7 @@
 <?php
 require_once "./classes/controllers/Controller.class.php";
 class TitleController implements Controller{
-	public function Controller($get,$post){}
+	public function TitleController($get,$post){}
 	
 	public function __toString(){
 		require_once "./cfg/host.php";

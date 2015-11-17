@@ -29,7 +29,7 @@ class Register{
 				
 		$_SESSION['prihlasen'] = $row['id'];
 		
-		header('Location: ./showinfo.php');
+		header('Location: ./index.php?pid=showinfo');
 	}
 }
 

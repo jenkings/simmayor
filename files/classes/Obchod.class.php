@@ -15,7 +15,7 @@ class Obchod{
 			$data .= "<option value='ropa'>Ropa</option>";
 		if($userdata['rubin'] > 0)
 			$data .= "<option value='rubin'>Rubíny</option>";
-		$vrat = "<form action='showme.php' method='post'><table id='sell'><tr><td>Předmět prodeje:</td><td>Počet:</td><td>Cena:</td>";
+		$vrat = "<form action='./index.php?pid=showme' method='post'><table id='sell'><tr><td>Předmět prodeje:</td><td>Počet:</td><td>Cena:</td>";
 		$vrat .= "</tr><tr><td><select name='predmet'>  $data  </select></td><td><input type='number' name='pocet' min='1' max='20000'></td>";
 		$vrat .= "<td><input type='number' name='cena' min='1' max='8000000'></td></tr></table><p align='center'><input type='submit' value='Prodat'></p></form>";
 		return $vrat;
@@ -34,7 +34,7 @@ class Obchod{
 		if(isset($_POST['predmet']) && isset($_POST['pocet']) && isset($_POST['cena']))
 		{
 			
-			if($_SERVER['HTTP_REFERER'] != WEB_ROOT + "/showme.php"){exit;}
+			if($_SERVER['HTTP_REFERER'] != WEB_ROOT + "/index.php?pid=showme"){exit;}
 			if($_POST['pocet'] <= 0 || $_POST['cena'] <=0 || $_POST['cena'] >8000000){exit;}	
 			$x=$db->queryOne("SELECT COUNT(id) FROM prodejna WHERE idprodavajiciho = ?",array($_SESSION['prihlasen']));	
 			$pocet = $x['COUNT(id)'];

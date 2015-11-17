@@ -7,7 +7,7 @@ class Router{
 		$controllerName = ucfirst($controller) . "Controller";
 		
 		if(!file_exists("./classes/controllers/".$controllerName.".class.php")){
-			$controllerName = "UnknownController.class.php";
+			$controllerName = "UnknownController";
 		}
 		require_once "./classes/controllers/".$controllerName.".class.php";
 		$this->kontroler = new $controllerName;

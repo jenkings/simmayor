@@ -19,7 +19,6 @@ class Menu{
 			}
 			$out.="</ul>";
 		return $out;
-	}
-	
+	}	
 }
 ?>

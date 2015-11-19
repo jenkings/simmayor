@@ -104,6 +104,23 @@ class Admindata{
 	}
 
     public function uzivatele_editace(){
+		if(isset($_POST['zmenitudaje'])){
+			$jmeno=$_POST['jmeno'];
+			$heslo=$_POST['heslo'];
+			$avatar=$_POST['avatar'];
+			$penize=$_POST['penize'];
+			$dluh=$_POST['dluh'];
+			$uhli=$_POST['uhli'];
+			$ropa=$_POST['ropa'];
+			$rubin=$_POST['rubin'];
+			$maxprodej=$_POST['maxprodej'];
+			$kongresmando=$_POST['kongresmando'];
+			$vipdo=$_POST['vipdo'];
+			$admin=$_POST['admin'];
+
+			$this->db->query("UPDATE `accounts` SET `jmeno` = '$jmeno', `heslo` = '$heslo', `avatar` = '$avatar', `penize` = '$penize', `dluh` = '$dluh', `uhli` = '$uhli', `ropa` = '$ropa', `rubin` = '$rubin', `maxprodej` = '$maxprodej', `kongresmando` = '$kongresmando', `vipdo` = '$vipdo', `admin` = '$admin' WHERE `id` = '".$_GET['editace']."';");
+		}
+
 		if(isset($_GET['editace'])){
 			$radku=$this->db->queryOne("SELECT COUNT(*) FROM accounts WHERE id='".$_GET['editace']."'");
 			if($radku['COUNT(*)']=="1"){

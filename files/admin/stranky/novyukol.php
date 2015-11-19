@@ -3,8 +3,8 @@
 	<h4> Zadejte úkol:</h4>
 	<?php
 
-	if(isset($_GET['sdeleni']) && isset ($_GET['admin']))
-        $ukoly->NewUkol($_GET['sdeleni'],$_GET['admin']);
+	if(isset($_POST['sdeleni']) && isset ($_POST['admin']))
+        $ukoly->NewUkol($_POST['sdeleni'],$_POST['admin']);
 
 	echo $ukoly->AddForm();
 	?>

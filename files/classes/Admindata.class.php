@@ -153,6 +153,11 @@ class Admindata{
     }
 
     public function uzivatele_smaz(){
+		if(isset($_POST['smaz_hrace'])){
+			$this->db->query("DELETE FROM `accounts` WHERE `id` = '".$_GET['smazat']."'");
+			echo "<div class='centruj'><h3>Hráč byl smazán</h3></div>";
+		}
+
 		if(isset($_GET['smazat'])){
 			$radku=$this->db->queryOne("SELECT COUNT(*) FROM accounts WHERE id='".$_GET['smazat']."'");
 			if($radku['COUNT(*)']=="1"){

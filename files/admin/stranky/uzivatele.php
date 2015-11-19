@@ -10,6 +10,9 @@
 </div>
 <div id="text">
     <hr>
-    <h4>Sekce uživatelé:</h4>
+    <h3>Sekce uživatelé:</h3>
+    <?php
+    echo $administrace->uzivatele_sekce();
+    ?>
 </div>
 

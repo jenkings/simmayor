@@ -78,6 +78,14 @@ class Admindata{
 
 		}elseif($_GET['sekce']==3){
 
+			echo "<h3>Vyhledej uživatele:</h3>";
+
+			$this->uzivatele_hledani();
+
+			$this->uzivatele_vip();
+
+			$this->uzivatele_kongres();
+
 		}elseif($_GET['sekce']==4){
 
 		}elseif($_GET['sekce']==5){
@@ -178,20 +186,23 @@ class Admindata{
     }
 
 	public function uzivatele_hledani(){
-		if(isset($_POST['hledej_hrace'])){
-			$hrac = $_POST['nickname'];
-			$id = $_POST['id'];
-			if(!empty($id)){
-				$_GET['editace'] = $id;
-				header('Location: index.php?page=uzivatele&sekce=2&editace='.$id.'');
+			if(isset($_POST['hledej_hrace'])){
+				$hrac = $_POST['nickname'];
+				$id = $_POST['id'];
+				if(!empty($id)){
+					$_GET['editace'] = $id;
+				}
+				if(!empty($hrac)){
+					$hrac=$this->db->queryOne("SELECT * FROM accounts WHERE jmeno='".$hrac ."'");
+					$_GET['editace'] = $hrac['id'];
+					$id = $hrac['id'];
+				}
+				if($_GET['sekce']=="2"){
+					header('Location: index.php?page=uzivatele&sekce=2&editace='.$id.'');
+				}elseif($_GET['sekce']=="3"){
+					header('Location: index.php?page=uzivatele&sekce=3&editace='.$id.'');
+				}
 			}
-			if(!empty($hrac)){
-				$hrac=$this->db->queryOne("SELECT * FROM accounts WHERE jmeno='".$hrac ."'");
-				$_GET['editace'] = $hrac['id'];
-				$id = $hrac['id'];
-				header('Location: index.php?page=uzivatele&sekce=2&editace='.$id.'');
-			}
-		}
 
 		echo "<form method='post'>";
 		echo "<div class='centruj'>";
@@ -220,5 +231,61 @@ class Admindata{
 		$maximum=$_GET['paginace']+20;
 		echo "<div class='centruj'><a href='index.php?page=uzivatele&sekce=2&paginace=$minimum'><<< Posunout o dvacet</a> / <a href='index.php?page=uzivatele&sekce=2&paginace=$maximum'>Posunout o dvacet >>></a></div>";
 
+	}
+
+	public function uzivatele_vip(){
+		if(!isset($_GET['editace']) OR $_GET['editace']==""){
+			$_GET['editace'] = 0;
+		}
+		if($_GET['editace']>=1){
+			if(isset($_POST['udel_vip'])){
+
+				$idcko=$_GET['editace'];
+				$hrac=$this->db->queryOne("SELECT * FROM accounts WHERE jmeno=?",array($idcko));
+				$doba=$_POST['doba'];
+				$dokdy = date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s") . "+".$doba." days"));
+				echo $dokdy;
+				$this->db->query("UPDATE `accounts` SET `vipdo` = ? WHERE `id` = ?;",array($dokdy,$idcko));
+			}
+			echo "<form method='post'>";
+			echo "<div class='centruj'>";
+			echo "<fieldset class='okenko'>";
+			echo "<table width='100%'>";
+			echo "<tr><td>ID:</td><td>".$_GET['editace']."</td></tr>";
+			echo "<tr><td>Doba:</td><td><select name='doba'><option value='30'>30 dní</option><option value='60' selected='selected'>60 dní</option></select></td></tr>";
+			echo "<tr><td colspan='2'><input type='submit' name='udel_vip' value='..:Udělit VIP:..'></td></tr>";
+			echo "</table>";
+			echo "</fieldset>";
+			echo "</div>";
+			echo "</form>";
+		}
+	}
+
+	public function uzivatele_kongres(){
+		if(!isset($_GET['editace']) OR $_GET['editace']==""){
+			$_GET['editace'] = 0;
+		}
+		if(isset($_POST['udel_kongres'])){
+
+			$idcko=$_GET['editace'];
+			$hrac=$this->db->queryOne("SELECT * FROM accounts WHERE jmeno=?",array($idcko));
+			$doba=$_POST['doba'];
+			$dokdy = date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s") . "+".$doba." days"));
+			echo $dokdy;
+			$this->db->query("UPDATE `accounts` SET `kongresmando` = ? WHERE `id` = ?;",array($dokdy,$idcko));
+		}
+		if($_GET['editace']>=1){
+			echo "<form method='post'>";
+			echo "<div class='centruj'>";
+			echo "<fieldset class='okenko'>";
+			echo "<table width='100%'>";
+			echo "<tr><td>ID:</td><td>".$_GET['editace']."</td></tr>";
+			echo "<tr><td>Doba:</td><td><select name='doba'><option value='30'>30 dní</option><option value='60' selected='selected'>60 dní</option></select></td></tr>";
+			echo "<tr><td colspan='2'><input type='submit' name='udel_kongres' value='..:Udělit kongres..'></td></tr>";
+			echo "</table>";
+			echo "</fieldset>";
+			echo "</div>";
+			echo "</form>";
+		}
 	}
 }

@@ -11,4 +11,8 @@ define("STARTING_MONEY","50000");
 define("PLAYER_SHOP_ITEMS_LIMIT","4");
 define("VIP_SHOP_ITEMS_LIMIT","15");
 
+
+
+define("MAX_DLUH","100000");
+
 ?>

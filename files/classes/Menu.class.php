@@ -12,7 +12,7 @@ class Menu{
 			
 			if(isset($_SESSION['prihlasen'])){
 				$out.="<li><a href='obchod.php'>Obchod</a></li>";
-				$out.="<li><a href='banka.php'>Banka</a></li>";
+				$out.="<li><a href='index.php?pid=bank'>Banka</a></li>";
 				$out.="<li><a href='islandset.php'>Poplatky</a></li>";
 				$out.="<li><a href='./index.php?pid=showme'>Profil</a></li>";
 				$out.="<li><a href='logout.php'>Odhlásit</a></li>";

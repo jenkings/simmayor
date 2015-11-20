@@ -12,7 +12,7 @@ if (!isset($_SESSION)) session_start();
 			{
 				?>
 				<li><a href="obchod.php">Obchod</a></li>
-				<li><a href="banka.php">Banka</a></li>
+				<li><a href="index.php?pid=bank">Banka</a></li>
 				<li><a href="islandset.php">Poplatky</a></li>
 				<li><a href="index.php?pid=showme">Profil</a></li>
 				<li><a href="logout.php">Odhlásit</a></li>

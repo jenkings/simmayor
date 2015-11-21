@@ -22,6 +22,7 @@
 		$ukoly = new Ukoly($db);
         $reklama = new Reklama($db);
         $administrace = new Admindata($db);
+        $adminplayers = new AdminPlayers($db);
 
         if(intval($player->getVar('admin')) < 1)
         {

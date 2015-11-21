@@ -35,7 +35,7 @@ class Ukoly{
 		$form = "<textarea name='sdeleni' cols='40' rows='3'></textarea>";
 		$form .= "<br><select name='admin'>$txt</select>";
 		$form .= "<input type='submit' value='Přidat úkol'>";
-		return "<form>$form</formform>";
+		return "<form method='post'>$form</form>";
 	}
 	
 	public function NewUkol($obsah,$idadmina)

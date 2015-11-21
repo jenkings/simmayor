@@ -89,3 +89,50 @@ textarea{resize: none;}
     background: greenyellow;
     text-align: center;
 }
+
+.podmenu-1{
+    background-color:white;
+    width: 18%;
+    float:left;
+    margin:2px;
+    text-align:center;
+    padding:2px;
+    border:solid forestgreen 3px;
+    border-radius:5px;
+}
+
+.editace{
+    width:86%;
+    background-color:white;
+    float:left;
+    margin-left:7%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right:10%;
+    text-align:center;
+    padding:5px;
+    border:solid greenyellow 3px;
+    border-radius:5px;
+}
+
+.centruj{
+    text-align: center;
+    width:100%;
+    padding:5px;
+}
+
+.okenko{
+    text-align: center;
+    width:33%;
+    padding:5px;
+    margin-left: 33%;
+}
+
+.chyba{
+    text-align: center;
+    color: red;
+    font-size: 15pt;
+}
+
+
+

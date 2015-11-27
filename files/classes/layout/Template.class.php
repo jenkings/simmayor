@@ -6,7 +6,7 @@ class Template{
 	public function Template($template = "main"){
 		$this->file = "./templates/" . $template . ".phtml";
 		
-		$this->contents['content'] = "test";
+		$this->contents['content'] = "Obsah nedodán";
 	}	
 	
 	public function __toString(){

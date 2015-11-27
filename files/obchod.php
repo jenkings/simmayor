@@ -16,24 +16,13 @@ session_start();
 	<?php include "menu.php";?>
 </header>
 
-<?php
-function getjednotka($x)
-{
-		if($x == "uhli")
-			return "tun";
-		else if($x == "ropa")
-			return "barelů";
-		else if($x == "rubin")
-			return "rubínů";
-}
-
-?>
-
 <div id="page">
 	
 	<div id="content">
 		
 		<?php 
+			require_once "./classes/Goods.class.php";
+		
 			if(!isset($_SESSION['prihlasen']) || $_SESSION['prihlasen'] == "")
 			{
 				header('Location: index.php');
@@ -86,7 +75,7 @@ function getjednotka($x)
 				
 				$stridacka = 0;
 				while($z = mysql_fetch_assoc($q)){
-					echo "<tr><td class='first'><img id='mini' src='./".$z['predmet'].".png' alt='".$z['predmet']."'>".$z['pocet']." ".getjednotka($z['predmet']) ."</td>    <td  class='second'>$".number_format($z['cena'], 0, ',', ' ')."</td>      <td><form action='obchod.php' method='post'><input type='hidden' name='polozka' value='".$z['id']."'><input type='submit' value='koupit'></form></td>    </tr>";
+					echo "<tr><td class='first'><img id='mini' src='./".$z['predmet'].".png' alt='".$z['predmet']."'>".$z['pocet']." ".Goods::getUnit($z['predmet']) ."</td>    <td  class='second'>$".number_format($z['cena'], 0, ',', ' ')."</td>      <td><form action='obchod.php' method='post'><input type='hidden' name='polozka' value='".$z['id']."'><input type='submit' value='koupit'></form></td>    </tr>";
 				}
 				echo"</table>";
 			}

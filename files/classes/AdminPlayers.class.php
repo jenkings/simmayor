@@ -44,14 +44,11 @@ class AdminPlayers
         return $rtrn;
     }
 
-    public function uzivatele_sekce(){
-        if(!isset($_GET['sekce']) OR $_GET['sekce'] == ""){
-            $_GET['sekce'] = 1;
-        }
+    public function uzivatele_sekce($SekceGet,$FormularePost){
 
-        if($_GET['sekce']==1){
+        if($SekceGet==1){
 
-        }elseif($_GET['sekce']==2){
+        }elseif($SekceGet==2){
 
             echo "<h3>Vyhledej uživatele:</h3>";
 
@@ -70,7 +67,7 @@ class AdminPlayers
 
             $this->uzivatele_paginace();
 
-        }elseif($_GET['sekce']==3){
+        }elseif($SekceGet==3){
 
             echo "<h3>Vyhledej uživatele:</h3>";
 
@@ -80,11 +77,11 @@ class AdminPlayers
 
             $this->uzivatele_kongres();
 
-        }elseif($_GET['sekce']==4){
+        }elseif($SekceGet==4){
 
             $this->uzivatele_odmena();
 
-        }elseif($_GET['sekce']==5){
+        }elseif($SekceGet==5){
 
             echo "Sekce tresty zatím nefunguje...";
 

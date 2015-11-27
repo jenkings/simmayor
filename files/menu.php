@@ -11,7 +11,7 @@ if (!isset($_SESSION)) session_start();
 			if(isset($_SESSION['prihlasen']))
 			{
 				?>
-				<li><a href="obchod.php">Obchod</a></li>
+				<li><a href="./index.php?pid=shop">Obchod</a></li>
 				<li><a href="index.php?pid=bank">Banka</a></li>
 				<li><a href="islandset.php">Poplatky</a></li>
 				<li><a href="index.php?pid=showme">Profil</a></li>

@@ -11,7 +11,7 @@ class Menu{
 			$out.="<li><a href='./index.php?pid=top'>Top</a></li>";
 			
 			if(isset($_SESSION['prihlasen'])){
-				$out.="<li><a href='obchod.php'>Obchod</a></li>";
+				$out.="<li><a href='./index.php?pid=shop'>Obchod</a></li>";
 				$out.="<li><a href='index.php?pid=bank'>Banka</a></li>";
 				$out.="<li><a href='islandset.php'>Poplatky</a></li>";
 				$out.="<li><a href='./index.php?pid=showme'>Profil</a></li>";

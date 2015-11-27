@@ -29,6 +29,19 @@ class ObchodPrehled{
 		$out .="</table>";
 		return $out;
 	}
+	
+	function processRequests($player,$array){
+		//if(isset($array['polozka']) && !empty($array['polozka']))
+		if(isset($array['smenit']) && !empty($array['smenit'])){
+			if($player->getVar('ropa') >= 200000)
+			{
+				$this->db->query("UPDATE accounts SET ropa=ropa-200000,rubin=rubin+1 WHERE id=?",array($player->getVar("id")));
+				return "<div id='succes'>Směnil jsi jeden rubín</div>";
+			}else{
+				return "<div id='error'>Nedostatek ropy</div>";
+			}
+		}
+	}
 
 	
 	

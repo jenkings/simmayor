@@ -84,6 +84,5 @@ session_start();
 </div>
 
 <footer>Copyright Jan "Jenkings" Škoda | Code by <a href="http://jenkings.eu">Jenkings</a> | Design by <a href="#">Ex_0</footer>
-<?php include "analytics.php";?>
 </body>
 </html>

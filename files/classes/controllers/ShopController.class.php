@@ -35,7 +35,6 @@ class ShopController implements Controller{
 		$obsah .= $obchod->processRequests($player,$this->post);
 		$obsah .= new Template("oil_to_ruby");
 		$obsah .= $obchod->printOffers();
-		
 		//************************************************************//
 		$tpl->setContent("content",$obsah);
 		

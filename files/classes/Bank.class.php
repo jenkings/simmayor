@@ -50,7 +50,7 @@ class Bank{
 			// půjčka
 			if($values['operace'] == "pujc")
 			{
-				if(($this->player->getVar('dluh') + $_POST['castka']) <= MAX_DLUH)
+				if(($this->player->getVar('dluh') + $_values['castka']) <= MAX_DLUH)
 				{
 					$this->db->query("UPDATE accounts SET penize=?,dluh=? WHERE id = ?",array($this->player->getVar('penize') + $values['castka'],$this->player->getVar('dluh') + $values['castka'],$this->player->getVar("id")));
 					header("Refresh:0");

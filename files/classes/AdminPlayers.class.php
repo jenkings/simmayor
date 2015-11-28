@@ -58,7 +58,7 @@ class AdminPlayers
 
             $vraceni.=$this->uzivateleHledani($ParametrGet,$FormularePost,"index.php?page=uzivatele&sekce=2&editace=");
 
-            $vraceni.=$this->uzivateleSmaz();
+            $vraceni.=$this->uzivateleSmaz($ParametrGet['smazat'],$FormularePost);
 
             $vraceni.=$this->uzivateleEditace($ParametrGet['editace'],$FormularePost);
 
@@ -103,8 +103,7 @@ class AdminPlayers
     public function uzivateleTabulka($parametrGet,$radku){
         $minimum=$parametrGet['paginace'];
 
-
-        $this->seznam=$this->db->queryAll("SELECT * FROM accounts ORDER BY id LIMIT ".$minimum.",".$radku." ");
+        $this->seznam=$this->db->queryAll("SELECT * FROM accounts ORDER BY id LIMIT ".intval($parametrGet['paginace']).",".$radku." ");
         $vysledek = array();
         $vysledna = 0;
         foreach($this->seznam as $promena){
@@ -124,8 +123,10 @@ class AdminPlayers
      * a v případě odeslání to napíše, že údaje byly změněny
      */
     public function uzivateleEditace($idUzivatele,$post){
+        $idUzivatele = intval($idUzivatele);
         $vraceni = "";
         if(isset($post['zmenitudaje'])){
+
             $this->db->query("UPDATE accounts SET jmeno = ?, heslo = ?, avatar = ?, penize = ?, dluh = ?, uhli = ?, ropa = ?, rubin = ?, maxprodej = ?, kongresmando = ?, vipdo = ?, admin = ? WHERE id =?", array($post['jmeno'],$post['heslo'],$post['avatar'],$post['penize'],$post['dluh'],$post['uhli'],$post['ropa'], $post['rubin'],$post['maxprodej'],$post['kongresmando'],$post['vipdo'],$post['admin'],$idUzivatele));
             $vraceni.= "<div class='uspech'>Povedlo se, údaje změněny</div>";
         }
@@ -166,29 +167,31 @@ class AdminPlayers
      *
      */
 
-    public function uzivateleSmaz(){
-        if(isset($_POST['smaz_hrace'])){
-            $this->db->query("DELETE FROM `accounts` WHERE `id` = '".$_GET['smazat']."'");
-            echo "<div class='centruj'><h3>Hráč byl smazán</h3></div>";
+    public function uzivateleSmaz($idUzivatele,$post){
+        $idUzivatele = intval($idUzivatele);
+        $vraceni = "";
+        if(isset($post['smaz_hrace'])){
+            $this->db->query("DELETE FROM `accounts` WHERE `id` = ?", array($idUzivatele));
+            $vraceni.= "<div class='centruj'><h3>Hráč byl smazán</h3></div>";
         }
 
-        if(isset($_GET['smazat'])){
-            $radku=$this->db->queryOne("SELECT COUNT(*) FROM accounts WHERE id='".$_GET['smazat']."'");
+        if(isset($idUzivatele) AND $idUzivatele >= 1){
+            $radku=$this->db->queryOne("SELECT COUNT(*) FROM accounts WHERE id=?", array($idUzivatele));
             if($radku['COUNT(*)']=="1"){
-                $id = $_GET['smazat'];
-                $hrac=$this->db->queryOne("SELECT * FROM accounts WHERE id='".$_GET['smazat']."'");
-                echo "<form method='post'>";
-                echo "<div class='centruj'>";
-                echo "<fieldset class='okenko'>";
-                echo "Opravdu chcete smazat tohoto hráče: <b>".$hrac['jmeno']."</b><br>";
-                echo "<input type='submit' name='smaz_hrace' value='..:Smazat uživatele:..'>";
-                echo "</fieldset>";
-                echo "</div>";
-                echo "</form>";
+                $hrac=$this->db->queryOne("SELECT * FROM accounts WHERE id=?",array($idUzivatele));
+                $vraceni.= "<form method='post'>";
+                $vraceni.= "<div class='centruj'>";
+                $vraceni.= "<fieldset class='okenko'>";
+                $vraceni.= "Opravdu chcete smazat tohoto hráče: <b>".$hrac['jmeno']."</b><br>";
+                $vraceni.= "<input type='submit' name='smaz_hrace' value='..:Smazat uživatele:..'>";
+                $vraceni.= "</fieldset>";
+                $vraceni.= "</div>";
+                $vraceni.= "</form>";
             }else{
-                echo "<div class='chyba'>Nelze smazat hráče, který neexistuje</div>";
+                $vraceni.= "<div class='chyba'>Nelze smazat hráče, který neexistuje</div>";
             }
         }
+        return $vraceni;
     }
 
     /**
@@ -234,6 +237,7 @@ class AdminPlayers
      * @return string - vratí dvě klikací šipky doleva(mínus) doprva(plus)
      */
     public function uzivatelePaginace($parametrGet,$radku){
+        $parametrGet['paginace'] = intval($parametrGet['paginace']);
         $minimum=$parametrGet['paginace']-$radku;
         $maximum=$parametrGet['paginace']+$radku;
         return "<div class='centruj'><a href='index.php?page=uzivatele&sekce=2&paginace=$minimum'><<< Posunout o ".$radku." záznamů</a> / <a href='index.php?page=uzivatele&sekce=2&paginace=$maximum'>Posunout o ".$radku." záznamů >>></a></div>";
@@ -246,27 +250,33 @@ class AdminPlayers
      * @return string - vrátí formulář, kde se přiděluje VIP
      */
     public function uzivateleVip($idUzivatele,$post){
+        $idUzivatele = intval($idUzivatele);
         $vraceni = "";
-        $vraceni.= "<h4>Přiděl VIP:</h4>";
         if($idUzivatele>=1){
-            if(isset($post['udel_vip'])){
-                $dokdy = date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s") . "+".$post['doba']." days"));
-                $this->db->query("UPDATE accounts SET vipdo = ? WHERE id = ?;",array($dokdy,$idUzivatele));
-                $vraceni.= "<div class='uspech'>VIP bylo přiděleno hráči s ID: ".$idUzivatele." do: ".$dokdy."</div>";
+            $radku=$this->db->queryOne("SELECT COUNT(*) FROM accounts WHERE id=?", array($idUzivatele));
+            if($radku['COUNT(*)']=="1"){
+                $vraceni.= "<h4>Přiděl VIP:</h4>";
+                if(isset($post['udel_vip'])){
+                    $dokdy = date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s") . "+".$post['doba']." days"));
+                    $this->db->query("UPDATE accounts SET vipdo = ? WHERE id = ?;",array($dokdy,$idUzivatele));
+                    $vraceni.= "<div class='uspech'>VIP bylo přiděleno hráči s ID: ".$idUzivatele." do: ".$dokdy."</div>";
+                }
+                $vraceni.= "<form method='post'>";
+                $vraceni.= "<div class='centruj'>";
+                $vraceni.= "<fieldset class='okenko'>";
+                $vraceni.= "<table width='100%'>";
+                $vraceni.= "<tr><td>ID hráče:</td><td>".$idUzivatele."</td></tr>";
+                $vraceni.= "<tr><td>Doba:</td><td><select name='doba'><option value='30'  selected='selected'>30 dní</option><option value='60'>60 dní</option><option value='120'>120 dní</option><option value='365'>365 dní</option></select></td></tr>";
+                $vraceni.= "<tr><td colspan='2'><input type='submit' name='udel_vip' value='..:Udělit VIP:..'></td></tr>";
+                $vraceni.= "</table>";
+                $vraceni.= "</fieldset>";
+                $vraceni.= "</div>";
+                $vraceni.= "</form>";
+            }else{
+                $vraceni.="<div class='chyba'>Hledaný uživatel neexistuje</div>";
             }
-            $vraceni.= "<form method='post'>";
-            $vraceni.= "<div class='centruj'>";
-            $vraceni.= "<fieldset class='okenko'>";
-            $vraceni.= "<table width='100%'>";
-            $vraceni.= "<tr><td>ID:</td><td>".$idUzivatele."</td></tr>";
-            $vraceni.= "<tr><td>Doba:</td><td><select name='doba'><option value='30'  selected='selected'>30 dní</option><option value='60'>60 dní</option><option value='120'>120 dní</option><option value='365'>365 dní</option></select></td></tr>";
-            $vraceni.= "<tr><td colspan='2'><input type='submit' name='udel_vip' value='..:Udělit VIP:..'></td></tr>";
-            $vraceni.= "</table>";
-            $vraceni.= "</fieldset>";
-            $vraceni.= "</div>";
-            $vraceni.= "</form>";
-            return $vraceni;
         }
+            return $vraceni;
     }
 
     /**
@@ -276,27 +286,33 @@ class AdminPlayers
      */
 
     public function uzivateleKongres($idUzivatele,$post){
+        $idUzivatele = intval($idUzivatele);
         $vraceni = "";
-        $vraceni.= "<h4>Přiděl křeslo kongresmana:</h4>";
-        if($idUzivatele){
-            if(isset($post['udel_kongres'])){
-                $dokdy = date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s") . "+".$post['doba']." days"));
-                $this->db->query("UPDATE accounts SET kongresmando = ? WHERE id = ?;",array($dokdy,$idUzivatele));
-                $vraceni.= "<div class='uspech'>Křeslo bylo přiděleno hráči s ID: ".$idUzivatele." do: ".$dokdy."</div>";
+        if($idUzivatele>=1){
+            $radku=$this->db->queryOne("SELECT COUNT(*) FROM accounts WHERE id=?", array($idUzivatele));
+            if($radku['COUNT(*)']=="1"){
+                $vraceni.= "<h4>Přiděl křeslo kongresmana:</h4>";
+                if(isset($post['udel_kongres'])){
+                    $dokdy = date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s") . "+".$post['doba']." days"));
+                    $this->db->query("UPDATE accounts SET kongresmando = ? WHERE id = ?;",array($dokdy,$idUzivatele));
+                    $vraceni.= "<div class='uspech'>Křeslo bylo přiděleno hráči s ID: ".$idUzivatele." do: ".$dokdy."</div>";
+                }
+                $vraceni.= "<form method='post'>";
+                $vraceni.= "<div class='centruj'>";
+                $vraceni.= "<fieldset class='okenko'>";
+                $vraceni.= "<table width='100%'>";
+                $vraceni.= "<tr><td>ID hráče:</td><td>".$idUzivatele."</td></tr>";
+                $vraceni.= "<tr><td>Doba:</td><td><select name='doba'><option value='30' selected='selected'>30 dní</option><option value='60'>60 dní</option><option value='120'>120 dní</option><option value='365'>365 dní</option></select></td></tr>";
+                $vraceni.= "<tr><td colspan='2'><input type='submit' name='udel_kongres' value='..:Udělit kongres..'></td></tr>";
+                $vraceni.= "</table>";
+                $vraceni.= "</fieldset>";
+                $vraceni.= "</div>";
+                $vraceni.= "</form>";
+            }else{
+                $vraceni.="<div class='chyba'>Hledaný uživatel neexistuje</div>";
             }
-            $vraceni.= "<form method='post'>";
-            $vraceni.= "<div class='centruj'>";
-            $vraceni.= "<fieldset class='okenko'>";
-            $vraceni.= "<table width='100%'>";
-            $vraceni.= "<tr><td>ID:</td><td>".$idUzivatele."</td></tr>";
-            $vraceni.= "<tr><td>Doba:</td><td><select name='doba'><option value='30' selected='selected'>30 dní</option><option value='60'>60 dní</option><option value='120'>120 dní</option><option value='365'>365 dní</option></select></td></tr>";
-            $vraceni.= "<tr><td colspan='2'><input type='submit' name='udel_kongres' value='..:Udělit kongres..'></td></tr>";
-            $vraceni.= "</table>";
-            $vraceni.= "</fieldset>";
-            $vraceni.= "</div>";
-            $vraceni.= "</form>";
-            return $vraceni;
         }
+        return $vraceni;
     }
 
     public function uzivateleOdmena($post){
@@ -312,20 +328,24 @@ class AdminPlayers
                 $id = $hrac2['id'];
                 $jmeno = $hrac2['jmeno'];
             }
-            $x=$this->db->queryOne("SELECT COUNT(*) FROM accounts WHERE id=?",array($id));
+            $x=$this->db->queryOne("SELECT COUNT(*),jmeno FROM accounts WHERE id=?",array($id));
             $hracu =$x['COUNT(*)'];
             if($hracu == 1){
-                if($typodmeny == "rub") {
-                    $this->db->query("UPDATE accounts SET rubin =rubin + ? WHERE id = ?;",array($pocet,$id));
-                    $patvar = "rubínů";
-                }elseif($typodmeny == "rop"){
-                    $this->db->query("UPDATE accounts SET ropa =ropa + ? WHERE id = ?;",array($pocet,$id));
-                    $patvar = "ropy";
-                }elseif($typodmeny == "uhli"){
-                    $this->db->query("UPDATE accounts SET uhli =uhli + ? WHERE id = ?;",array($pocet,$id));
-                    $patvar = "uhlí";
+                if($pocet>=1){
+                    if($typodmeny == "rub") {
+                        $this->db->query("UPDATE accounts SET rubin =rubin + ? WHERE id = ?;",array($pocet,$id));
+                        $patvar = "rubínů";
+                    }elseif($typodmeny == "rop"){
+                        $this->db->query("UPDATE accounts SET ropa =ropa + ? WHERE id = ?;",array($pocet,$id));
+                        $patvar = "ropy";
+                    }elseif($typodmeny == "uhli"){
+                        $this->db->query("UPDATE accounts SET uhli =uhli + ? WHERE id = ?;",array($pocet,$id));
+                        $patvar = "uhlí";
+                    }
+                    $vraceni.= "<div class='uspech'>Povedlo se...<br>Přidal jste hráči ".$x['jmeno']." ".$pocet." ".$patvar." </div>";
+                }else{
+                    $vraceni.= "<div class='chyba'>Zadal jste neplatný počet</div>";
                 }
-                $vraceni.= "<div class='uspech'>Povedlo se...<br>Přidal jste hráči: ".$pocet." ".$patvar." </div>";
             }else{
                 $vraceni.= "<div class='chyba'>Bohužel tento uživatel neexisuje</div>";
             }

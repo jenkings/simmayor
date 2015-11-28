@@ -24,6 +24,10 @@
             $_GET['editace'] = 0;
         }
 
+        if(!isset($_GET['smazat']) OR $_GET['smazat']<=0){
+            $_GET['smazat'] = 0;
+        }
+
     echo $adminplayers->uzivateleSekce($_GET,$_POST,$_SESSION);
     ?>
 </div>

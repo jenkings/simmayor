@@ -1,11 +1,11 @@
 <div id="data">
     <?php
-        echo $adminplayers->uzivatele_prehled();
+        echo $adminplayers->uzivatelePrehled();
     ?>
 </div>
 <div id="data">
     <?php
-        echo $adminplayers->uzivatele_menu();
+        echo $adminplayers->uzivateleMenu();
     ?>
 </div>
 <div id="text">
@@ -13,11 +13,18 @@
     <h3>Sekce uživatelé:</h3>
     <?php
         if(!isset($_GET['sekce']) OR $_GET['sekce'] == ""){
-        $_GET['sekce'] = 1;
+            $_GET['sekce'] = 1;
         }
 
+        if(!isset($_GET['paginace']) OR $_GET['paginace']<=0){
+            $_GET['paginace'] = 0;
+        }
 
-    echo $adminplayers->uzivatele_sekce($_GET['sekce'],$_POST);
+        if(!isset($_GET['editace']) OR $_GET['editace']<=0){
+            $_GET['editace'] = 0;
+        }
+
+    echo $adminplayers->uzivateleSekce($_GET,$_POST,$_SESSION);
     ?>
 </div>
 

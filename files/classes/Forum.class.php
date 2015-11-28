@@ -8,9 +8,8 @@ class Forum{
     $this->db=$spojeni;
   }
 
-  public function getThreads($sekce) 
-  {
-	$this->seznam=$this->db->queryAll("SELECT id,datum,nazev FROM topics WHERE idsekce = '" . $sekce . "̈́' ORDER BY datum DESC");
+  public function getThreads($sekce) {
+	$this->seznam=$this->db->queryAll("SELECT id,datum,nazev FROM topics WHERE idsekce = ? ORDER BY datum DESC",array($sekce));
     $rows=array();
     foreach($this->seznam as $row){
       $rows[]="<li><a href='index.php?pid=thread&topicid=".$row['id']."'><h3>".$row['nazev']."</h3></a>  <span>".$row['datum']."</span></li>";
@@ -20,8 +19,7 @@ class Forum{
     return "<div id='forum'><ul id='forum_kategorie'>$temata</ul></div>";
   }
   
-  public function getTopic($id) 
-  {
+  public function getTopic($id)  {
 	$this->seznam=$this->db->queryOne("SELECT nazev,jmeno,avatar,text,vipdo FROM topics t INNER JOIN accounts a ON  t.idzakladatele = a.id WHERE t.id = ?",array($id));
     
     $cas = $this->seznam['vipdo'];

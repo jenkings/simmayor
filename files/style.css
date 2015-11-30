@@ -325,3 +325,10 @@ footer a{color:#EBD200;text-decoration:none;}
 ::-webkit-scrollbar-thumb {background-color: #555;}  
 ::-webkit-scrollbar-thumb:hover {background-color: #111;}  
 
+.islandreview{
+	border:solid black 2px;
+	width : 30%;
+	float:left;
+	margin:1%;
+}
+

@@ -175,6 +175,13 @@ class Player{
 		}
 	}
 	
+	public function getPlayerIslands(){
+		$res = $this->db->queryAll("SELECT id FROM islands WHERE idmajitele = ?",array($this->udaje["id"]));
+		$out = array();
+		foreach($res as $piece)
+			array_push($out,$piece['id']);
+		return $out;
+	}
 
 	public function KupOstrov()
 	{

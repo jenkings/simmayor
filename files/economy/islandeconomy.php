@@ -2,7 +2,7 @@
 session_start();
 mb_internal_encoding("UTF-8");
 include "../connect.php";
-include "objectdata.php";
+include "./objectdata.php";
 
 
 

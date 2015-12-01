@@ -2,7 +2,7 @@
 <html>
 <head>	
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="regstyle.css">
+<link rel="stylesheet" type="text/css" href="./styles/regstyle.css">
 <title>SimMayor</title>
 
 <script>
@@ -35,7 +35,7 @@ function switchto(x)
 <body>
 
 <header>
-	<img src="logo2.png" alt="logo">
+	<img src="./graphics/logo2.png" alt="logo">
 </header>
 
 <div id="page">

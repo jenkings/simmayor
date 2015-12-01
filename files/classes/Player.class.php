@@ -47,9 +47,9 @@ class Player{
 	{
 		$x = "<td><h3>Peníze:</h3></td><td>$" . number_format($this->udaje['penize'], 2, ',', ' ') . "</td></tr>";
 		$x .= "<tr><td><h3>Dluh:</h3></td><td>$" . number_format($this->udaje['dluh'], 2, ',', ' ') . "</td></tr>";
-		$x .= "<tr><td><h3><img id='mini' src='./uhli.png' alt='uhli'></h3></td><td>" . $this->udaje['uhli'] . " tun</td></tr>";
-		$x .= "<tr><td><h3><img id='mini' src='./ropa.png' alt='ropa'></h3></td><td>" . $this->udaje['ropa'] . " barelů</td></tr>";
-		$x .= "<tr><td><h3><img id='mini' src='./rubin.png' alt='rubin'></h3></td><td>" . $this->udaje['rubin'] . " drahokamů</td>";		
+		$x .= "<tr><td><h3><img id='mini' src='./graphics/comodities/uhli.png' alt='uhli'></h3></td><td>" . $this->udaje['uhli'] . " tun</td></tr>";
+		$x .= "<tr><td><h3><img id='mini' src='./graphics/comodities/ropa.png' alt='ropa'></h3></td><td>" . $this->udaje['ropa'] . " barelů</td></tr>";
+		$x .= "<tr><td><h3><img id='mini' src='./graphics/comodities/rubin.png' alt='rubin'></h3></td><td>" . $this->udaje['rubin'] . " drahokamů</td>";		
 		return "<table id='info'><tr> $x </tr></table>";
 	}
 	  
@@ -157,7 +157,7 @@ class Player{
 		}else
 		{
 			$text = "<form action='./index.php?pid=showme' method='post'><input type='hidden' name='jitdokongresu' value=''>";
-			$text .= "<p align='center'><input type='submit' value='Stát se kongresmanem'>Cena: 50 <img width='25px;' src='./rubin.png' alt='rubin' class='obrazek'><br>";
+			$text .= "<p align='center'><input type='submit' value='Stát se kongresmanem'>Cena: 50 <img width='25px;' src='./graphics/comodities/rubin.png' alt='rubin' class='obrazek'><br>";
 			$text .= "Do: " . date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s") . "+1 months")) . "</p></form>";
 			return $text;
 		}

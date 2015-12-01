@@ -2,7 +2,7 @@
 <html>
 <head>	
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="./styles/style.css">
 <title>SimMayor</title>
 <script>
 function sendchat(message)
@@ -45,7 +45,7 @@ header('Location: registrace.php');
 ?>
 
 	<header>
-	<img src="logo.png" alt="logo">
+	<img src="./graphics/logo.png" alt="logo">
 	
 	<?php include "menu.php";?>
 </header>

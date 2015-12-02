@@ -61,6 +61,7 @@ class IslandsetController implements Controller{
 		
 		//*****************************//
 		
+		$obsah .= "<div style='clear: left;'></div>";
 		$tpl->setContent("content",$obsah);
 		
 		return $tpl->__toString();

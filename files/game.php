@@ -36,7 +36,7 @@ function refresh()
 session_start();
 if(!isset($_SESSION['prihlasen']) || $_SESSION['prihlasen'] == "")
 {
-header('Location: registrace.php');
+header('Location: index.php?pid=register');
 }else{
 ?>
 <body onunload="save();" onload="setInterval(function(){vykresli();},50);setInterval(function(){economics();},60000);">

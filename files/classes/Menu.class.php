@@ -6,7 +6,7 @@ class Menu{
 		if (!isset($_SESSION)) session_start();
 			$out.="<ul id='menu'>";
 			$out.="<li><a href='./index.php?pid=title'>Domů</a></li>";
-			$out.="<li><a href='game.php'>Hra</a></li>";
+			$out.="<li><a href='./index.php?pid=game'>Hra</a></li>";
 			$out.="<li><a href='./index.php?pid=forum'>Fórum</a></li>";
 			$out.="<li><a href='./index.php?pid=top'>Top</a></li>";
 			

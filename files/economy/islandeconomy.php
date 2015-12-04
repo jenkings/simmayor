@@ -18,10 +18,11 @@ if(date("Y-m-d H:i:s") < $comparedate)
 		exit;
 }
 
-/*if($_SERVER['HTTP_REFERER'] != WEB_ROOT . "/game.php"){
+if($_SERVER['HTTP_REFERER'] != WEB_ROOT . "/index.php?pid=game"){
+	echo $_SERVER['HTTP_REFERER'];
 	exit;
 }
-*/
+
 		
 $Vinfrastruktura = 0;
 $Vubytovani = 0;

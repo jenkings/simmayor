@@ -25,3 +25,6 @@ header img{width:300px;margin-left:70px;;}
 
 footer{margin-left:auto;margin-right:auto;width:600px;margin-top:80px;color:white;font-size:20px;}
 footer a{color:#EBD200;text-decoration:none;}
+
+#error{padding:5px;background-color:#E77A6F;border:solid red 2px;}
+#succes{padding:5px;background-color:#8ADC84;border:solid green 2px;}

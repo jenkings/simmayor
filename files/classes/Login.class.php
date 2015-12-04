@@ -13,7 +13,7 @@ class Login{
 				$_SESSION['prihlasen'] = $row['id'];
 				header('Location: game.php');
 			}else{
-				header('Location: index.php');
+				header('Location: index.php?pid=register');
 			}
 		}
 }

@@ -14,9 +14,9 @@ class Template{
 	}
 	
 	private function replaceVariablesInTemplate($template, array $variables){
-	 return preg_replace_callback('#{(.*?)}#',
+	 return preg_replace_callback('#{\$(.*?)}#',
 		   function($match) use ($variables){
-				$match[1]=trim($match[1],'$');
+				//$match[1]=trim($match[1],'$');
 				return $this->contents[$match[1]];
 		   },
 		   ' '.$template.' ');

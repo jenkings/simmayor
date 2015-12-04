@@ -433,14 +433,16 @@ function economics()
 		type: "POST",
 		url:document_root+"/economy/islandeconomy.php",
 		data: {idmesta:idmesta},
-		success: function(data) {	  
-			var n=data.split("|");
+		success: function(data) {	
+			console.log(data)  
+			if(data != ""){
+				var n=data.split("|");
 				hrac.SetMoney(parseInt(n[0]));
 				maxpopulace = parseInt(n[1]);
 				soucasnapopulace = parseInt(n[2]);
 				celkovakapacita = parseInt(n[3]);
 				oblibenost = 1 * parseInt(n[4]);
-          
+			}
 	   }
 	});
 }

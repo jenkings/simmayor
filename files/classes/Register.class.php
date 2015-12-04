@@ -1,4 +1,5 @@
 <?php
+require_once "./classes/Mapgen.class.php";
 class Register{
 	private $db;
 	
@@ -15,13 +16,14 @@ class Register{
 	}
 	
 	public function createAccount($name,$pass){
+		$mapGen = new Mapgen();
 		$penize = STARTING_MONEY;
 		$avatar = rand(1,10); // jeden z 10 avatarů náhodně
 		$this->db->query("INSERT INTO accounts (jmeno,heslo,penize,avatar) VALUES (?,md5(?),?,?)"   , array($name,$pass,$penize,$avatar));
 		
 		$row = $this->db->queryOne("SELECT * FROM accounts WHERE jmeno = ? AND heslo = md5(?)",array($name,$pass) );			
 		
-		$this->db->query("INSERT INTO islands (idmajitele,mapa) VALUES (?,?)",array($row['id'],newMap()));
+		$this->db->query("INSERT INTO islands (idmajitele,mapa) VALUES (?,?)",array($row['id'],$mapGen->createMap()));
 		
 		$row2 = $this->db->queryOne("SELECT id FROM islands WHERE idmajitele=?",array(intval($row['id'])));			
 		

@@ -305,7 +305,7 @@ $db->query("UPDATE sazby SET hodnota=hodnota-? WHERE nazev LIKE 'stavrozpoctu'",
 
 else if($pocatecnistav > 50000000)
 {
-$queryy = mysql_fetch_assoc(mysql_query("SELECT hodnota FROM sazby WHERE nazev LIKE 'danebohatych'"));	
+$queryy = $db->queryOne("SELECT hodnota FROM sazby WHERE nazev LIKE 'danebohatych'");	
 $zustatek -= $queryy['hodnota'];
 $vydaje .= "|Daně pro zbohatlíky: -" . $queryy['hodnota'];
 $db->queryOne("UPDATE sazby SET hodnota =hodnota+".intval($queryy['hodnota'])." WHERE nazev LIKE 'stavrozpoctu'");

@@ -36,7 +36,6 @@ class RegisterController implements Controller{
 				$volnyNick = $register->isAvailableName($_POST['nick']);
 				if($volnyNick)
 				{
-					require "newmap.php"; //přeobjektovat
 					$register->createAccount($_POST['nick'],$_POST['password1']);
 					exit;
 				}else{

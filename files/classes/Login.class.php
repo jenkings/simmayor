@@ -11,7 +11,7 @@ class Login{
 			$row = $this->db->queryOne("SELECT * FROM accounts WHERE jmeno = ? AND heslo = md5(?)",array($nick,$pass));
 			if ($row) {
 				$_SESSION['prihlasen'] = $row['id'];
-				header('Location: game.php');
+				header('Location: index.php?pidgame');
 			}else{
 				header('Location: index.php?pid=register');
 			}

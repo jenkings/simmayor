@@ -1,14 +1,15 @@
 <?php
 session_start();
 mb_internal_encoding("UTF-8");
-include "../connect.php";
-include "objectdata.php";
+require_once "../classes/Database.class.php";
+require_once "../cfg/host.php";
+include "./objectdata.php";
 
-
+$db = new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);
 
 if(isset($_POST['idmesta']) && isset($_SESSION['prihlasen']))
 {
-$y = mysql_fetch_assoc(mysql_query("SELECT lastsave FROM accounts WHERE id='".intval($_SESSION['prihlasen'])."'"));
+$y = $db->queryOne("SELECT lastsave FROM accounts WHERE id=?",array(intval($_SESSION['prihlasen'])));
 					
 $cas = $y['lastsave'];
 $comparedate=date("Y-m-d H:i:s",strtotime(" $cas +1 minutes "));
@@ -18,10 +19,11 @@ if(date("Y-m-d H:i:s") < $comparedate)
 		exit;
 }
 
-/*if($_SERVER['HTTP_REFERER'] != WEB_ROOT . "/game.php"){
+if($_SERVER['HTTP_REFERER'] != WEB_ROOT . "/index.php?pid=game"){
+	echo $_SERVER['HTTP_REFERER'];
 	exit;
 }
-*/
+
 		
 $Vinfrastruktura = 0;
 $Vubytovani = 0;
@@ -44,7 +46,7 @@ $zabavniprumysl = 0;
 
 
 //---------------------VYBRÁNÍ ÚDAJŮ O DANÉM OSTROVĚ------------------//
-$result = mysql_fetch_array(mysql_query("SELECT id,idmajitele,mapa,oblibenost,soucasnapopulace,dane FROM islands WHERE id='".(int)$_POST['idmesta']."'"));
+$result = $db->queryOne("SELECT id,idmajitele,mapa,oblibenost,soucasnapopulace,dane FROM islands WHERE id=?",array($_POST['idmesta']));
 
 $vysedani = $result['dane'];
 $soucasnapopulace = $result['soucasnapopulace'];
@@ -53,7 +55,7 @@ $oblibenost = $result['oblibenost'];
 ////////////////////////////////////////////////////////////////////////
 
 //------------------------UDAJE O MAJITELI----------------------------//
-$result2 = mysql_fetch_array(mysql_query("SELECT penize,uhli,ropa,dluh FROM accounts WHERE id='".$result['idmajitele']."'"));
+$result2 = $db->queryOne("SELECT penize,uhli,ropa,dluh FROM accounts WHERE id=?",array($result['idmajitele']));
 
 $pocatecnistav = $result2['penize'];
 $vlastnik = $result['idmajitele'];
@@ -62,7 +64,7 @@ $ropa = $result2['ropa'];
 $dluh = $result2['dluh'];
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
-$result3 = mysql_fetch_array(mysql_query("SELECT hodnota FROM sazby WHERE nazev='uroky'"));
+$result3 = $db->queryOne("SELECT hodnota FROM sazby WHERE nazev='uroky'");
 $uroky = $result3['hodnota'];
 ////////////////////////////////////////////////////////////////////////
 
@@ -294,29 +296,29 @@ if(($silnic * 4) < $domu)
 
 if($pocatecnistav < 10000)
 {
-$queryy = mysql_fetch_assoc(mysql_query("SELECT hodnota FROM sazby WHERE nazev LIKE 'prispevekchudym'"));	
+$queryy = $db->queryOne("SELECT hodnota FROM sazby WHERE nazev LIKE 'prispevekchudym'");	
 $zustatek += $queryy['hodnota'];
 $prijmy .= "|Příspěvek chudým:" . $queryy['hodnota'];
-mysql_query("UPDATE sazby SET hodnota=hodnota-".intval($queryy['hodnota'])." WHERE nazev LIKE 'stavrozpoctu'");
+$db->query("UPDATE sazby SET hodnota=hodnota-? WHERE nazev LIKE 'stavrozpoctu'",array(intval($queryy['hodnota'])));
 }
 
 
 else if($pocatecnistav > 50000000)
 {
-$queryy = mysql_fetch_assoc(mysql_query("SELECT hodnota FROM sazby WHERE nazev LIKE 'danebohatych'"));	
+$queryy = $db->queryOne("SELECT hodnota FROM sazby WHERE nazev LIKE 'danebohatych'");	
 $zustatek -= $queryy['hodnota'];
 $vydaje .= "|Daně pro zbohatlíky: -" . $queryy['hodnota'];
-mysql_query("UPDATE sazby SET hodnota =hodnota+".intval($queryy['hodnota'])." WHERE nazev LIKE 'stavrozpoctu'");
+$db->queryOne("UPDATE sazby SET hodnota =hodnota+".intval($queryy['hodnota'])." WHERE nazev LIKE 'stavrozpoctu'");
 }
 
-mysql_query("UPDATE islands SET maxpopulace='".$maxpopulace."',soucasnapopulace='".$soucasnapopulace."',kapacita='".$ubytovacimista."',oblibenost='".$oblibenost."' WHERE id='".$_POST['idmesta']."'");
-mysql_query("UPDATE accounts SET penize='".$zustatek."',uhli='".$uhli."',ropa='".$ropa."',lastsave='".date("Y-m-d H:i:s")."' WHERE id='".$vlastnik."'");
+$db->query("UPDATE islands SET maxpopulace='".$maxpopulace."',soucasnapopulace='".$soucasnapopulace."',kapacita='".$ubytovacimista."',oblibenost='".$oblibenost."' WHERE id='".$_POST['idmesta']."'");
+$db->query("UPDATE accounts SET penize='".$zustatek."',uhli='".$uhli."',ropa='".$ropa."',lastsave='".date("Y-m-d H:i:s")."' WHERE id='".$vlastnik."'");
 
-if(mysql_query("SELECT id FROM bankvypisy WHERE idostrova='".(int)$_POST['idmesta']."'") != false){
-	mysql_query("UPDATE bankvypisy SET pocatecnistav='".$pocatecnistav."',prijmy='".$prijmy."',vydaje='".$vydaje."',shrnuti='".$zustatek."' WHERE idostrova='".(int)$_POST['idmesta']."'");		
+if($db->queryOne("SELECT * FROM bankvypisy WHERE idostrova='".(int)$_POST['idmesta']."'") != false){
+	$db->query("UPDATE bankvypisy SET pocatecnistav='".$pocatecnistav."',prijmy='".$prijmy."',vydaje='".$vydaje."',shrnuti='".$zustatek."' WHERE idostrova='".(int)$_POST['idmesta']."'");		
 }else{
-	mysql_query("INSERT into bankvypisy (idostrova) VALUES ('".(int)$_POST['idmesta']."')");
-	mysql_query("UPDATE bankvypisy SET pocatecnistav='".$pocatecnistav."',prijmy='".$prijmy."',vydaje='".$vydaje."',shrnuti='".$zustatek."' WHERE idostrova='".(int)$_POST['idmesta']."'");		
+	$db->query("INSERT into bankvypisy (idostrova) VALUES ('".(int)$_POST['idmesta']."')");
+	$db->query("UPDATE bankvypisy SET pocatecnistav='".$pocatecnistav."',prijmy='".$prijmy."',vydaje='".$vydaje."',shrnuti='".$zustatek."' WHERE idostrova='".(int)$_POST['idmesta']."'");		
 }
 //echo "Současná populace: " .$soucasnapopulace . "<br>";
 //echo "Maximální populace: " .$maxpopulace . "<br>";

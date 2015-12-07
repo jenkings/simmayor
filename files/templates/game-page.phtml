@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>	
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="./styles/style.css">
+<title>SimMayor</title>
+<script>
+function sendchat(message)
+{
+		
+	$.ajax ({
+	type: "POST",
+	url:"./chat.php",
+	data: {message:message},
+	success: function(data) {
+		document.getElementById("chatlist").innerHTML = data;
+	}
+	});
+}
+function refresh()
+{
+		$.ajax ({
+		type: "POST",
+		url:"./chat.php",
+		data: {refresh:"test"},
+		success: function(data) {
+			document.getElementById("chatlist").innerHTML = data;
+	   }
+	});
+}
+</script>
+
+</head>
+
+<body onunload="save();" onload="setInterval(function(){vykresli();},50);setInterval(function(){economics();},60000);">
+
+
+	<header>
+	<img src="./graphics/logo.png" alt="logo">
+	
+	{$menu}
+</header>
+
+<div id="page">
+	
+	
+	<div id="content">
+		{$content}
+
+	</div>
+
+	<div style="clear: left;"></div>
+</div>
+<footer>Copyright Jan "Jenkings" Škoda | Code by <a href="http://jenkings.eu">Jenkings</a> | Design by <a href="#">Ex_0</footer>
+</body>
+</html>

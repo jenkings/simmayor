@@ -5,7 +5,7 @@ include_once "./cfg/host.php";
 $db = new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);
 function __autoload($class_name) {include './classes/'.$class_name . '.class.php';}
 
-if($_SERVER['HTTP_REFERER'] != WEB_ROOT . "/game.php")
+if($_SERVER['HTTP_REFERER'] != WEB_ROOT . "/index.php?pid=game")
 {
 	exit;
 }

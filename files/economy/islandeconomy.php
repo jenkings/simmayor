@@ -308,7 +308,7 @@ else if($pocatecnistav > 50000000)
 $queryy = $db->queryOne("SELECT hodnota FROM sazby WHERE nazev LIKE 'danebohatych'");	
 $zustatek -= $queryy['hodnota'];
 $vydaje .= "|Daně pro zbohatlíky: -" . $queryy['hodnota'];
-$db->queryOne("UPDATE sazby SET hodnota =hodnota+".intval($queryy['hodnota'])." WHERE nazev LIKE 'stavrozpoctu'");
+$db->query("UPDATE sazby SET hodnota =hodnota+".intval($queryy['hodnota'])." WHERE nazev LIKE 'stavrozpoctu'");
 }
 
 $db->query("UPDATE islands SET maxpopulace='".$maxpopulace."',soucasnapopulace='".$soucasnapopulace."',kapacita='".$ubytovacimista."',oblibenost='".$oblibenost."' WHERE id='".$_POST['idmesta']."'");

@@ -78,8 +78,7 @@ document.getElementById("money").innerHTML = formatMoney(hrac.getMoney());
 document.getElementById("people").innerHTML = soucasnapopulace + "/" + celkovakapacita;
 document.getElementById("transport").innerHTML = maxpopulace;
 document.getElementById("favsmi").src="./game/img/" + getsmile(oblibenost) + ".png";
-ob = formatMoney(oblibenost);
-document.getElementById("oblibenost").innerHTML = ob.substring(0, ob.length - 3);
+document.getElementById("oblibenost").innerHTML = oblibenost;
 }
 
 

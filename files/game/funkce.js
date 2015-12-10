@@ -127,6 +127,8 @@ function formatDollar(num) {
 }
 
 function formatMoney(num) {
+    return num;
+    
     var p = num.toFixed(2).split(".");
     return  p[0].split("").reverse().reduce(function(acc, num, i, orig) {
         return  num + (i && !(i % 3) ? " " : "") + acc;
@@ -437,7 +439,7 @@ function economics()
 			//console.log(data)  
 			if(data != ""){
 				var n=data.split("|");
-				hrac.SetMoney(parseInt(n[0]));
+				hrac.SetMoney(n[0]);
 				maxpopulace = parseInt(n[1]);
 				soucasnapopulace = parseInt(n[2]);
 				celkovakapacita = parseInt(n[3]);

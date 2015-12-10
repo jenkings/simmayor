@@ -332,3 +332,11 @@ footer a{color:#EBD200;text-decoration:none;}
 	margin:1%;
 }
 
+#msgform{
+	width:80%;
+	margin-left:auto;
+	margin-right:auto;
+}
+#msgform input{width:20%;margin-left:auto;margin-right:auto;}
+#msgform textarea{width:90%;margin-left:auto;margin-right:auto;height:100px;}
+

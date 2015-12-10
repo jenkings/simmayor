@@ -14,6 +14,7 @@ class Menu{
 				$out.="<li><a href='./index.php?pid=shop'>Obchod</a></li>";
 				$out.="<li><a href='./index.php?pid=bank'>Banka</a></li>";
 				$out.="<li><a href='./index.php?pid=islandset'>Poplatky</a></li>";
+				$out.="<li><a href='./index.php?pid=messages'>Zprávy</a></li>";
 				$out.="<li><a href='./index.php?pid=showme'>Profil</a></li>";
 				$out.="<li><a href='./index.php?pid=logout'>Odhlásit</a></li>";
 			}

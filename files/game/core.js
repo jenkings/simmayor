@@ -104,7 +104,8 @@ document.onkeydown = checkKey;
 			l2:
 			for(var y=0;y<MAPSIZE_Y;y++)
 			{
-				if(isInTrojuhelnik(mousePos.x,mousePos.y,30 - (y*27) + (x*27) + zX,61 + (y*27) + (x*27) + zY,81 - (y*27) + (x*27) + zX,61 + (y*27) + (x*27) + zY,56 - (y*27) + (x*27) + zX,36 + (y*27) + (x*27) + zY) || isInTrojuhelnik(mousePos.x,mousePos.y,30 - (y*27) + (x*27) +zX,61 + (y*27) + (x*27) +zY,81 - (y*27) + (x*27) +zX,61 + (y*27) + (x*27) +zY,56 - (y*27) + (x*27) +zX,87 + (y*27) + (x*27) +zY))
+				if(isInTrojuhelnik(mousePos.x,mousePos.y,23 - (y*27) + (x*27) + zX,55 + (y*27) + (x*27) + zY,77 - (y*27) + (x*27) + zX,55 + (y*27) + (x*27) + zY,50 - (y*27) + (x*27) + zX,30 + (y*27) + (x*27) + zY) 
+				|| isInTrojuhelnik(mousePos.x,mousePos.y,23 - (y*27) + (x*27) + zX,55 + (y*27) + (x*27) + zY,77 - (y*27) + (x*27) + zX,55 + (y*27) + (x*27) + zY,50 - (y*27) + (x*27) + zX,80 + (y*27) + (x*27) + zY) )
 				{
 					
 					active[0] = x;
@@ -127,7 +128,7 @@ document.onkeydown = checkKey;
 
       canvas.addEventListener('click', function(evt) {
         var mousePos = getMousePos(canvas, evt);	
-
+		console.log(mousePos.x + "|" + mousePos.y);
 		l1:
 		for(var x=0;x<MAPSIZE_X;x++)
 		{

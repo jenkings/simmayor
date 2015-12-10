@@ -47,11 +47,6 @@ class ObchodPrehled{
 			}
 		}
 		
-		
-		
-		
-		
-		
 		if(isset($array['smenit']) && !empty($array['smenit'])){
 			if($player->getVar('ropa') >= 200000)
 			{

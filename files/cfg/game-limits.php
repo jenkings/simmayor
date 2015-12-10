@@ -18,4 +18,6 @@ define("MAX_DLUH","100000");
 define("MAX_TAXES",35);
 define("MIN_TAXES",1);
 
+define("ISLAND_SIZE",30);
+
 ?>

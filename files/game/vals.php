@@ -28,6 +28,8 @@ var oblibenost = 1 * <?php echo $x['oblibenost']?>;
 var de = "<?php echo $news->getNews();?>";
 var newss = de.split("|");
 
+var MAPSIZE_X = <?php echo ISLAND_SIZE; ?>;
+var MAPSIZE_Y = <?php echo ISLAND_SIZE; ?>;
 
 
 window.onbeforeunload = Call;

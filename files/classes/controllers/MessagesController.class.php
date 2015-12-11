@@ -36,6 +36,7 @@ class MessagesController implements Controller{
 		//*****************************//
 		$obsah .= new Template("message_form");
 		
+		//Odesílací formulář zpráv
 		if(!empty($this->post['prijemce']) && !empty($this->post['text'])){
 			try{
 				$obsah .= $msg->writeMessage($this->post['text'],$this->post['prijemce']);
@@ -44,6 +45,21 @@ class MessagesController implements Controller{
 			}
 		}
 		
+		try{
+			$zpravy = $msg->getMessagesOverview();
+			$obsah .= "<ul id='seznam-prijatych-zprav'>";
+			$t = new Template("conversation_list_item");
+			foreach($zpravy as $zprava){
+				$t->setContent("odesilatel",$zprava['jmeno']);
+				$t->setContent("datum",$zprava['datum']);
+				$t->setContent("text",$zprava['text']);
+				$t->setContent("precteno",($zprava['precteno'] ? "precteno" : "neprecteno"));
+				$obsah .= $t;
+			}
+			$obsah .= "</ul>";
+		}catch(Exception $e){
+			$obsah .= "<div id='error'>".$e->getMessage()."</div>";
+		}
 		//*****************************//
 		
 		$tpl->setContent("content",$obsah);

@@ -285,8 +285,8 @@ margin-right:5px;
 #papiryprodej a{text-decoration:none;color:red;}
 #papiryprodej:hover{text-decoration:underline;font-size:25px;cursor:pointer;}
 
-#error{padding:5px;background-color:#E77A6F;border:solid red 2px;}
-#succes{padding:5px;background-color:#8ADC84;border:solid green 2px;}
+#error{padding:5px;background-color:#E77A6F;border:solid red 2px;width:80%;margin-left:auto;margin-right:auto;}
+#succes{padding:5px;background-color:#8ADC84;border:solid green 2px;width:80%;margin-left:auto;margin-right:auto;}
 
 #lototable .lotocislo {
 background-image: -moz-radial-gradient(15px 15px 15deg, circle cover, yellow 0%, orange 100%, red 95%);
@@ -332,3 +332,43 @@ footer a{color:#EBD200;text-decoration:none;}
 	margin:1%;
 }
 
+#msgform{
+	width:80%;
+	margin-left:auto;
+	margin-right:auto;
+}
+#msgform input{width:20%;margin-left:auto;margin-right:auto;}
+#msgform textarea{width:90%;margin-left:auto;margin-right:auto;height:100px;}
+
+#seznam-prijatych-zprav{
+	width:90%;
+	background-color:#E2E2E2;
+	list-style-type:none;
+	padding:0;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#seznam-prijatych-zprav li{padding:10px;border-bottom:solid #D2D2D2 2px;}
+#seznam-prijatych-zprav li a{text-decoration:none;color:#423B28}
+#seznam-prijatych-zprav .text{font-weight:bold;margin-left:105px;}
+#seznam-prijatych-zprav .datum{margin-left:95px;}
+#seznam-prijatych-zprav .neprecteno{padding:10px;border-bottom:solid #786B4D 2px;background-color:#9C895C;color:#E2E2E2;}
+#seznam-prijatych-zprav .neprecteno .text{color:#E2E2E2;}
+#seznam-prijatych-zprav .neprecteno .datum{color:#C4C4D7;}
+#seznam-prijatych-zprav .odesilatel{color:#C4C4D7;}
+#seznam-prijatych-zprav .odesilatel{background-color:#41371D;font-weight:bold;width:80px;height:80px;float:left;text-align:center;padding-top:20px;}
+
+
+
+#konverzace{width:90%;background-color:#E2E2E2;list-style-type:none;padding:0;margin-left:auto;margin-right:auto;}
+#konverzace li{padding:10px;border-bottom:solid #D2D2D2 2px;}
+#konverzace li{text-decoration:none;color:#423B28}
+#konverzace .text{font-weight:bold}
+#konverzace .odesilatel{background-color:#41371D;font-weight:bold;width:80px;height:80px;float:left;text-align:center;padding-top:20px;color:white}
+#konverzace .text{font-weight:bold;margin-left:105px;}
+#konverzace .datum{margin-left:95px;}
+
+#konverzace .tome .odesilatel{float:right}
+#konverzace .tome .text{font-weight:bold;margin-top:20px;width:80%;margin-left:110px;text-align:right;}
+#konverzace .tome .datum{margin-right:15px;float:right}

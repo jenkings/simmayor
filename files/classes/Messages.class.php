@@ -33,7 +33,7 @@ class Messages{
 	
 	
 	public function getAllMessages($id){
-		$res = $this->db->queryAll("SELECT precteno,pro,text,datum,jmeno FROM messages m JOIN accounts a ON m.od = a.id WHERE (od=? OR pro=?) AND (od=? OR pro=?) ORDER BY m.id DESC",array($this->player->getVar("id"),$this->player->getVar("id"),$id,$id));
+		$res = $this->db->queryAll("SELECT precteno,od,text,datum,jmeno FROM messages m JOIN accounts a ON m.od = a.id WHERE (od=? OR pro=?) AND (od=? OR pro=?) ORDER BY m.id DESC",array($this->player->getVar("id"),$this->player->getVar("id"),$id,$id));
 		if(!$res) throw new Exception("Tato konversace neexistuje");
 		$this->db->query("UPDATE messages SET precteno = 1 WHERE od=? AND pro = ?",array($id,$this->player->getVar("id")));
 		return $res;

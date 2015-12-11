@@ -39,10 +39,14 @@ class ConversationController implements Controller{
 			
 			return $tpl->__toString();
 		}
+		
+		//formulář na odepsání
 		$convForm = new Template("conversation_form");
 		$res = $db->queryOne("SELECT jmeno FROM accounts WHERE id=?",array($this->get['id']));
 		$convForm->setContent("jmenoprijemce",$res['jmeno']);
 		$obsah .= $convForm;
+		
+		//vyhodnocení formu
 		if(!empty($this->post['prijemce']) && !empty($this->post['text'])){
 			try{
 				$obsah .= $msg->writeMessage($this->post['text'],$this->post['prijemce']);
@@ -50,7 +54,8 @@ class ConversationController implements Controller{
 				$obsah .= "<div id='error'>".$e->getMessage()."</div>";
 			}
 		}
-
+		
+		//zobrazení konverzace s daným uživatelem
 		try{
 			$zpravy = $msg->getAllMessages($this->get['id']);
 			$obsah .= "<ul id='konverzace'>";
@@ -59,6 +64,12 @@ class ConversationController implements Controller{
 				$t->setContent("odesilatel",$zprava['jmeno']);
 				$t->setContent("datum",$zprava['datum']);
 				$t->setContent("text",$zprava['text']);
+				
+				if($zprava['od'] == $player->getVar('id'))
+					$t->setContent("class",'fromme');
+				else
+					$t->setContent("class",'tome');
+				
 				$obsah .= $t;
 			}
 			$obsah .= "</ul>";

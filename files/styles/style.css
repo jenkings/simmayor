@@ -350,4 +350,15 @@ footer a{color:#EBD200;text-decoration:none;}
 }
 
 #seznam-prijatych-zprav li{padding:10px;border-bottom:solid #D2D2D2 2px;}
-#seznam-prijatych-zprav .neprecteno{padding:10px;border-bottom:solid #82B5C5 2px;background-color:#9EC0CB}
+#seznam-prijatych-zprav li a{text-decoration:none;color:#423B28}
+#seznam-prijatych-zprav .text{font-weight:bold}
+#seznam-prijatych-zprav .neprecteno{padding:10px;border-bottom:solid #786B4D 2px;background-color:#9C895C;color:#E2E2E2;}
+#seznam-prijatych-zprav .neprecteno .text{color:#E2E2E2;}
+#seznam-prijatych-zprav .neprecteno .datum{color:#C4C4D7;}
+#seznam-prijatych-zprav .neprecteno .odesilatel{color:#C4C4D7;}
+
+
+#konverzace{width:90%;background-color:#E2E2E2;list-style-type:none;padding:0;margin-left:auto;margin-right:auto;}
+#konverzace li{padding:10px;border-bottom:solid #D2D2D2 2px;}
+#konverzace li{text-decoration:none;color:#423B28}
+#konverzace .text{font-weight:bold}

@@ -23,18 +23,30 @@ if(intval($player->getVar('admin')) < 1)
 {
 	header('Location: ../index.php');
 }
-
+?>
+<div id="page">
+	<?php
 include "menu.php";
 ?>
 
-<div id="data">
-	
+<div id="text">
+	<h4> Zadejte úkol:</h4>
 	<?php
 	$ukoly = new Ukoly($db);
-	echo $ukoly->Vypis();
+	
+	if(isset($_GET['sdeleni']) && isset ($_GET['admin']))
+		$ukoly->NewUkol($_GET['sdeleni'],$_GET['admin']);
+	
+	echo $ukoly->AddForm();
 	?>
 	
 </div>
+	<hr class="cleaner">
+	<div id="footer">
+		Administrace hry - SimMayor.cz - 2015 / 2016
+	</div>
+</div>
+	</div>
 
 	
 

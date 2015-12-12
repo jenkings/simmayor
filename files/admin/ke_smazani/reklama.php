@@ -23,24 +23,32 @@ if(intval($player->getVar('admin')) < 1)
 {
 	header('Location: ../index.php');
 }
-
+?>
+<div id="page">
+	<?php
 include "menu.php";
 ?>
 
-<div id="data">
-	
+<div id="text">
+
 	<?php
 	if(intval($player->getVar('admin')) >= 20)
 	{
-	
+
 		$reklama = new Reklama($db);
-		
+
 		echo $reklama->Pozadavky($_GET);
 		echo $reklama->Prehled();
 	}
 	?>
-	
+
 </div>
+	<hr class="cleaner">
+	<div id="footer">
+		Administrace hry - SimMayor.cz - 2015 / 2016
+	</div>
+</div>
+	</div>
 
 	
 

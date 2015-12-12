@@ -1,5 +1,4 @@
 <?php
-require_once "./classes/controllers/Controller.class.php";
 class RegisterController implements Controller{
 	private $get;
 	private $post;
@@ -12,12 +11,6 @@ class RegisterController implements Controller{
 	}
 	
 	public function __toString(){
-		require_once "./cfg/host.php";
-		require_once "./classes/Database.class.php";
-		require_once "./classes/layout/Template.class.php";
-		require_once "./classes/Menu.class.php";
-		require_once "./classes/Login.class.php";
-		require_once "./classes/Register.class.php";
 				
 		$tpl = new Template("registrace-login");
 		$db = new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);

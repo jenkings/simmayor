@@ -1,9 +1,15 @@
 <?php
 session_start();
 mb_internal_encoding("UTF-8");
-require_once "../classes/Database.class.php";
-require_once "../cfg/host.php";
 include "./objectdata.php";
+require_once "../classes/Autoloader.class.php";
+require_once "../cfg/game-limits.php";
+require_once "../cfg/host.php";
+spl_autoload_register(array(new autoloader('../classes'), 'autoload'));
+spl_autoload_register(array(new autoloader('../classes/controllers'), 'autoload'));
+spl_autoload_register(array(new autoloader('../classes/layout'), 'autoload'));
+
+
 
 $db = new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);
 

@@ -1,7 +1,15 @@
 <?php
 	session_start();
-	require_once "./classes/Router.class.php";
-
+	
+	require_once "./classes/Autoloader.class.php";
+	require_once "./cfg/game-limits.php";
+	require_once "./cfg/host.php";
+	
+	spl_autoload_register(array(new autoloader('./classes'), 'autoload'));
+    spl_autoload_register(array(new autoloader('./classes/controllers'), 'autoload'));
+    spl_autoload_register(array(new autoloader('./classes/layout'), 'autoload'));
+	
+	
 	if(!isset($_GET['pid']) || empty($_GET['pid']))
 		header("Location: ./index.php?pid=title");
 		

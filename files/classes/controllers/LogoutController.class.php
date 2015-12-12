@@ -1,5 +1,4 @@
 <?php
-require_once "./classes/controllers/Controller.class.php";
 class LogoutController implements Controller{
 	private $session;
 	private $get;
@@ -12,11 +11,6 @@ class LogoutController implements Controller{
 	}
 	
 	public function __toString(){
-		require_once "./classes/Database.class.php";
-		require_once "./classes/Top.class.php";
-		require_once "./classes/layout/Template.class.php";
-		require_once "./classes/Menu.class.php";
-		require_once "./cfg/host.php";
 		session_destroy(); 
 		$tpl = new Template();
 

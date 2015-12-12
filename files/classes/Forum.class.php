@@ -1,5 +1,4 @@
 <?php
-require_once "./classes/Parser.class.php";
 class Forum{
   private $seznam;
   private $db;

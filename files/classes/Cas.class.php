@@ -1,11 +1,4 @@
 <?php
-
-/**
- * Created by PhpStorm.
- * User: Martin
- * Date: 8. 11. 2015
- * Time: 14:41
- */
 class Cas
 {
     const DATUMCAS = 'j.n.Y G:i:s';

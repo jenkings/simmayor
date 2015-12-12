@@ -1,6 +1,4 @@
 <?php
-require_once "./classes/layout/Template.class.php";
-require_once "./classes/Goods.class.php";
 class ObchodPrehled{
 	private $db;
 

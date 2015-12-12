@@ -1,5 +1,4 @@
 <?php
-require_once "./classes/controllers/Controller.class.php";
 class ShopController implements Controller{
 	private $session;
 	private $get;
@@ -12,13 +11,6 @@ class ShopController implements Controller{
 	}
 	
 	public function __toString(){
-		require_once "./cfg/host.php";
-		require_once "./classes/layout/Template.class.php";
-		require_once "./classes/Menu.class.php";
-		require_once "./classes/Database.class.php";
-		require_once "./classes/Player.class.php";
-		require_once "./classes/ObchodPrehled.class.php";
-		require_once "./classes/LoginChecker.class.php";
 		LoginChecker::check($this->session);
 				
 		$tpl = new Template();

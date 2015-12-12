@@ -1,5 +1,4 @@
 <?php
-require_once "./classes/Map.class.php";
 class Player{
 	private $udaje;
 	private $db;

@@ -1,5 +1,4 @@
 <?php
-require_once "./classes/Mapgen.class.php";
 class Register{
 	private $db;
 	

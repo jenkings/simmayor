@@ -1,14 +1,4 @@
 <?php
-
-/**
- * Created by PhpStorm.
- * User: Martin
- * Date: 20. 11. 2015
- * Time: 21:28
- * TO: Přepsat funkce na xxxA();
- * TO: Předávání parametrů
- * TO: Udělat vše tak aby šlo spustit odevšaď
- */
 class AdminPlayers
 {
     private $seznam;

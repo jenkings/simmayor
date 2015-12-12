@@ -1,5 +1,4 @@
 <?php
-require_once "./cfg/game-limits.php";
 class IslandSettings{
 	private $islandData;
 	private $playerID;

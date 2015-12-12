@@ -1,5 +1,4 @@
 <?php
-require_once "./cfg/game-limits.php";
 class Mapgen{
 	public function createMap(){
 		$map = "";

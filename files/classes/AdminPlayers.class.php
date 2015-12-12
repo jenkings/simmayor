@@ -126,9 +126,37 @@ class AdminPlayers
         $idUzivatele = intval($idUzivatele);
         $vraceni = "";
         if(isset($post['zmenitudaje'])){
-
-            $this->db->query("UPDATE accounts SET jmeno = ?, heslo = ?, avatar = ?, penize = ?, dluh = ?, uhli = ?, ropa = ?, rubin = ?, maxprodej = ?, kongresmando = ?, vipdo = ?, admin = ? WHERE id =?", array($post['jmeno'],$post['heslo'],$post['avatar'],$post['penize'],$post['dluh'],$post['uhli'],$post['ropa'], $post['rubin'],$post['maxprodej'],$post['kongresmando'],$post['vipdo'],$post['admin'],$idUzivatele));
-            $vraceni.= "<div class='uspech'>Povedlo se, údaje změněny</div>";
+            if(intval($post['penize'])>=0){
+                if(intval($post['dluh'])>=0){
+                    if(intval($post['uhli'])>=0){
+                        if(intval($post['ropa'])>=0){
+                            if(intval($post['rubin'])>=0){
+                                if(intval($post['admin'])>=0){
+                                    $x=$this->db->queryOne("SELECT COUNT(*) FROM accounts WHERE jmeno=? AND id=? ",array($post['jmeno'],$idUzivatele));
+                                    if($x['COUNT(*)']==1){
+                                        $this->db->query("UPDATE accounts SET jmeno = ?, heslo = ?, avatar = ?, penize = ?, dluh = ?, uhli = ?, ropa = ?, rubin = ?, maxprodej = ?, kongresmando = ?, vipdo = ?, admin = ? WHERE id =?", array($post['jmeno'],$post['heslo'],$post['avatar'],$post['penize'],$post['dluh'],$post['uhli'],$post['ropa'], $post['rubin'],$post['maxprodej'],$post['kongresmando'],$post['vipdo'],$post['admin'],$idUzivatele));
+                                        $vraceni.= "<div class='uspech'>Povedlo se, údaje změněny</div>";
+                                    }else{
+                                        $vraceni.= "<div class='chyba'>Toto uživatelské jméno je již zabrané</div>";
+                                    }
+                                }else{
+                                    $vraceni.= "<div class='chyba'>Admin nemůže být v záporu</div>";
+                                }
+                            }else{
+                                $vraceni.= "<div class='chyba'>Rubíny nemohou být v záporu</div>";
+                            }
+                        }else{
+                            $vraceni.= "<div class='chyba'>Ropa nemůže být v záporu</div>";
+                        }
+                    }else{
+                        $vraceni.= "<div class='chyba'>Uhlí nemůže být v záporu</div>";
+                    }
+                }else{
+                    $vraceni.= "<div class='chyba'>Dluh nemůže být v záporu</div>";
+                }
+            }else{
+                $vraceni.= "<div class='chyba'>Peníze nemohou být v záporu</div>";
+            }
         }
 
         if(isset($idUzivatele) AND $idUzivatele >= 1){
@@ -201,21 +229,26 @@ class AdminPlayers
      * @return string - Vyhledávací formulář
      */
     public function uzivateleHledani($parametrGet,$post,$ciloveUrl){
+        $vraceni = "";
         if(isset($post['hledej_hrace'])){
+
             $hrac = $post['nickname'];
             $id = $post['id'];
+            $id = intval($id);
 
             if(!empty($hrac)){
                 $hrac=$this->db->queryOne("SELECT * FROM accounts WHERE jmeno=?",array($hrac));
-                $nastav = $hrac['id'];
                 $id = $hrac['id'];
             }
 
+            $radku=$this->db->queryOne("SELECT COUNT(*) FROM accounts WHERE id=?", array($id));
+            if($radku['COUNT(*)']=="1"){
             header('Location: '.$ciloveUrl.$id.'');
-
+            }else{
+                $vraceni.= "<div class='chyba'>Uživatel nebyl nalezen</div>";
+            }
         }
 
-        $vraceni = "";
         $vraceni.= "<form method='post'>";
         $vraceni.= "<div class='centruj'>";
         $vraceni.= "<fieldset class='okenko'>";
@@ -311,8 +344,8 @@ class AdminPlayers
             }else{
                 $vraceni.="<div class='chyba'>Hledaný uživatel neexistuje</div>";
             }
-        }
         return $vraceni;
+        }
     }
 
     public function uzivateleOdmena($post){

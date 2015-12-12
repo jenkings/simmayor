@@ -1,4 +1,5 @@
 <?php
+header("Content-Type: text/plain");
 session_start();
 mb_internal_encoding("UTF-8");
 include "./objectdata.php";

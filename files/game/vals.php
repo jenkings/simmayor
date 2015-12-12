@@ -1,4 +1,5 @@
 <?php
+header("Content-Type: text/plain");
 session_start();
 require_once "../classes/Autoloader.class.php";
 require_once "../cfg/game-limits.php";

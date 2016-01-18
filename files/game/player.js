@@ -6,7 +6,7 @@ var Player = function(money) {
     }
     
     this.GiveMoney = function(amount) {
-        penize += amount;
+        penize += (amount) * 1;
     }
     
     this.SetMoney = function(amount) {

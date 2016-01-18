@@ -127,8 +127,6 @@ function formatDollar(num) {
 }
 
 function formatMoney(num) {
-    return num;
-    
     var p = num.toFixed(2).split(".");
     return  p[0].split("").reverse().reduce(function(acc, num, i, orig) {
         return  num + (i && !(i % 3) ? " " : "") + acc;
@@ -274,22 +272,16 @@ function build(xx,yy,ai,at)
 		}		
 }
 
-function construct(xx,yy,progress,building,type)
-{
-		if(progress == 7)
-		{
-			if(mapa[xx][yy].getType() == 0 && mapa[xx][yy].getItem() == 9)
-			{
+function construct(xx,yy,progress,building,type){
+		if(progress == 7){
+			if(mapa[xx][yy].getType() == 0 && mapa[xx][yy].getItem() == 9){
 				mapa[xx][yy] = new Item(building,type);
-				if(type == 2)
-				{
+				if(type == 2){
 						mapa[xx-1][yy] = new Item(0,0)
 						mapa[xx][yy-1] = new Item(0,0)
 						mapa[xx-1][yy-1] = new Item(0,0)
 				}
-				
 			}
-				
 		}else{
 		setTimeout(function(){construct(xx,yy,progress+1,building,type)},1000);
 		}

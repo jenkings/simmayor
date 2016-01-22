@@ -29,6 +29,7 @@ class IslandsetController implements Controller{
 		}
 		
 		$hracovyOstrovy = $player->getPlayerIslands();
+		$ostrovy = array();
 		foreach ($hracovyOstrovy as $ostrov){
 			$vypisOstrova = "";
 			
@@ -46,9 +47,27 @@ class IslandsetController implements Controller{
 			$vypisOstrova .= $formularDani;
 			$vypisOstrova .= $IslSet->getCheckout();
 			$vypisOstrova .= "</div>";
-			/*  */
-			$obsah .= $vypisOstrova;
+			//array_push($ostrovy,$vypisOstrova);
+			$ostrovy[$ostrov] = $vypisOstrova;
 		}
+		$obsah .= "
+		<div id='ostrovinfo'></div>
+		<script>
+		var ostrovy = ". json_encode($ostrovy, JSON_UNESCAPED_SLASHES) . ";
+		klice = Object.keys(ostrovy);
+		
+		prepni(klice[0]);
+		
+		function prepni(y){
+			document.getElementById('ostrovinfo').innerHTML = '';
+			for(var x =0;x<klice.length;x++){
+				document.getElementById('ostrovinfo').innerHTML += \"<button onclick='prepni(\"+klice[x]+\")'>Ostrov \"+klice[x]+\"</button>\";
+			}
+			document.getElementById('ostrovinfo').innerHTML += ostrovy[y];
+		}
+		
+		
+		</script>";
 		
 		//*****************************//
 		

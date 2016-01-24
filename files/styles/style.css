@@ -119,13 +119,7 @@ text-align:center;
 
 .bankbox h3{text-align:center;}
 
-.prijem{color:green;font-weight:bold;}
-.vydaj{color:red;font-weight:bold;}
 
-#vypis{background-color:#9CECEC;width:300px;margin-left:auto;margin-right:auto;border-top:solid #10F9F9 8px;}
-#vypis td{width:150px;}
-#vypis #green{background-color:green;}
-#vypis #red{background-color:red;}
 
 #leftpanel{
 float:left;
@@ -325,12 +319,25 @@ footer a{color:#EBD200;text-decoration:none;}
 ::-webkit-scrollbar-thumb {background-color: #555;}  
 ::-webkit-scrollbar-thumb:hover {background-color: #111;}  
 
-.islandreview{
-	border:solid black 2px;
-	width : 30%;
-	float:left;
-	margin:1%;
-}
+#ostrovinfo {background-color:#9C895C;width:30%;margin-top:20px;margin-left:20px;}
+#ostrovinfo button:first-child{margin-left:20px;}
+#ostrovinfo button{margin-top:15px;background-color:#BBA268;border-color:#786B4D;margin-right:5px;}
+
+.islandreview{background-color:#9C895C;margin:1%;padding-bottom:20px;}
+.islandreview h3{text-align:center;}
+.islandreview form{text-align:center;}
+.islandreview form input{background-color:#BBA268;border:none;margin-bottom:7px;}
+
+#vypis tr td {text-align:center;}
+#vypis td {border-bottom:solid #786B4D 2px;padding-top:3px;padding-bottom:3px;}
+#vypis{background-color:#BBA268;width:300px;margin-left:auto;margin-right:auto;Border-spacing :0}
+#vypis td{width:150px;}
+#vypis #green{background-color:#BBA268;}
+#vypis #red{background-color:red;}
+.prijem{color:green;font-weight:bold;}
+.vydaj{color:red;font-weight:bold;}
+
+
 
 #msgform{
 	width:80%;

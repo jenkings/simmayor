@@ -23,7 +23,7 @@ class Top{
     }
     $table=implode("\n",$rows);
     return "
-	<table class='toptable'><caption>Top peníze</caption><tr><th>Jméno</th><th>Peníze</th></tr>$table</table>
+	<table class='toptable'><caption>Top peníze</caption><tr class='box'><th>Jméno</th><th>Peníze</th></tr>$table</table>
 	";
   }
   

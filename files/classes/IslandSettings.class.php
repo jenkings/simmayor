@@ -21,16 +21,16 @@ class IslandSettings{
 		if(count($prijmy) > 1){
 			for($f=0;$f<count($prijmy);$f++){
 				$u = explode(":", $prijmy[$f]);
-				$out .= "<tr><td>".$u[0]."</td><td><span class='".($u[1] >= 0 ? "prijem" : "vydaj")."'>".$u[1]."</span></td></tr>";
+				$out .= "<tr><td>".$u[0]."</td><td><span class='".($u[1] >= 0 ? "prijem" : "vydaj")."'>".round($u[1],2)."</span></td></tr>";
 				$balance += $u[1];
 			}
 				for($f=0;$f<count($vydaje);$f++){
 				$u = explode(":", $vydaje[$f]);
-				$out .= "<tr><td>".$u[0]."</td><td><span class='".($u[1] >= 0 ? "prijem" : "vydaj")."'>".$u[1]."</span></td></tr>";
+				$out .= "<tr><td>".$u[0]."</td><td><span class='".($u[1] >= 0 ? "prijem" : "vydaj")."'>".round($u[1],2)."</span></td></tr>";
 				$balance += $u[1];
 			}
 		}
-		$out .= "<tr id='".($balance < 0 ? "red" : "green")."'><td>Úhrn</td><td>".$balance."</td></tr>";
+		$out .= "<tr id='".($balance < 0 ? "red" : "green")."'><td>Úhrn</td><td>".round($balance,2)."</td></tr>";
 		$out .=  "</table>";
 		return $out;
 	}

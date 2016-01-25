@@ -4,6 +4,8 @@ background-image:url(../graphics/background.png);
 background-repeat:repeat-x;
 }
 
+.box{background-color:#9C895C}
+
 #page{
 width:1200px;
 background-color:#241d03;
@@ -215,9 +217,9 @@ height:100px;
 margin-right:5px;
 }
 
-.toptable{border-collapse:collapse;float:left;margin-left:15px;background-color:#F2AD5A;border-top:solid #FF8E05 8px;}
+.toptable{border-collapse:collapse;float:left;margin-left:15px;background-color:#9C895C;border-top:solid #786B4D 8px;}
 .toptable td{padding:4px;}
-.toptable caption{color:#F7901D;font-size:20px;font-weight:bold;}
+.toptable caption{color:#786B4D;font-size:20px;font-weight:bold;}
 
 #usershow{color:blue;width:50%;margin-left:auto;margin-right:auto;}
 .usershow-obrazek{display: block;margin: 0px auto 0px; }

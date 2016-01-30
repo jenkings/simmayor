@@ -192,7 +192,7 @@ class Player{
 			{
 				return "Nemáš dostatek peněz";
 			}
-			else if($x['COUNT(*)'] >= MAXIMUM_ISLANDS)
+			else if($y['COUNT(*)'] >= MAXIMUM_ISLANDS)
 			{
 				return "Už nemůžeš mít víc ostrovů";	
 			}

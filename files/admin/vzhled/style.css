@@ -67,12 +67,6 @@ body {height: 100%;}
     border-radius:5px;
 }
 
-
-#ukoly {list-style-type:none;width:60%;margin-left:auto;margin-right:auto;}
-#ukoly li{margin-top:7px;padding:5px;border-radius:5px;}
-#ukoly h5{float:right;padding:0px;margin:0px;}
-#ukoly p{display:inline;}
-
 textarea{resize: none;}
 
 #adstable{margin-left:1%;margin-top:1%;border:solid grey 3px;}
@@ -139,6 +133,30 @@ textarea{resize: none;}
     color: green;
     font-size: 15pt;
 }
+
+/*********************************************/
+/* Úkolový systém:                           */
+/*********************************************/
+.ukol_zadan{
+    background-color:#EF8186;
+    border:solid red 2px;
+}
+.ukol_resen{
+    background-color:#F7F98B;
+    border:solid #F5EE00 2px;
+}
+.ukol_vyresen{
+    background-color:#B0EF81;
+    border:solid green 2px;
+}
+.ukol_akce{
+    text-align:right;
+    font-size:80%;
+}
+#ukoly {list-style-type:none;width:60%;margin-left:auto;margin-right:auto;}
+#ukoly li{margin-top:7px;padding:5px;border-radius:5px;}
+#ukoly h5{float:right;padding:0px;margin:0px;}
+#ukoly p{display:inline;}
 
 
 

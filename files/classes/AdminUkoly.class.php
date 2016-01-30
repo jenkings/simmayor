@@ -8,6 +8,11 @@ class AdminUkoly{
 		$this->db=$spojeni;
 	}
 
+	/**
+	 * @return string - Vrací výpis všech úkolů,
+	 * které máme zadané / řeší se / jsou vyřešené
+	 * spolu se jménem admina, který to má nastarost
+	 */
 	public function Vypis() 
 	{
 		$this->seznam=$this->db->queryAll("SELECT ukoly.id,jmeno,zadani,status FROM ukoly JOIN accounts ON ukoly.idvykonavatele = accounts.id ORDER BY status ASC,id DESC");
@@ -23,7 +28,10 @@ class AdminUkoly{
 		}
 		return "<ul id='ukoly'>$rtrn</ul>";
 	}
-	
+
+	/**
+	 * @return string - Vrací formulář pro vytvoření úkolů
+	 */
 	public function AddForm() 
 	{
 		$this->seznam=$this->db->queryAll("SELECT id,jmeno FROM accounts WHERE admin>0");
@@ -37,7 +45,11 @@ class AdminUkoly{
 		$form .= "<input type='submit' value='Přidat úkol'>";
 		return "<form method='post'>$form</form>";
 	}
-	
+
+	/**
+	 * @param string $obsah - Popis úkolu
+	 * @param int $idadmina - Komu je úkol zadán
+	 */
 	public function NewUkol($obsah,$idadmina)
 	{
 			if($obsah != "" && $idadmina != "")
@@ -46,6 +58,13 @@ class AdminUkoly{
 			}
 	}
 
+	/**
+	 * @param int $idUkolu - Id úkolu se kterým se pracuje
+	 * @param int $status - Na jaký status chceme změnit stav úkolu
+	 * @return string - Exsituje-li úkol a status je platný tak ten
+	 * status změní jak si žádáme, jinak to vyhodí chybovou hlášku
+	 * (neexistuje / neplatný status)
+	 */
 	public function ResUkol($idUkolu,$status)
 	{
 		$vra = "";
@@ -69,6 +88,12 @@ class AdminUkoly{
 		return $vra;
 	}
 
+	/**
+	 * @param int $idUkolu - idUkolu se kterým se pracuje
+	 * @param int $smazat - potvrzení toho, že se bude mazat
+	 * @param $post - kvůli formulářům
+	 * @return string - Při odkliknutí smaže úkol jinak to vrací chybové hlášky
+	 */
 	public function SmazUkol($idUkolu,$smazat,$post)
 	{
 		$vra = "";
@@ -85,7 +110,7 @@ class AdminUkoly{
 
 				if($idUkolu != "" && $smazat != "")
 				{
-					$vra.= "<fieldset style='width:60%;margin-left:auto;margin-right:auto;text-align: center;padding-bottom: 5px'><form method='post'><b>Opravdu mažeme úkol?</b><br><input type='submit' name='smazat_ukol' value='..: Smazat úkol :..'></form></fieldset>";
+					$vra.= "<fieldset id='ukoly' style='text-align: center;padding-bottom: 5px'><form method='post'><b>Opravdu mažeme úkol?</b><br><input type='submit' name='smazat_ukol' value='..: Smazat úkol :..'></form></fieldset>";
 				}
 		}else{
 			$vra.="<div class='chyba'>Tento úkol neexistuje</div>";

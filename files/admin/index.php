@@ -19,7 +19,7 @@
         $db = new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);
         $cas = new Cas();
         $player = new Player($db,array("admin,jmeno",$_SESSION['prihlasen']));
-		$ukoly = new Ukoly($db);
+		$ukoly = new AdminUkoly($db);
         $reklama = new Reklama($db);
         $administrace = new Admindata($db);
         $adminplayers = new AdminPlayers($db);

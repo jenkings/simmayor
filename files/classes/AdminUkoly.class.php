@@ -1,5 +1,5 @@
 <?php
-class Ukoly{
+class AdminUkoly{
 	private $seznam;
 	private $db;
 

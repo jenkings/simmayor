@@ -17,7 +17,7 @@
 			echo "<li><a href='index.php?page=reklama' style='color:yellow;'>Reklamní systém</a></li>";
 		}
 	?>
-	<li><a href="../showme.php">...Návrat do hry...</a></li>
+	<li><a href="../index.php?pid=showme">...Návrat do hry...</a></li>
 </ul>
 </div>
  

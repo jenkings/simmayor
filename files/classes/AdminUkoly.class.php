@@ -15,11 +15,11 @@ class AdminUkoly{
 		foreach($this->seznam as $row)
 		{	
 			if($row['status'] == 0)
-				$rtrn.="<li style='background-color:#EF8186;border:solid red 2px;'><p>".$row['zadani']."</p><h5>".$row['jmeno']."</h5><br><div align='right' style='font-size:80%'><a href='index.php?page=ukoly&ukolid=".$row['id']."&ukolst=1'>Změnit barvu</a> | <a href='index.php?page=ukoly&ukolid=".$row['id']."&ukolsm=1'>Smazat úkol</a></div></li>";
+				$rtrn.="<li class='ukol_zadan'><p>".$row['zadani']."</p><h5>".$row['jmeno']."</h5><br><div class='ukol_akce'><a href='index.php?page=ukoly&ukolid=".$row['id']."&ukolst=1'>Změnit barvu</a> | <a href='index.php?page=ukoly&ukolid=".$row['id']."&ukolsm=1'>Smazat úkol</a></div></li>";
 			else if($row['status'] == 1)
-				$rtrn.="<li style='background-color:#F7F98B;border:solid #F5EE00 2px;'><p>".$row['zadani']."</p><h5>".$row['jmeno']."</h5><div align='right' style='font-size:80%'><a href='index.php?page=ukoly&ukolid=".$row['id']."&ukolst=2'>Změnit barvu</a> | <a href='index.php?page=ukoly&ukolid=".$row['id']."&ukolsm=1'>Smazat úkol</a></div></li>";
+				$rtrn.="<li class='ukol_resen'><p>".$row['zadani']."</p><h5>".$row['jmeno']."</h5><div class='ukol_akce'><a href='index.php?page=ukoly&ukolid=".$row['id']."&ukolst=2'>Změnit barvu</a> | <a href='index.php?page=ukoly&ukolid=".$row['id']."&ukolsm=1'>Smazat úkol</a></div></li>";
 			else
-				$rtrn.="<li style='background-color:#B0EF81;border:solid green 2px;'><p>".$row['zadani']."</p><h5>".$row['jmeno']."</h5><div align='right' style='font-size:80%'><a href='index.php?page=ukoly&ukolid=".$row['id']."&ukolst=0'>Změnit barvu</a> | <a href='index.php?page=ukoly&ukolid=".$row['id']."&ukolsm=1'>Smazat úkol</a></div></li>";
+				$rtrn.="<li class='ukol_vyresen'><p>".$row['zadani']."</p><h5>".$row['jmeno']."</h5><div class='ukol_akce'><a href='index.php?page=ukoly&ukolid=".$row['id']."&ukolst=0'>Změnit barvu</a> | <a href='index.php?page=ukoly&ukolid=".$row['id']."&ukolsm=1'>Smazat úkol</a></div></li>";
 		}
 		return "<ul id='ukoly'>$rtrn</ul>";
 	}
@@ -85,7 +85,6 @@ class AdminUkoly{
 
 				if($idUkolu != "" && $smazat != "")
 				{
-					//$this->db->query("UPDATE ukoly SET status = ? WHERE id = ?;",array($status,$idUkolu));
 					$vra.= "<fieldset style='width:60%;margin-left:auto;margin-right:auto;text-align: center;padding-bottom: 5px'><form method='post'><b>Opravdu mažeme úkol?</b><br><input type='submit' name='smazat_ukol' value='..: Smazat úkol :..'></form></fieldset>";
 				}
 		}else{

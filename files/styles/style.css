@@ -240,15 +240,15 @@ margin-right:5px;
 #shop{font-size:22px;background-color:transparent;cellspacing:0px;width:550px;margin-left:auto;margin-right:auto;}
 #shop #mini{width:20px;}
 
-#shop tr{background-color:darkgrey;}
-#shop tbody tr:nth-child(2n){background-color:lightgrey;}
+#shop tr{background-color:#41371D;color:#E2E2E2}
+#shop tbody tr:nth-child(2n){background-color:#786B4D;}
 #shop {border-spacing:0;}
 #shop .first{width:400px;}
 #shop .second{width:150px;}
 
 #tutorial{list-style-type: circle;font-size:20px;background-color:#E7EE72;border-top:solid #E7F505 8px;}
 
-#roparubin{width:550px;margin-left:auto;margin-right:auto;background-color:#F1ED65;border-top:solid #FFF805 8px;margin-bottom:15px;font-size:40px;}
+#roparubin{width:550px;margin-left:auto;margin-right:auto;background-color:#9C895C;border-top:solid #786B4D 8px;margin-bottom:15px;font-size:40px;}
 #roparubin form{float:right;}
 
 #congr{float:left;width:100%;background-color:#F3A690;border-top:solid #FF4D1A 8px;margin-top:10px;}

@@ -15,7 +15,7 @@ class Obchod{
 			$data .= "<option value='ropa'>Ropa</option>";
 		if($userdata['rubin'] > 0)
 			$data .= "<option value='rubin'>Rubíny</option>";
-		$vrat = "<form action='./index.php?pid=showme' method='post'><table id='sell'><tr><td>Předmět prodeje:</td><td>Počet:</td><td>Cena:</td>";
+		$vrat = "<form class='box' method='post'><table id='sell'><tr><td>Předmět prodeje:</td><td>Počet:</td><td>Cena:</td>";
 		$vrat .= "</tr><tr><td><select name='predmet'>  $data  </select></td><td><input type='number' name='pocet' min='1' max='20000'></td>";
 		$vrat .= "<td><input type='number' name='cena' min='1' max='8000000'></td></tr></table><p align='center'><input type='submit' value='Prodat'></p></form>";
 		return $vrat;

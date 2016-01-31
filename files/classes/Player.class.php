@@ -49,7 +49,7 @@ class Player{
 		$x .= "<tr><td><h3><img id='mini' src='./graphics/comodities/uhli.png' alt='uhli'></h3></td><td>" . $this->udaje['uhli'] . " tun</td></tr>";
 		$x .= "<tr><td><h3><img id='mini' src='./graphics/comodities/ropa.png' alt='ropa'></h3></td><td>" . $this->udaje['ropa'] . " barelů</td></tr>";
 		$x .= "<tr><td><h3><img id='mini' src='./graphics/comodities/rubin.png' alt='rubin'></h3></td><td>" . $this->udaje['rubin'] . " drahokamů</td>";		
-		return "<table id='info'><tr> $x </tr></table>";
+		return "<table id='info' class='box'><tr> $x </tr></table>";
 	}
 	  
 	public function getName() 
@@ -73,7 +73,7 @@ class Player{
 				$rows[]= "<tr><td>Ostrov id ".$row['id']."</td><td><form action='./index.php?pid=showme' method='post'><input type='hidden' name='ostrov' value='".$row['id']."'><input type='submit' value='Přepnout'></form></td><td><form action='./index.php?pid=showme' method='post'><input type='hidden' name='delostrov' value='".$row['id']."'><input type='submit' value='Zbourat'></form></td></tr>";
 		}
 		$x=implode("",$rows);	
-		$vr="<table id='volbaostrova'>$x</table>";
+		$vr="<table id='volbaostrova' class='box'>$x</table>";
 		return $vr;
 	}
 	
@@ -143,7 +143,7 @@ class Player{
 			$str = "<input type='hidden' name='newostrov' value='".$cena."'>";
 			$str .= "<input type='submit' value='Koupit další ostrov za $".number_format($cena, 0, ',', ' ')."'></p>";
 		}			
-		return "<form action='./index.php?pid=showme' method='post'><p align='center'><legend>Koupit nový ostrov:</legend>   $str   </form>";
+		return "<form class='box' method='post'><p align='center'><legend>Koupit nový ostrov:</legend>   $str   </form>";
 	}
 	
 	public function KongresForm()
@@ -155,7 +155,7 @@ class Player{
 			return "<div id='congr' align='center'><a href='../kongres/'>Přesunout se do kongresu</a></div>";
 		}else
 		{
-			$text = "<form action='./index.php?pid=showme' method='post'><input type='hidden' name='jitdokongresu' value=''>";
+			$text = "<form class='box' method='post'><input type='hidden' name='jitdokongresu' value=''>";
 			$text .= "<p align='center'><input type='submit' value='Stát se kongresmanem'>Cena: 50 <img width='25px;' src='./graphics/comodities/rubin.png' alt='rubin' class='obrazek'><br>";
 			$text .= "Do: " . date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s") . "+1 months")) . "</p></form>";
 			return $text;

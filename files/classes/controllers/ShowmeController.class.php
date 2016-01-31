@@ -40,9 +40,7 @@ class ShowmeController implements Controller{
 		$obsah.= "</table>";
 		$obsah.= "</div>";
 		//*****************************//
-		
 		$tpl->setContent("content",$obsah);
-		
 		return $tpl->__toString();
 		
 	}	

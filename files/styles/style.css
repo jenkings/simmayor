@@ -4,7 +4,7 @@ background-image:url(../graphics/background.png);
 background-repeat:repeat-x;
 }
 
-.box{background-color:#9C895C}
+.box{background-color:#9C895C;border-top:solid #786B4D 8px;}
 
 #page{
 width:1200px;
@@ -223,14 +223,14 @@ margin-right:5px;
 #usershow h2{margin:0px;padding:0px;text-align: center;}
 #usershow h3{float:left;margin:0px;padding:0px;}
 #mini{width:30px;}
-#usershow #info{display:block;margin: 0px auto 0px;background-color:#F4F495;border-top:solid #E4E40C 8px;}
+#usershow #info{display:block;margin: 0px auto 0px;}
 
-#usershow form{float:left;width:100%;background-color:#F3A690;border-top:solid #FF4D1A 8px;margin-top:10px;}
-#usershow form input{display:block;}
-#usershow form select{display:block;}
+#usershow form{float:left;width:100%;margin-top:10px;}
+#usershow form input{display:block;background-color:#D2C6A9}
+#usershow form select{display:block;background-color:#D2C6A9}
 #usershow #sell td{padding-left:1px;}
 
-#volbaostrova {width:100%;float:left;background-color:#F3A690;border-top:solid #FF4D1A 8px;margin-top:10px;}
+#volbaostrova {width:100%;float:left;margin-top:10px;}
 #volbaostrova td{height:30px;}
 #volbaostrova form{background-color:transparent;border:none;width:80px;height:30px;margin:0px;}
 

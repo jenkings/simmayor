@@ -9,35 +9,11 @@ class Bank{
 	}
 	
 	public function summary(){
-		$out = "<div id='prehled'>";				
-		$out .= "<h2>Zůstatek: $ " . number_format($this->player->getVar("penize"), 2, ',', ' ') . "</h2>";
+		$out = "<div id='prehled' class='box'>";				
+		$out .= "<h3>Zůstatek: $ " . number_format($this->player->getVar("penize"), 2, ',', ' ') . "</h3>";
 		$out .= "<h3>Dluh: $ " . number_format($this->player->getVar("dluh"), 2, ',', ' ') . "</h3>";
 		$out .=  "</div>";
 		return $out;
-	}
-	
-	public function bankBox(){
-		return "
-		<div class='bankbox'>		
-					<h3>Dluhy</h3>					
-					<form action='./index.php?pid=bank' method='post'>
-						Operace:
-						<select name='operace'>							
-							<option value='vrat' selected='selected'>Vrátit</option>
-							<option value='pujc'>Půjčit</option>
-						</select>
-						Částka:
-						<select name='castka'>
-							<option value='5000'  selected='selected'>5 000</option>
-							<option value='10000'>10 000</option>
-							<option value='20000'>20 000</option>
-							<option value='50000'>50 000</option>
-							<option value='100000'>100 000</option>
-						</select>
-						<input type='submit' value='Proveď'>
-					</form>
-				</div>
-				";
 	}
 	
 	public function operations($values){

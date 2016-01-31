@@ -26,7 +26,7 @@ class BankController implements Controller{
 		$banka = new Bank($db,$player);
 		$banka->operations($this->post);
 		$obsah .= $banka->summary();
-		$obsah .= $banka->bankBox();
+		$obsah .= new Template("bank_form");
 		//************************************************************//
 		$tpl->setContent("content",$obsah);
 		

@@ -1,10 +1,18 @@
-var Scrollbar = function(nodeLink,minR,maxR,step) {
+var Scrollbar = function(nodeLink,name,minR,maxR,steps) {
     this.node = nodeLink;
     this.max = maxR;
     this.min = minR;
-    this.stepsCount = step;
+    this.name = name;
+    this.stepsCount = (steps > (this.max-this.min) ? this.max-this.min : steps);
+    this.stepSize = 0;
     Scrollbar.count ++;
+    this.scale = 1;
     
+    this.output = document.createElement("INPUT");
+    this.node.parentNode.appendChild(this.output);
+    this.output.name = this.name;
+    this.output.value = this.min;
+    this.output.type = "hidden";
     this.bar = document.createElement("DIV");
     this.value = document.createElement("DIV");
     this.value.innerHTML = this.min;
@@ -37,17 +45,38 @@ var Scrollbar = function(nodeLink,minR,maxR,step) {
 	this.value.style.marginLeft = "-10px";
 	this.value.style.textAlign = "center";
 	this.value.style.float = "none";
+	
+	this.nearestDividable = function(number,divider){
+		zbytek = number%divider;
+		if(zbytek < (divider/2)) return number-zbytek;
+			else return (number-zbytek) + divider;
+	}
+    this.calcValue = function(fromLeft){
+		return this.nearestDividable(Math.round(fromLeft * this.scale),this.stepSize) + this.min;
+	}
     
 	this.resizeRod = function(newWidth){
 		this.value.style.width = newWidth + "px";
 	}
 	
+	this.resizeBar = function(newWidth){
+		this.bar.style.width = newWidth + "px";
+		this.line.style.width = newWidth + "px";
+	}
 	
 	this.recalcSizes = function(){
 		this.line.style.marginTop = (parseInt(this.bar.style.height)/2) - (parseInt(this.line.style.height) / 2) + "px";
 		this.value.style.marginTop = "-" + (parseInt(this.line.style.height) + parseInt(this.line.style.marginTop)) + "px";
 	}
 	
+	this.recalcStepSize = function(){
+		this.stepSize = (this.max-this.min)/this.stepsCount;
+	}
+	
+	this.recalcScale = function(){
+		rozptyl = this.max - this.min;
+		this.scale = rozptyl/100;
+	}
 	
     this.handleEvent = function(e) {
         switch(e.type) {
@@ -61,9 +90,10 @@ var Scrollbar = function(nodeLink,minR,maxR,step) {
                 break;
              case "mousemove":
                 var set_perc = ((((e.clientX - this.bar.offsetLeft) / this.bar.offsetWidth)).toFixed(2));
-				this.value.innerHTML = Math.round(set_perc * 100);
-				//this.value.style.marginLeft = ((set_perc * 100) - (parseInt(this.value.style.width)/2)) + '%'; // 5 je pulka sirky
-				var kolikproc = set_perc * 100
+                var kolikproc = (set_perc * 100 > 100 ? 100 : set_perc * 100);
+                if(kolikproc <0) kolikproc=0;
+				this.value.innerHTML = this.calcValue(kolikproc);
+				this.output.value = this.calcValue(kolikproc);
 				console.log(((parseInt(this.bar.style.width) / 100) * kolikproc) - (parseInt(this.value.style.width)/2));
 				this.value.style.marginLeft = ((parseInt(this.bar.style.width) / 100) * kolikproc) - (parseInt(this.value.style.width)/2) + 'px'; // 5 je pulka sirky
                 break;
@@ -71,6 +101,8 @@ var Scrollbar = function(nodeLink,minR,maxR,step) {
     }
 
 	this.recalcSizes();
+	this.recalcStepSize();
+	this.recalcScale();
 };
 Scrollbar.count = 0;
 

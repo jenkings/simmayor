@@ -45,6 +45,15 @@ var Scrollbar = function(nodeLink,name,minR,maxR,steps) {
 	this.value.style.marginLeft = "-10px";
 	this.value.style.textAlign = "center";
 	this.value.style.float = "none";
+	this.value.style.fontWeight = "bold";
+	
+	
+	this.setLineColor = function(color){this.line.style.backgroundColor = color;}
+	this.setRodColor = function(color){this.value.style.backgroundColor = color;}
+	this.setRodRadius = function(value){this.value.style.borderRadius = value + "px";}
+	this.setLineRadius = function(value){this.line.style.borderRadius = value + "px";}
+	this.setFontColor = function(color){this.value.style.color = color;}
+	
 	
 	this.nearestDividable = function(number,divider){
 		zbytek = number%divider;

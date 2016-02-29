@@ -125,6 +125,7 @@ float:left;
 width:200px;
 height:400px;
 border:solid #D9D9D9 2px;
+text-align:center;
 border-radius:5px;
 color:#808080;
 font-size:20px;
@@ -378,3 +379,6 @@ footer a{color:#EBD200;text-decoration:none;}
 #konverzace .tome .odesilatel{float:right}
 #konverzace .tome .text{font-weight:bold;margin-top:20px;width:80%;margin-left:110px;text-align:right;}
 #konverzace .tome .datum{margin-right:15px;float:right}
+
+#donate{margin-left:auto;margin-right:auto;width:30px;}
+#donate input{margin-left:auto;margin-right:auto;width:100px;left:-30px;position: relative}

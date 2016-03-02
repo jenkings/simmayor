@@ -25,9 +25,9 @@ class Forum{
 	$comparedate=date("Y-m-d H:i:s",strtotime($cas));
 	if(date("Y-m-d H:i:s") < $comparedate)
 	{
-		$prvni= "<h2>". $this->seznam['nazev'] ."</h2><li><div class='user'><h4 style='color:orange'>". $this->seznam['jmeno'] . "</h4><img src='./avatars/".$this->seznam['avatar'].".jpg'></div><div class='content'>" . Parser::parse($this->seznam['text'])."</div></li>";
+		$prvni= "<h2>". $this->seznam['nazev'] ."</h2><li><div class='user'><h4 style='color:orange'>". $this->seznam['jmeno'] . "</h4><img src='./graphics/avatar.php?key=". $this->seznam['jmeno'] . "'></div><div class='content'>" . Parser::parse($this->seznam['text'])."</div></li>";
 	}else{
-		$prvni= "<h2>". $this->seznam['nazev'] ."</h2><li><div class='user'><h4>". $this->seznam['jmeno'] . "</h4><img src='./avatars/".$this->seznam['avatar'].".jpg'></div><div class='content'>" . Parser::parse($this->seznam['text'])."</div></li>";
+		$prvni= "<h2>". $this->seznam['nazev'] ."</h2><li><div class='user'><h4>". $this->seznam['jmeno'] . "</h4><img src='./graphics/avatar.php?key=". $this->seznam['jmeno'] . "'></div><div class='content'>" . Parser::parse($this->seznam['text'])."</div></li>";
 	}
 
 
@@ -40,9 +40,9 @@ class Forum{
 		$comparedate=date("Y-m-d H:i:s",strtotime($cas));
 		if(date("Y-m-d H:i:s") < $comparedate)
 		{
-			$rows[]= "<li><div class='user'><h4 style='color:orange;'>". $row['jmeno'] . "</h4><img src='./avatars/".$row['avatar'].".jpg'></div><div  class='content'>" . Parser::parse($row['text'])."</div></li>";
+			$rows[]= "<li><div class='user'><h4 style='color:orange;'>". $row['jmeno'] . "</h4><img src='./graphics/avatar.php?key=". $row['jmeno'] . "'></div><div  class='content'>" . Parser::parse($row['text'])."</div></li>";
 		}else{
-			$rows[]= "<li><div class='user'><h4>". $row['jmeno'] . "</h4><img src='./avatars/".$row['avatar'].".jpg'></div><div  class='content'>" . Parser::parse($row['text'])."</div></li>";
+			$rows[]= "<li><div class='user'><h4>". $row['jmeno'] . "</h4><img src='./graphics/avatar.php?key=". $row['jmeno'] . "'></div><div  class='content'>" . Parser::parse($row['text'])."</div></li>";
 		}
     }
     $zbytek=implode("\n",$rows);

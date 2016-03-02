@@ -25,7 +25,7 @@ class Player{
 
 	public function getAvatar() 
 	{
-		return "<img src='./avatars/".$this->udaje['avatar'].".jpg'  class='usershow-obrazek'>";
+		return "<img src='./graphics/avatar.php?key=". $this->udaje['jmeno'] . "'  class='usershow-obrazek'>";
 	}
 	
 	public function getVar($x)

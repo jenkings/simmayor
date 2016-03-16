@@ -332,6 +332,7 @@ function newmenu(ktere)
 			string += "<li><img onClick='activeitem=0;activetype=2;' src=\"./game/img/miniatury/dul.png\" title='"+ nazvy[2][0] + " $" + ceny[2][0] +"'></li>";
 			string += "<li><img onClick='activeitem=1;activetype=2;' src=\"./game/img/miniatury/elektrarna.png\" title='"+ nazvy[2][1] + " $" + ceny[2][1] +"'></li>";
 			string += "<li><img onClick='activeitem=4;activetype=2;' src=\"./game/img/miniatury/ropnepole.png\" title='"+ nazvy[2][4] + " $" + ceny[2][4] +"'></li>";
+            string += "<li><img onClick='activeitem=7;activetype=2;' src=\"./game/img/miniatury/recycle.png\" title='"+ nazvy[2][7] + " $" + ceny[2][7] +"'></li>";
 			document.getElementById("secondmenu").innerHTML = string;
 		break;
 		

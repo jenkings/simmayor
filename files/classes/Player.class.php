@@ -38,6 +38,7 @@ class Player{
 		$x['uhli'] = $this->udaje['uhli'];
 		$x['ropa'] = $this->udaje['ropa'];
 		$x['rubin'] = $this->udaje['rubin'];
+		$x['odpad'] = $this->udaje['odpad'];
 		return $x;
 	}
 
@@ -48,7 +49,8 @@ class Player{
 		$x .= "<tr><td><h3>Dluh:</h3></td><td>$" . number_format($this->udaje['dluh'], 2, ',', ' ') . "</td></tr>";
 		$x .= "<tr><td><h3><img id='mini' src='./graphics/comodities/uhli.png' alt='uhli'></h3></td><td>" . $this->udaje['uhli'] . " tun</td></tr>";
 		$x .= "<tr><td><h3><img id='mini' src='./graphics/comodities/ropa.png' alt='ropa'></h3></td><td>" . $this->udaje['ropa'] . " barelů</td></tr>";
-		$x .= "<tr><td><h3><img id='mini' src='./graphics/comodities/rubin.png' alt='rubin'></h3></td><td>" . $this->udaje['rubin'] . " drahokamů</td>";		
+		$x .= "<tr><td><h3><img id='mini' src='./graphics/comodities/rubin.png' alt='rubin'></h3></td><td>" . $this->udaje['rubin'] . " drahokamů</td>";
+		$x .= "<tr><td><h3><img id='mini' src='./graphics/comodities/odpad.png' alt='odpad'></h3></td><td>" . $this->udaje['odpad'] . " kilogramů</td>";		
 		return "<table id='info' class='box'><tr> $x </tr></table>";
 	}
 	  

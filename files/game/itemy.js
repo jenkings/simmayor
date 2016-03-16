@@ -102,7 +102,9 @@ nazvy[2][6] = "Luxusní hotel";
 ceny[2][6] = 60845;
 kapacita2[6] = 384;
 
-
+nazvy[2][7] = "Recyklační centrum";
+ceny[2][7] = 2350845;
+kapacita2[7] = 0;
 
 
 var Item = function(x,typ) {

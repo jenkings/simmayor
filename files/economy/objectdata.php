@@ -48,4 +48,5 @@ $udrzba[2][3] = 3548; //Nemocnice
 $udrzba[2][4] = 3875; //Ropné pole
 $udrzba[2][5] = 2422; //Stadion
 $udrzba[2][6] = 3588; //Luxusni hotel
+$udrzba[2][7] = 12680; //Recyklacni tovarna
 ?>

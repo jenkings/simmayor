@@ -1,16 +1,16 @@
 var Player = function(money) {
-    var penize = money;
+    this.penize = money;
 
     this.getMoney = function() {
-			return penize;
+			return this.penize;
     }
     
     this.GiveMoney = function(amount) {
-        penize += (amount) * 1;
+        this.penize += amount * 1;
     }
     
     this.SetMoney = function(amount) {
-        penize = amount + 1;
+        this.penize = amount *1;
     }
     
 };

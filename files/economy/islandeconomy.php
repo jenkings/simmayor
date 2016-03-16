@@ -158,7 +158,7 @@ for($f=0;$f<(sizeof($policka) - 1);$f++)
 				$soucetnajem += 15 * 384;
 			}else if($item == 7){
 				$Vprumysl -= $udrzba[2][7]; 
-				$odpad -= (3 + rand(1,7)) * 1000;
+				$odpad -= (4 + rand(1,5)) * 1000;
 			}
 		}
 }

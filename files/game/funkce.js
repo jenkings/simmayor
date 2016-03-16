@@ -429,7 +429,7 @@ function economics()
 		url:document_root+"/economy/islandeconomy.php",
 		data: {idmesta:idmesta},
 		success: function(data) {	
-			//console.log(data)  
+			console.log(data)  
 			if(data != ""){
 				var n=data.split("|");
 				hrac.SetMoney(n[0]);

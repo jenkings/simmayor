@@ -61,8 +61,9 @@ $oblibenost = $result['oblibenost'];
 ////////////////////////////////////////////////////////////////////////
 
 //------------------------UDAJE O MAJITELI----------------------------//
-$result2 = $db->queryOne("SELECT penize,uhli,ropa,dluh FROM accounts WHERE id=?",array($result['idmajitele']));
+$result2 = $db->queryOne("SELECT penize,uhli,ropa,odpad,dluh FROM accounts WHERE id=?",array($result['idmajitele']));
 
+$odpad =  $result2['odpad'];
 $pocatecnistav = $result2['penize'];
 $vlastnik = $result['idmajitele'];
 $uhli = $result2['uhli'];
@@ -124,14 +125,11 @@ for($f=0;$f<(sizeof($policka) - 1);$f++)
 		//---------------------------TOVÁRNY--------------------------//
 		else if($type == 2)
 		{
-			if($item == 0)
-			{
+			if($item == 0){
 				$uhli += 50 + rand(0,40);
 				$Vprumysl -= $udrzba[2][0]; 
 				$pocettovaren++;
-			}
-			if($item == 1)
-			{
+			}else if($item == 1){
 				$Vprumysl -= $udrzba[2][1]; 
 				
 				if($uhli >= 70)
@@ -140,34 +138,27 @@ for($f=0;$f<(sizeof($policka) - 1);$f++)
 					$uhli -= 65;
 				}
 				$pocettovaren++;
-			}
-			if($item == 2)
-			{
+			}else if($item == 2){
 				$maxpopulace += 1000;
 				$Vinfrastruktura -= $udrzba[$type][$item];
-			}
-			if($item == 3)
-			{
+			}else if($item == 3){
 				$Vostatni -= $udrzba[$type][$item];
 				$nemocnic ++;
-			}
-			if($item == 4)
-			{
+			}else if($item == 4){
 				$ropa += 25 + rand(0,10);
 				$Vprumysl -= $udrzba[2][4]; 
 				$pocettovaren++;
-			}
-			if($item == 5)
-			{
+			}else if($item == 5){
 				$Vzabavniprumysl -= $udrzba[2][5]; 
 				$zabavniprumysl ++;
-			}
-			if($item == 6)
-			{
+			}else if($item == 6){
 				$domu ++;
 				$Vhotely -= $udrzba[2][6]; 
 				$ubytovacimista += 384;
 				$soucetnajem += 15 * 384;
+			}else if($item == 7){
+				$Vprumysl -= $udrzba[2][7]; 
+				$odpad -= (3 + rand(1,7)) * 1000;
 			}
 		}
 }
@@ -277,7 +268,8 @@ else if($rn == 4)
 
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
-
+$odpad += $soucasnapopulace * rand(1,2);
+if($odpad < 0) {$odpad = 0;}
 
 //------------------------ÚROKY Z PŮJČKY------------------------------//
 $Vuroky = -1 * (($dluh / 1000) * $uroky);
@@ -318,7 +310,7 @@ $db->query("UPDATE sazby SET hodnota =hodnota+".intval($queryy['hodnota'])." WHE
 }
 
 $db->query("UPDATE islands SET maxpopulace='".$maxpopulace."',soucasnapopulace='".$soucasnapopulace."',kapacita='".$ubytovacimista."',oblibenost='".$oblibenost."' WHERE id='".$_POST['idmesta']."'");
-$db->query("UPDATE accounts SET penize='".$zustatek."',uhli='".$uhli."',ropa='".$ropa."',lastsave='".date("Y-m-d H:i:s")."' WHERE id='".$vlastnik."'");
+$db->query("UPDATE accounts SET penize='".$zustatek."',uhli='".$uhli."',ropa='".$ropa."',odpad='".$odpad."',lastsave='".date("Y-m-d H:i:s")."' WHERE id='".$vlastnik."'");
 
 if($db->queryOne("SELECT * FROM bankvypisy WHERE idostrova='".(int)$_POST['idmesta']."'") != false){
 	$db->query("UPDATE bankvypisy SET pocatecnistav='".$pocatecnistav."',prijmy='".$prijmy."',vydaje='".$vydaje."',shrnuti='".$zustatek."' WHERE idostrova='".(int)$_POST['idmesta']."'");		

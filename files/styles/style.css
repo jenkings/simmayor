@@ -123,7 +123,7 @@ text-align:center;
 #leftpanel{
 float:left;
 width:200px;
-height:400px;
+height:500px;
 border:solid #D9D9D9 2px;
 text-align:center;
 border-radius:5px;
@@ -382,3 +382,7 @@ footer a{color:#EBD200;text-decoration:none;}
 
 #donate{margin-left:auto;margin-right:auto;width:30px;}
 #donate input{margin-left:auto;margin-right:auto;width:100px;left:-30px;position: relative}
+
+
+#centrovac{}
+#centrovac img{width:45px;height:45px;margin-left : 3px;}

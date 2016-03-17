@@ -34,14 +34,18 @@ class ObchodPrehled{
 		if(isset($array['polozka']) && !empty($array['polozka'])){
 			$usermoney = $player->getVar("penize");
 			$polozkadata = $this->db->queryOne("SELECT * FROM prodejna WHERE id=?",array(intval($array['polozka'])));
-			
 			if($usermoney < $polozkadata['cena']){
 				return "<div id='error'>Nemáte dostatek peněz</div>";
 			}
-			else{				
-				$this->db->query("UPDATE accounts SET ".mysql_real_escape_string($polozkadata['predmet'])." = ".mysql_real_escape_string($polozkadata['predmet'])." + ".intval($polozkadata['pocet']).",penize = '".($usermoney -= $polozkadata['cena'])."' WHERE id=".intval($_SESSION['prihlasen']));
+			else{		
+				$predmet = $polozkadata['predmet'];
+				try{
+				$this->db->query("UPDATE accounts SET ".$predmet." = ".$predmet." + ".intval($polozkadata['pocet']).",penize = '".($usermoney -= $polozkadata['cena'])."' WHERE id=".intval($_SESSION['prihlasen']));}catch(Exception $e) {echo $e->getMessage();}
+
 				$this->db->query("UPDATE accounts SET penize = penize + ? WHERE id=?",array(intval($polozkadata['cena']),intval($polozkadata['idprodavajiciho'])));
+
 				$this->db->query("DELETE FROM prodejna WHERE id=?",array($polozkadata['id']));
+
 			}
 		}
 		

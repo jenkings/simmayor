@@ -8,6 +8,7 @@
 	spl_autoload_register(array(new autoloader('./classes'), 'autoload'));
     spl_autoload_register(array(new autoloader('./classes/controllers'), 'autoload'));
     spl_autoload_register(array(new autoloader('./classes/layout'), 'autoload'));
+	spl_autoload_register(array(new autoloader('./classes/nations'), 'autoload'));
 	
 	
 	if(!isset($_GET['pid']) || empty($_GET['pid']))

@@ -1,6 +1,7 @@
 <div class="box" id="nat_searchbox">
-    <form method="get" action="./index.php?pid=natsearch">
-        <input type="text" placeholder="id nebo název státu">
+    <form method="get">
+        <input type="hidden" name="pid" value="natsearch">
+        <input type="text" name="search" placeholder="id nebo název státu">
         <input type="submit" value="hledat">
     </form>
 </div>

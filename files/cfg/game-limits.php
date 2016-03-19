@@ -14,9 +14,11 @@ define("VIP_SHOP_ITEMS_LIMIT","15");
 
 define("MAX_DLUH","100000");
 
-define("MAX_TAXES",35);
-define("MIN_TAXES",1);
+define("MAX_TAXES",35); //maximalni mozne dane na ostrove
+define("MIN_TAXES",1);  //minimalni mozne dane na ostrove
 
 define("ISLAND_SIZE",30);
+
+define("NEW_NATION_PRICE",1000000000); //cena za založení nového státu (default 1 miliarda)
 
 ?>

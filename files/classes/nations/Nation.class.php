@@ -8,7 +8,8 @@ class Nation{
     **/
     public function __construct($db,$id){
         $this->db = $db;
-        $this->data = $data;
+        if($id != null)
+            $this->data = $db->queryOne("SELECT * FROM nations WHERE id=?",array($id));
     }
     
     /**
@@ -18,5 +19,14 @@ class Nation{
             
     }
     
+    public function overview(){
+        if(empty($this->data))  return"<div class='box' id='nat_creator'><h4>Nejste členem žádneho státu</h4></div>";
+        
+        return"
+        <div class='box' id='nat_creator'>
+            ".$this->data."
+        </div>
+        ";
+    }
     
 }

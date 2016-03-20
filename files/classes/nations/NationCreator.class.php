@@ -31,7 +31,7 @@ class NationCreator{
             throw new Exception("Nemůžeš ovládat více než jeden stát");            
         }
         // Zde musí být ještě ošetřeno, zda již není členem nějakého státu
-        
+        // Chybí přiřazení zakladatele jako člena
         $this->db->query("INSERT INTO nations (nazev,majitel) VALUES (?,?)",array($name,$player->getVar("id")));
         $this->db->query("UPDATE accounts SET penize = penize-? WHERE id=?",array(NEW_NATION_PRICE,$player->getVar("id")));
     }

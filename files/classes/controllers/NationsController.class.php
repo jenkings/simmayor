@@ -23,6 +23,7 @@ class NationsController implements Controller{
 		$db = new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);
 		$player = new Player($db,array("*",$this->session['prihlasen']));
 		$nationCreator = new NationCreator($db);
+		$nation = new Nation($db,$player->getVar("innation"));
 		
 		$obsah = "";		
 		//*********Zpracování požadavků*//
@@ -37,6 +38,7 @@ class NationsController implements Controller{
 		//*****************************//
         $obsah .= new Template("nation_search_form");
 		$obsah .= NationCreator::creationForm();
+		$obsah .= $nation->overview();
 		//*****************************//
 		$tpl->setContent("content",$obsah);
 		return $tpl->__toString();

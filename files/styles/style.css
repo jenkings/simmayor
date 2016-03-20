@@ -281,6 +281,8 @@ margin-right:5px;
 
 #error{padding:5px;background-color:#E77A6F;border:solid red 2px;width:80%;margin-left:auto;margin-right:auto;}
 #succes{padding:5px;background-color:#8ADC84;border:solid green 2px;width:80%;margin-left:auto;margin-right:auto;}
+.error{padding:5px;background-color:#E77A6F;border:solid red 2px;width:80%;margin-left:auto;margin-right:auto;}
+.succes{padding:5px;background-color:#8ADC84;border:solid green 2px;width:80%;margin-left:auto;margin-right:auto;}
 
 #lototable .lotocislo {
 background-image: -moz-radial-gradient(15px 15px 15deg, circle cover, yellow 0%, orange 100%, red 95%);

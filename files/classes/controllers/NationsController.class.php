@@ -27,15 +27,12 @@ class NationsController implements Controller{
 		$obsah = "";		
 		//*********Zpracování požadavků*//
 		if(isset($this->post['nazev']) && !empty($this->post['nazev'])){
-			//No yet finished
-			//No yet finished
-			//No yet finished
-			//No yet finished
-			$nationCreator->createNewNation($player,$this->post['nazev']);
-			//No yet finished
-			//No yet finished
-			//No yet finished
-			//No yet finished
+			try{
+				$nationCreator->createNewNation($player,$this->post['nazev']);
+				$obsah .= "<div class='succes'>Nový stát s názvem \"".$this->post['nazev']."\" byl vytvořen</div>";
+			}catch(Exception $e){
+				$obsah .= "<div class='error'>" . $e->getMessage() . "</div>";
+			}
 		}
 		//*****************************//
         $obsah .= new Template("nation_search_form");

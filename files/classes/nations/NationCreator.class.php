@@ -23,7 +23,7 @@ class NationCreator{
         ";
     }
     /**
-     * @param Player $player předání instance hráče který chce založit Stát
+     * @param Player $player předání instance hráče který chce založit stát
      * @param String $name název nového ostrova
      */
     public function createNewNation($player,$name){

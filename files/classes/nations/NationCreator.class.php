@@ -24,15 +24,13 @@ class NationCreator{
     }
     
     public function createNewNation($player,$name){
-        if($player->getVar("penize") < NEW_NATION_PRICE){
+        if($player->getVar("innation") != NULL)
+            throw new Exception("Už jsi členem jiného státu");
+        if($player->getVar("penize") < NEW_NATION_PRICE)
             throw new Exception("Nemáš potřebných $" . NumberFormat::moneyOutput(NEW_NATION_PRICE));
-        }
-        if($this->db->queryOne("SELECT COUNT(*) AS c FROM nations WHERE majitel=?",array($player->getVar("id"))) > 0){
+        if($this->db->queryOne("SELECT COUNT(*) AS c FROM nations WHERE majitel=?",array($player->getVar("id")))['c'] > 0)
             throw new Exception("Nemůžeš ovládat více než jeden stát");            
-        }
-        // Zde musí být ještě ošetřeno, zda již není členem nějakého státu
-        // Chybí přiřazení zakladatele jako člena
         $this->db->query("INSERT INTO nations (nazev,majitel) VALUES (?,?)",array($name,$player->getVar("id")));
-        $this->db->query("UPDATE accounts SET penize = penize-? WHERE id=?",array(NEW_NATION_PRICE,$player->getVar("id")));
+        $this->db->query("UPDATE accounts SET penize = penize-?, innation=(SELECT id FROM nations WHERE majitel=?) WHERE id=?",array(NEW_NATION_PRICE,$player->getVar("id"),$player->getVar("id")));
     }
 }

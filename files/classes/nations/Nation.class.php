@@ -24,7 +24,7 @@ class Nation{
         
         return"
         <div class='box' id='nat_creator'>
-            ".$this->data."
+            jsi člen
         </div>
         ";
     }

@@ -22,7 +22,10 @@ class NationCreator{
         </div>
         ";
     }
-    
+    /**
+     * @param Player $player předání instance hráče který chce založit Stát
+     * @param String $name název nového ostrova
+     */
     public function createNewNation($player,$name){
         if($player->getVar("innation") != NULL)
             throw new Exception("Už jsi členem jiného státu");

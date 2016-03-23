@@ -5,4 +5,6 @@ define("DB_PASS",     "");
 define("DB_USER",     "simmayor");
 
 define("WEB_ROOT",     "http://localhost/simmayor");
+
+define("ICON_ROOT",    "/icon/");
 ?>

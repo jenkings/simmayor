@@ -5,7 +5,7 @@
 	<li><a href="index.php?page=ukoly">Úkoly</a></li>
 	<hr>
 	<li><a href="index.php?page=uzivatele">Uživatelé</a>
-		<ul style="margin-left:15px"><li>Statusy</li></ul>
+		<ul style="margin-left:15px"><li><a href="index.php?page=statusy">Statusy</a></li></ul>
 	</li>
 	<li><a href="index.php?page=firmy">Firmy</a></li>
 	<li><a href="index.php?page=ostrovy">Ostrovy</a></li>

@@ -23,6 +23,7 @@
         $reklama = new Reklama($db);
         $administrace = new Admindata($db);
         $adminplayers = new AdminPlayers($db);
+        $adminstatus = new AdminStatusy($db);
 
         if(intval($player->getVar('admin')) < 1)
         {

@@ -49,6 +49,13 @@ class AdminStatusy
         $vra = "";
         $idPravomoce = intval($idPravomoce);
 
+        if(isset($post['zmenit'])){
+            //print_r($post);
+            //echo $post['skrtatko_moderovani'];
+            $this->db->query("UPDATE `statusy` SET `sta_nazev` = ?, `sta_barva` = ?, `sta_vstup` = ?, `sta_fora` = ?, `sta_posta` = ?, `sta_postah` = ?, `sta_moderovani` = ?, `sta_mazani` = ? WHERE `statusy`.`pid_status` = ?;",array(
+                $post['sta_nazev'],$post['sta_barva'],$post['skrtatko_vstup'],$post['skrtatko_fora'],$post['skrtatko_posta'],$post['skrtatko_postah'],$post['skrtatko_moderovani'],$post['skrtatko_mazani'],$idPravomoce));
+        }
+
             $this->seznam=$this->db->queryOne("SELECT COUNT(*) FROM statusy WHERE pid_status=? AND sta_aktivni=?",array($idPravomoce,1));
             if($this->seznam['COUNT(*)']>=1){
 
@@ -61,18 +68,49 @@ class AdminStatusy
                     $vra.="<tr align='center'><td colspan='2'>Barva</td><td colspan='2'><input type='text' name='sta_barva' placeholder='Barva statusu' value='".$promena['sta_barva']."'></td></tr>";
                     $vra.="<tr align='center'><td colspan='4'><b>Hráči</b></td></tr>";
 
-                $skrtatko_vstup = "checked";
-                $skrtatko_fora = "checked";
-                $skrtatko_posta = "";
-                $skrtatko_postah = "";
-                $skrtatko_moderovani = "";
-                $skrtatko_mazani = "";
+                if($promena['sta_vstup']>=1){
+                    $skrtatko_vstup = "checked";
+                }else{
+                    $skrtatko_vstup = "";
+                }
 
-                    $vra.="<tr align='center'><td width='25%'>Vstup do hry:</td><td width='25%'><input type='checkbox' name='skrtatko_vstup' ".$skrtatko_vstup."></td><td width='25%'>Vstup na fóra:</td><td width='25%'><input type='checkbox' name='skrtatko_fora' ".$skrtatko_fora."></td></tr>";
-                    $vra.="<tr align='center'><td>Pošta:</td><td><input type='checkbox' name='skrtatko_posta' ".$skrtatko_posta."></td><td>Hromadná pošta:</td><td><input type='checkbox' name='skrtatko_postah' ".$skrtatko_postah."></td></tr>";
+                if($promena['sta_fora']>=1){
+                    $skrtatko_fora = "checked";
+                }else{
+                    $skrtatko_fora = "";
+                }
+
+                if($promena['sta_posta']>=1){
+                    $skrtatko_posta = "checked";
+                }else{
+                    $skrtatko_posta = "";
+                }
+
+                if($promena['sta_postah']>=1){
+                    $skrtatko_postah = "checked";
+                }else{
+                    $skrtatko_postah = "";
+                }
+
+                if($promena['sta_moderovani']>=1){
+                    $skrtatko_moderovani = "checked";
+                }else{
+                    $skrtatko_moderovani = "";
+                }
+
+                if($promena['sta_mazani']>=1){
+                    $skrtatko_mazani = "checked";
+                }else{
+                    $skrtatko_mazani = "";
+                }
+
+
+
+                    $vra.="<tr align='center'><td width='25%'>Vstup do hry:</td><td width='25%'><input type='checkbox' value='1' name='skrtatko_vstup' ".$skrtatko_vstup."></td><td width='25%'>Vstup na fóra:</td><td width='25%'><input type='checkbox' value='1' name='skrtatko_fora' ".$skrtatko_fora."></td></tr>";
+                    $vra.="<tr align='center'><td>Pošta:</td><td><input type='checkbox' value='1' name='skrtatko_posta' ".$skrtatko_posta."></td><td>Hromadná pošta:</td><td><input type='checkbox' value='1' name='skrtatko_postah' ".$skrtatko_postah."></td></tr>";
                     $vra.="<tr align='center'><td colspan='4'><b>Fóra</b></td></tr>";
-                    $vra.="<tr align='center'><td>Moderování:</td><td><input type='checkbox' name='skrtatko_moderovani' ".$skrtatko_moderovani."></td><td>Mazání příspěvků:</td><td><input type='checkbox' name='skrtatko_mazani' ".$skrtatko_mazani."></td></tr>";
-                    $vra.="<tr align='center'><td colspan='4'><input type='submit' value='..: Změnit nastavení :..'></td></tr>";
+                    $vra.="<tr align='center'><td>Moderování:</td><td><input type='checkbox' value='1' name='skrtatko_moderovani' ".$skrtatko_moderovani."></td><td>Mazání příspěvků:</td><td><input type='checkbox' value='1' name='skrtatko_mazani' ".$skrtatko_mazani."></td></tr>";
+                    $vra.="<tr align='center'><td colspan='4'><input type='submit' name='zmenit' value='..: Změnit nastavení :..'></td></tr>";
                 $vra.="</table></div>";
                 $vra.="</div></form>";
 

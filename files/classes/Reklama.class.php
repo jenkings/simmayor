@@ -75,7 +75,7 @@ class Reklama{
 		$ads = $this->db->queryAll("SELECT * FROM reklamy ORDER BY typ ASC");
 		$navrat = "<table id='adstable'>";
 		foreach($ads as $radek)
-			$navrat .= "<tr><td>".$this->typ($radek['typ'])."</td><td>".$radek['nazev']."</td><td>".$radek['odkaz']."</td><td><img src='".$radek['obrazek']."'></td><td><a href='./reklama.php?delid=".$radek['id']."'>Smazat</a></td></tr>";
+			$navrat .= "<tr><td>".$this->typ($radek['typ'])."</td><td>".$radek['nazev']."</td><td>".$radek['odkaz']."</td><td><img src='".$radek['obrazek']."'></td><td><a href='./index.php?page=reklam&delid=".$radek['id']."'>Smazat</a></td></tr>";
 		$navrat .= "</table>";
 		
 		

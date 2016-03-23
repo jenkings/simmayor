@@ -4,7 +4,9 @@
 	<li><a href="index.php?page=index">Domů</a></li>
 	<li><a href="index.php?page=ukoly">Úkoly</a></li>
 	<hr>
-	<li><a href="index.php?page=uzivatele">Uživatelé</a></li>
+	<li><a href="index.php?page=uzivatele">Uživatelé</a>
+		<ul style="margin-left:15px"><li>Statusy</li></ul>
+	</li>
 	<li><a href="index.php?page=firmy">Firmy</a></li>
 	<li><a href="index.php?page=ostrovy">Ostrovy</a></li>
 	<hr>

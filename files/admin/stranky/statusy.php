@@ -5,7 +5,7 @@
     <?php
 
     if(isset($_GET['pravomoce'])){
-        echo @$adminstatus->editacePravooce($_GET['pravomoce'],$_POST);
+        echo @$adminstatus->editacePravomoce($_GET['pravomoce'],$_POST);
     }
 
     echo $adminstatus->vypisStatusu();

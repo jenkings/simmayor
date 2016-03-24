@@ -45,7 +45,8 @@ class AdminStatusy
         return $vra;
     }
 
-    public function editacePravooce($idPravomoce,$post){
+
+    public function editacePravomoce($idPravomoce,$post){
         $vra = "";
         $idPravomoce = intval($idPravomoce);
 

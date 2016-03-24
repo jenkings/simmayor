@@ -323,7 +323,7 @@ function newmenu(ktere)
 			string += "<li><img onClick='activeitem=1;activetype=1;' src=\"./game/img/miniatury/chatky.png\" title='"+ nazvy[1][1] + " $" + ceny[1][1] +"'></li>";
 			string += "<li><img onClick='activeitem=3;activetype=1;' src=\"./game/img/miniatury/domek.png\" title='"+ nazvy[1][3] + " $" + ceny[1][3] +"'></li>";
 			string += "<li><img onClick='activeitem=4;activetype=1;' src=\"./game/img/miniatury/hotylek.png\" title='"+ nazvy[1][4] + " $" + ceny[1][4] +"'></li>";
-			string += "<li><img onClick='activeitem=5;activetype=1;' src=\"./game/img/miniatury/hotel.png\" title='"+ nazvy[1][4] + " $" + ceny[1][4] +"'></li>";
+			string += "<li><img onClick='activeitem=5;activetype=1;' src=\"./game/img/miniatury/hotel.png\" title='"+ nazvy[1][5] + " $" + ceny[1][5] +"'></li>";
 			string += "<li><img onClick='activeitem=6;activetype=2;' src=\"./game/img/miniatury/luxhotel.png\" title='"+ nazvy[2][6] + " $" + ceny[2][6] +"'></li>";		
 			document.getElementById("secondmenu").innerHTML = string;
 		break;

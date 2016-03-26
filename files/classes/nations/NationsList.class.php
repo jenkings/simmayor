@@ -19,7 +19,7 @@ class NationsList{
    * @param prvek z enumu SortTypes
    */
   public function listOrderedBy($orderer){
-    if(!SortTypes::isValidValue($orderer)) echo "eror";
+    if(!SortTypes::isValidValue($orderer)) Throw new Exception("Neznámý typ řazení");
     
     if($orderer == SortTypes::BY_NAME)
       return $this->db->queryALL("SELECT nazev,(SELECT jmeno FROM accounts WHERE id = n.majitel) as majitel,penize,vstupne,(SELECT COUNT(*) FROM accounts WHERE innation= n.id) as clenu FROM nations n ORDER BY nazev");

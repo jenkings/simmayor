@@ -407,3 +407,5 @@ h4{padding:0;margin:0;display:inline;}
 #nations .minimal{height:14px;}
 #nations .right{float:right;padding-right:10px;text-align:right;}
 #nations .right h5{font-size:20px;}
+
+.nat-order {display:inline;margin-left:5px;}

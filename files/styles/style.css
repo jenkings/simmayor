@@ -390,10 +390,20 @@ footer a{color:#EBD200;text-decoration:none;}
 #centrovac img{width:45px;height:45px;margin-left : 3px;}
 
 
-#nat_searchbox{width:340px;margin:5px;padding:7px;text-align: center;float:left;}
-#nat_creator{width:340px;margin:5px;padding:7px;text-align: center;float:left;}
-#nat_creator img{max-height:15px;margin:0px;margin-left:8px;}
-/* Not still used */
-#nat_overview{width:340px;margin:5px;padding:7px;text-align: center;float:left;}
+#nat_searchbox{width:350px;margin:5px;padding:7px;text-align: center;float:left;}
+#nat_creator{width:350px;margin:5px;padding:7px;text-align: center;float:left;}
+#nat_creator img{max-height:18px;margin:0px;margin-left:8px;}
+#nat_overview{width:350px;margin:5px;padding:7px;text-align: center;float:left;}
 
 h4{padding:0;margin:0;display:inline;}
+
+/* list of nations  786B4D*/
+#nations{list-style-type:none;background-color:#9C895C;padding:0px;}
+#nations img{height:30px;}
+#nations h4{font-size:25px;}
+#nations li{border-bottom: solid #1A1A1A 1px;}
+#nations h5{display:inline;}
+#nations .medium{height:16px;}
+#nations .minimal{height:14px;}
+#nations .right{float:right;padding-right:10px;text-align:right;}
+#nations .right h5{font-size:20px;}

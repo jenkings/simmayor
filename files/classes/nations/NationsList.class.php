@@ -22,13 +22,13 @@ class NationsList{
     if(!SortTypes::isValidValue($orderer)) echo "eror";
     
     if($orderer == SortTypes::BY_NAME)
-      return $this->db->queryALL("SELECT nazev,majitel,penize,vstupne,(SELECT COUNT(*) FROM accounts WHERE innation= n.id) as clenu FROM nations n ORDER BY nazev");
+      return $this->db->queryALL("SELECT nazev,(SELECT jmeno FROM accounts WHERE id = n.majitel) as majitel,penize,vstupne,(SELECT COUNT(*) FROM accounts WHERE innation= n.id) as clenu FROM nations n ORDER BY nazev");
     else if($orderer == SortTypes::BY_TOP_MONEY)
-      return $this->db->queryALL("SELECT nazev,majitel,penize,vstupne,(SELECT COUNT(*) FROM accounts WHERE innation= n.id) as clenu FROM nations n ORDER BY penize DESC");
+      return $this->db->queryALL("SELECT nazev,(SELECT jmeno FROM accounts WHERE id = n.majitel) as majitel,penize,vstupne,(SELECT COUNT(*) FROM accounts WHERE innation= n.id) as clenu FROM nations n ORDER BY penize DESC");
     else if($orderer == SortTypes::BY_MEMBERS)
-      return $this->db->queryALL("SELECT nazev,majitel,penize,vstupne,(SELECT COUNT(*) FROM accounts WHERE innation= n.id) as clenu FROM nations n ORDER BY clenu DESC");
+      return $this->db->queryALL("SELECT nazev,(SELECT jmeno FROM accounts WHERE id = n.majitel) as majitel,penize,vstupne,(SELECT COUNT(*) FROM accounts WHERE innation= n.id) as clenu FROM nations n ORDER BY clenu DESC");
     else if($orderer == SortTypes::BY_ENTRY_FEE)
-      return $this->db->queryALL("SELECT nazev,majitel,penize,vstupne,(SELECT COUNT(*) FROM accounts WHERE innation= n.id) as clenu FROM nations n ORDER BY vstupne");
+      return $this->db->queryALL("SELECT nazev,(SELECT jmeno FROM accounts WHERE id = n.majitel) as majitel,penize,vstupne,(SELECT COUNT(*) FROM accounts WHERE innation= n.id) as clenu FROM nations n ORDER BY vstupne");
   }
   
 

@@ -41,16 +41,16 @@ class NationsController implements Controller{
 		$obsah .= $nation->overview();
 		
 		
-		
+		$obsah .= "<h2>Seznam Národů</h2>";
 		$nl = new NationsList($db);
 		$polozky = $nl->listOrderedBy(SortTypes::BY_NAME);
 		$te = new Template("nation_item_in_list");
-	
 		$obsah .= "<ul>";
 		foreach($polozky as $polozka){
 			$te->setContent("nazev",$polozka['nazev']);
 			$te->setContent("majitel",$polozka['majitel']);
 			$te->setContent("penize",$polozka['penize']);
+			$te->setContent("clenu",$polozka['clenu']);
 			$obsah .= $te;
 		}
 		$obsah .= "</ul>";

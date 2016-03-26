@@ -7,7 +7,7 @@ class Player{
 	function  __construct($spojeni,$sel=Array()){
 		$this->db=$spojeni;
 		$this->tosel=$sel;
-		$this->udaje=$this->db->queryPlayer("SELECT ".$sel[0]." FROM accounts WHERE id = :id",$sel);
+		$this->udaje=$this->db->queryPlayer("SELECT * FROM accounts WHERE id = :id",$sel);
 	}
 	
 	public function isVIP(){

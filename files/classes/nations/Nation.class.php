@@ -30,7 +30,10 @@ class Nation{
         $d = $this->sumarize();
         return"
         <div class='box' id='nat_creator'>
-            ".implode($d,"/")."
+            <img src='./graphics/mini-icons/nation.png'/> ". $d['nazev'] ."
+            <img src='./graphics/mini-icons/penize.png'/> ". $d['rozpocet'] ."
+            <img src='./graphics/mini-icons/vladce.png'/> ". $d['majitel'] ."
+            <img src='./graphics/mini-icons/population.png'/> ". $d['clenu'] ."
         </div>
         ";
     }

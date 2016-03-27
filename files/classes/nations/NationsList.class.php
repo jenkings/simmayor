@@ -17,18 +17,19 @@ class NationsList{
   }
   /**
    * @param prvek z enumu SortTypes
+   * @return Array 2D pole s prvky z databáze
    */
   public function listOrderedBy($orderer){
     if(!SortTypes::isValidValue($orderer)) Throw new Exception("Neznámý typ řazení");
     
     if($orderer == SortTypes::BY_NAME)
-      return $this->db->queryALL("SELECT nazev,(SELECT jmeno FROM accounts WHERE id = n.majitel) as majitel,penize,vstupne,(SELECT COUNT(*) FROM accounts WHERE innation= n.id) as clenu FROM nations n ORDER BY nazev");
+      return $this->db->queryALL("SELECT id,nazev,(SELECT jmeno FROM accounts WHERE id = n.majitel) as majitel,penize,vstupne,(SELECT COUNT(*) FROM accounts WHERE innation= n.id) as clenu FROM nations n ORDER BY nazev");
     else if($orderer == SortTypes::BY_TOP_MONEY)
-      return $this->db->queryALL("SELECT nazev,(SELECT jmeno FROM accounts WHERE id = n.majitel) as majitel,penize,vstupne,(SELECT COUNT(*) FROM accounts WHERE innation= n.id) as clenu FROM nations n ORDER BY penize DESC");
+      return $this->db->queryALL("SELECT id,nazev,(SELECT jmeno FROM accounts WHERE id = n.majitel) as majitel,penize,vstupne,(SELECT COUNT(*) FROM accounts WHERE innation= n.id) as clenu FROM nations n ORDER BY penize DESC");
     else if($orderer == SortTypes::BY_MEMBERS)
-      return $this->db->queryALL("SELECT nazev,(SELECT jmeno FROM accounts WHERE id = n.majitel) as majitel,penize,vstupne,(SELECT COUNT(*) FROM accounts WHERE innation= n.id) as clenu FROM nations n ORDER BY clenu DESC");
+      return $this->db->queryALL("SELECT id,nazev,(SELECT jmeno FROM accounts WHERE id = n.majitel) as majitel,penize,vstupne,(SELECT COUNT(*) FROM accounts WHERE innation= n.id) as clenu FROM nations n ORDER BY clenu DESC");
     else if($orderer == SortTypes::BY_ENTRY_FEE)
-      return $this->db->queryALL("SELECT nazev,(SELECT jmeno FROM accounts WHERE id = n.majitel) as majitel,penize,vstupne,(SELECT COUNT(*) FROM accounts WHERE innation= n.id) as clenu FROM nations n ORDER BY vstupne");
+      return $this->db->queryALL("SELECT id,nazev,(SELECT jmeno FROM accounts WHERE id = n.majitel) as majitel,penize,vstupne,(SELECT COUNT(*) FROM accounts WHERE innation= n.id) as clenu FROM nations n ORDER BY vstupne");
   }
   
 

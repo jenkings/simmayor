@@ -11,7 +11,7 @@ define("STARTING_MONEY","50000"); //poeníze přidělené při registraci
 define("PLAYER_SHOP_ITEMS_LIMIT","4"); //počet položek které hráč může mít nabídnuté v obchodě
 define("VIP_SHOP_ITEMS_LIMIT","15"); //počet položek které VIP hráč může mít nabídnuté v obchodě
 
-define("MAX_DLUH","100000"); // maximální výše půjčky
+define("MAX_DLUH",100000); // maximální výše půjčky
 
 define("MAX_TAXES",35); //maximalni mozne dane na ostrove
 define("MIN_TAXES",1);  //minimalni mozne dane na ostrove

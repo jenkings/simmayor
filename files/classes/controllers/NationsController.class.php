@@ -11,20 +11,15 @@ class NationsController implements Controller{
 	}
 	
 	public function __toString(){
-
 		LoginChecker::check($this->session);
-				
 		$tpl = new Template();
-
 		$menu = new Menu();
 		$tpl->setContent("menu",$menu);
 		// konec default parametrů
-		
 		$db = new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);
 		$player = new Player($db,array("*",$this->session['prihlasen']));
 		$nationCreator = new NationCreator($db);
 		$nation = new Nation($db,$player->getVar("innation"));
-		
 		$obsah = "";		
 		//*********Zpracování požadavků*//
 		if(isset($this->post['nazev']) && !empty($this->post['nazev'])){
@@ -54,13 +49,13 @@ class NationsController implements Controller{
 		foreach($polozky as $polozka){
 			$te->setContent("nazev",$polozka['nazev']);$te->setContent("majitel",$polozka['majitel']);
 			$te->setContent("penize",NumberFormat::moneyOutput($polozka['penize']));
+			$te->setContent("id",$polozka['id']);
 			$te->setContent("clenu",$polozka['clenu']);$obsah .= $te;
 		}
 		$obsah .= "</ul>";
 		//*****************************//
 		$tpl->setContent("content",$obsah);
 		return $tpl->__toString();
-		
 	}	
 }
 ?>

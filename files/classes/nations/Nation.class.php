@@ -17,6 +17,7 @@ class Nation{
     **/
     public function sumarize(){
         $return = Array();
+        $return['id'] = $this->data['id'];
         $return['nazev'] = $this->data['nazev'];
         $return['rozpocet'] = $this->data['penize'];
         $return['majitel'] = $this->db->queryOne("SELECT jmeno FROM accounts WHERE id=?",array($this->data['majitel']))['jmeno'];
@@ -24,13 +25,15 @@ class Nation{
         return $return;
     }
     
+    /**
+     * @return String výpis přehledu o konkrétním státu
+     */
     public function overview(){
         if(empty($this->data))  return"<div class='box' id='nat_creator'><h4>Nejste členem žádneho státu</h4></div>";
-        
         $d = $this->sumarize();
         return"
         <div class='box' id='nat_creator'>
-            <img src='./graphics/mini-icons/nation.png'/> ". $d['nazev'] ."
+            <img src='./graphics/mini-icons/nation.png'/> <a href='./index.php?pid=natdetail&id=".$d['id']."'>". $d['nazev'] ."</a>
             <img src='./graphics/mini-icons/penize.png'/> ". $d['rozpocet'] ."
             <img src='./graphics/mini-icons/vladce.png'/> ". $d['majitel'] ."
             <img src='./graphics/mini-icons/population.png'/> ". $d['clenu'] ."
